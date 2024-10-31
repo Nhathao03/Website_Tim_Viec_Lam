@@ -1,0 +1,408 @@
+﻿@model TimViec.ViewModel.HomeViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<!--welcome-hero start -->
+<section id="home" class="welcome-hero">
+	<div class="container">
+		<div class="welcome-hero-txt">
+			<h2>best place to find and explore <br> that all you need </h2>
+			<p>
+				Find Best Job Name, Skill, Level, Location and many more think in just One click
+			</p>
+		</div>
+		<div class="welcome-hero-serch-box">
+			<div class="welcome-hero-form">
+				<div class="single-welcome-hero-form">
+					<h3>what?</h3>
+					<form action="index.html">
+						<input type="text" placeholder="Ex: palce, resturent, food, automobile" />
+					</form>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-list-with-dots"></i>
+					</div>
+				</div>
+				<div class="single-welcome-hero-form">
+					<h3>location</h3>
+					<form action="index.html">
+						<input type="text" placeholder="Ex: london, newyork, rome" />
+					</form>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-gps-fixed-indicator"></i>
+					</div>
+				</div>
+			</div>
+			<div class="welcome-hero-serch">
+				<button class="welcome-hero-btn" onclick="window.location.href='#'">
+					search  <i data-feather="search"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+
+</section><!--/.welcome-hero-->
+<!--welcome-hero end -->
+<!--list-topics start -->
+<section id="list-topics" class="list-topics">
+	<div class="container">
+		<div class="list-topics-content">
+			<ul>
+				<li>
+					<div class="single-list-topics-content">
+						<div class="single-list-topics-icon">
+							<img src="../LayoutTimViec/img/Java.png" alt="Alternate Text" />
+						</div>
+						<h2><a href="#">Java</a></h2>
+					</div>
+				</li>
+				<li>
+					<div class="single-list-topics-content">
+						<div class="single-list-topics-icon">
+							<img src="../LayoutTimViec/img/Python.png" alt="Alternate Text" />
+						</div>
+						<h2><a href="#">Python</a></h2>
+					</div>
+				</li>
+				<li>
+					<div class="single-list-topics-content">
+						<div class="single-list-topics-icon">
+							<img src="../LayoutTimViec/img/JavaScript.png" alt="Alternate Text" />
+						</div>
+						<h2><a href="#">JavaScript</a></h2>
+					</div>
+				</li>
+				<li>
+					<div class="single-list-topics-content">
+						<div class="single-list-topics-icon">
+							<img src="../LayoutTimViec/img/C++.png" alt="Alternate Text" />
+						</div>
+						<h2><a href="#">C++</a></h2>
+					</div>
+				</li>
+				<li>
+					<div class="single-list-topics-content">
+						<div class="single-list-topics-icon">
+							<img src="../LayoutTimViec/img/CSS3.png" alt="Alternate Text" />
+						</div>
+						<h2><a href="#">CSS3</a></h2>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div><!--/.container-->
+
+</section><!--/.list-topics-->
+<!--list-topics end-->
+<!--works start -->
+<section id="works" class="works">
+	<div class="container">
+		<div class="section-header">
+			<h2>TOP 3</h2>
+			<h4>Company outstanding now</h4>
+		</div><!--/.section-header-->
+		<div class="works-content">
+			<div class="row">
+				@foreach (var item in Model.Companies)
+				{
+					<div class="col-md-4 col-sm-6">
+						<div class="single-how-works">
+							<div class="single-how-works-icon">
+								<img src="~/LayoutTimViec/img/@item.Image" alt="" />
+							</div>
+							<h2><a href="#">@item.Name_company</a></h2>
+							<button class="welcome-hero-btn how-work-btn" style="cursor: pointer"><a href="#" class="Detail_Company" id_company="@item.Id" >Detail</a></button>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div><!--/.container-->
+</section><!--/.works-->
+<!--works end -->
+<!--works end -->
+<!--explore start -->
+<section id="explore" class="explore">
+	<div class="container">
+		<div class="section-header">
+			<h2>Job popular now</h2>
+
+		</div><!--/.section-header-->
+		<div class="explore-content">
+			<div class="row">
+				@foreach(var item in Model.Jobs)
+				{
+					<div class=" col-md-4 col-sm-6">
+						<div class="single-explore-item">
+							<div class="single-explore-img">
+								<img style="height: 200px; width: 100%; object-fit: scale-down" src="~/LayoutTimViec/img/@item.img" alt="explore image">
+								<div class="single-explore-img-info">
+									<div class="single-explore-image-icon-box">
+										<ul>
+											<li>
+												<div class="single-explore-image-icon">
+													<i class="fa fa-arrows-alt"></i>
+												</div>
+											</li>
+											<li>
+												<div class="single-explore-image-icon">
+													<i class="fa fa-bookmark-o favourite_job" id_jobfv="@item.Id"></i>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="single-explore-txt bg-theme-1">
+								<h2>
+									<a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" href="#" class="Detail_Job" id_job="@item.Id">@item.Title</a>
+								</h2>
+								<p class="explore-rating-price">
+									<a href="#">@item.R1_Language</a>
+									<span class="explore-price-box">@item.R2_Language</span>
+									<a href="#">@item.R3_Language</a>
+								</p>
+								<hr />
+								<div class="explore-open-close-part">
+									<div class="row">
+										<div class="col-sm-5">
+											<button class="welcome-hero-btn how-work-btn Detail_Job" style="cursor: pointer" type="button" id_job="@item.Id">Detail</button>
+										</div>
+										<div class="col-sm-7">
+											<div class="explore-map-icon">
+												<a href="#"><i data-feather="map-pin"></i></a>
+												<a href="#"><i data-feather="upload"></i></a>
+												<a href="#"><i data-feather="heart"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}							
+			</div>
+		</div>
+	</div><!--/.container-->
+</section><!--/.explore-->
+<!--explore end -->
+<!--reviews start -->
+<section id="reviews" class="reviews">
+	<div class="section-header">
+		<h2>clients reviews</h2>
+		<p>What our client say about us</p>
+	</div><!--/.section-header-->
+	<div class="reviews-content">
+		<div class="testimonial-carousel">
+			<div class="single-testimonial-box">
+				<div class="testimonial-description">
+					<div class="testimonial-info">
+						<div class="testimonial-img">
+							<img src="assets/images/clients/c1.png" alt="clients">
+						</div><!--/.testimonial-img-->
+						<div class="testimonial-person">
+							<h2>Tom Leakar</h2>
+							<h4>london, UK</h4>
+							<div class="testimonial-person-star">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div>
+						</div><!--/.testimonial-person-->
+					</div><!--/.testimonial-info-->
+					<div class="testimonial-comment">
+						<p>
+							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+						</p>
+					</div><!--/.testimonial-comment-->
+				</div><!--/.testimonial-description-->
+			</div><!--/.single-testimonial-box-->
+		</div>
+	</div>
+
+</section><!--/.reviews-->
+<!--reviews end -->
+<!-- statistics strat -->
+<section id="statistics" class="statistics">
+	<div class="container">
+		<div class="statistics-counter">
+			<div class="col-md-3 col-sm-6">
+				<div class="single-ststistics-box">
+					<div class="statistics-content">
+						<div class="counter">90 </div> <span>K+</span>
+					</div><!--/.statistics-content-->
+					<h3>listings</h3>
+				</div><!--/.single-ststistics-box-->
+			</div><!--/.col-->
+			<div class="col-md-3 col-sm-6">
+				<div class="single-ststistics-box">
+					<div class="statistics-content">
+						<div class="counter">40</div> <span>k+</span>
+					</div><!--/.statistics-content-->
+					<h3>listing categories</h3>
+				</div><!--/.single-ststistics-box-->
+			</div><!--/.col-->
+			<div class="col-md-3 col-sm-6">
+				<div class="single-ststistics-box">
+					<div class="statistics-content">
+						<div class="counter">65</div> <span>k+</span>
+					</div><!--/.statistics-content-->
+					<h3>visitors</h3>
+				</div><!--/.single-ststistics-box-->
+			</div><!--/.col-->
+			<div class="col-md-3 col-sm-6">
+				<div class="single-ststistics-box">
+					<div class="statistics-content">
+						<div class="counter">50</div> <span>k+</span>
+					</div><!--/.statistics-content-->
+					<h3>happy clients</h3>
+				</div><!--/.single-ststistics-box-->
+			</div><!--/.col-->
+		</div><!--/.statistics-counter-->
+	</div><!--/.container-->
+
+</section><!--/.counter-->
+<!-- statistics end -->
+<!--blog start -->
+<section id="blog" class="blog">
+	<div class="container">
+		<div class="section-header">
+			<h2>news and articles</h2>
+			<p>Always upto date with our latest News and Articles </p>
+		</div><!--/.section-header-->
+		<div class="blog-content">
+			<div class="row">
+				<div class="col-md-4 col-sm-6">
+					<div class="single-blog-item">
+						<div class="single-blog-item-img">
+							<img src="assets/images/blog/b1.jpg" alt="blog image">
+						</div>
+						<div class="single-blog-item-txt">
+							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<div class="single-blog-item">
+						<div class="single-blog-item-img">
+							<img src="assets/images/blog/b2.jpg" alt="blog image">
+						</div>
+						<div class="single-blog-item-txt">
+							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<div class="single-blog-item">
+						<div class="single-blog-item-img">
+							<img src="assets/images/blog/b3.jpg" alt="blog image">
+						</div>
+						<div class="single-blog-item-txt">
+							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/.container-->
+
+</section><!--/.blog-->
+<!--blog end -->
+<!--subscription strat -->
+<section id="contact" class="subscription">
+	<div class="container">
+		<div class="subscribe-title text-center">
+			<h2>
+				do you want to add your business listing with us?
+			</h2>
+			<p>
+				Listrace offer you to list your business with us and we very much able to promote your Business.
+			</p>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="subscription-input-group">
+					<form action="#">
+						<input type="email" class="subscription-input-form" placeholder="Enter your email here">
+						<button class="appsLand-btn subscribe-btn" onclick="window.location.href='#'">
+							creat account
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section><!--/subscription-->
+<!--subscription end -->
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+
+			//Detail Company
+			$('.Detail_Company').click(function () {
+				const getID_Company = $(this).attr("id_company");
+				debugger;
+				$.ajax({
+					url: '/Company/Details_CPN',
+					type: 'GET',
+					data: { id: getID_Company },
+					success: function (result) {
+						window.location.href = "/Company/Details_CPN/" + getID_Company;
+					},
+					error: function (xhr, status, error) {
+						alert("An error occurred: " + error);
+					}
+				})
+			})
+
+			//Detail Job
+			$('.Detail_Job').click(function () {
+				const getID_Job = $(this).attr("id_job");
+				debugger;
+				$.ajax({
+					url: '/Job/Details_Job',
+					type: 'GET',
+					data: { id: getID_Job },
+					success: function (result) {
+						window.location.href = "/Job/Details_Job/" + getID_Job;
+					},
+					error: function (xhr, status, error) {
+						alert("An error occurred: " + error);
+					}
+				})
+			})
+
+			//Add favourite job
+			$('.favourite_job').click(function () {
+				const getID_Job = $(this).attr("id_jobfv");
+				$.ajax({
+					url: '/Job/Favourite_Job',
+					type: 'GET',
+					dataType: 'json',
+					data: { id: getID_Job },
+					success: function (result) {
+						window.location.href = "/Job/GetAllFavouriteJob"
+					},
+					error: function (xhr, status, error) {
+						alert("An error eccorred: " + error);
+					}
+				})
+			})
+		});
+	</script>
+} 

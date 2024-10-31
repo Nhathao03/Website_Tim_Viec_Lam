@@ -1,0 +1,39 @@
+﻿@model TimViec.Models.feedback
+
+@{
+    ViewData["Title"] = "feedback";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<h1 style="text-align: center;font-size: 31px;margin-top: 10px;">
+    Đóng góp ý kiến Website
+</h1>
+
+<div class="row" style="margin-top: 50px">
+    <div class="col-md-4" style="margin-left: 100px">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13053.953950356241!2d106.77039497656357!3d10.849080313697765!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276e7ea103df%3A0xb6cf10bb7d719327!2zSFVURUNIIC0gxJDhuqFpIGjhu41jIEPDtG5nIG5naOG7hyBUUC5IQ00gKFRodSBEdWMgQ2FtcHVzKQ!5e0!3m2!1svi!2s!4v1716964288481!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="col-md-4" style="width: 40% !important;margin-inline-start: 80px;">
+        <form asp-action="feedback">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Họ và tên</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label">Nội dung</label>
+                <textarea style="height: 220px;" asp-for="Note" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input style="float: right" type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

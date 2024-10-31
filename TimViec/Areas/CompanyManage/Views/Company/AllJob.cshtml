@@ -1,0 +1,62 @@
+﻿@model List<TimViec.ViewModel.GetJobByEmail>
+
+@{
+    ViewData["Title"] = "Job";
+}
+
+<div class="pagetitle">
+    <h1>Quản lý công việc</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Quản lý công việc</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th>Tên công việc</th>
+                            <th>Lương</th>
+                            <th>Cấp bậc</th>
+                            <th>Loại hình</th>
+                            <th>Kỹ năng</th>
+                            <th>Ngôn ngữ 1</th>
+                            <th>Ngôn ngữ 2</th>
+                            <th>Ngôn ngữ 3</th>
+                            <th>Sửa</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.JobName</td>
+                                <td>@item.Salary</td>
+                                <td>@item.Rankname</td>
+                                <td>@item.Typename</td>
+                                <td>@item.Skillname</td>
+                                <td>@item.R1_Language</td>
+                                <td>@item.R2_Language</td>
+                                <td>@item.R3_Language</td>
+                                <td><a asp-controller="Company" asp-action="Edit_Job" asp-route-id="@item.Id" class="btn btn-primary">Sửa</a></td>
+                                <td><a asp-controller="Company" asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+
+    </div>
+</div>

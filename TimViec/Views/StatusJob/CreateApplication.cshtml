@@ -1,0 +1,53 @@
+﻿@model TimViec.Models.StatusJob
+
+@{
+    ViewData["Title"] = "CreateApplication";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+<br />
+<p style="text-align: center; font-size: 30px; color: black">Apply for @ViewBag.GetJob.Title </p>
+<div class="row">
+    <div class="card">
+        <div class="card-body pt-3" style="display: flex; justify-content: center;">
+            <div class="col-md-4">
+                <form enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label" style="color: black">Email</label>
+                        <input readonly asp-for="Email" class="form-control" value="@ViewBag.Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Fullname" class="control-label" style="color: black">Your name</label>
+                        <input asp-for="Fullname" class="form-control" />
+                        <span asp-validation-for="Fullname" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="imgCV" class="control-label" style="color: black">Image CV</label>
+                        <input type="file" asp-for="imgCV" class="form-control" />
+                        <span asp-validation-for="imgCV" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Note" class="control-label" style="color: black">Note</label>
+                        <input asp-for="Note" class="form-control" />
+                        <span asp-validation-for="Note" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" value="Create" class="btn btn-primary Submit_Application" style="width: 100%">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+
+    </script>
+}

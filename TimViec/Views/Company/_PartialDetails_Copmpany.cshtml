@@ -1,0 +1,183 @@
+﻿@model List<TimViec.ViewModel.Details_CPN>
+@{
+    ViewData["Title"] = "Details_CPN";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+<style>
+    .form-container {
+        margin-left: 400px;
+        width: 800px;
+        margin-top: 100px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+</style>
+<section class="explore-work" id="explore" style="margin-top: -20px;">
+    <div class="container expanded">
+        <div class="row" style="margin-top: 25px;">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4" style="width: 28%;background-color: white;border-radius: 10px;margin-left: 20px;padding: 10px;margin-top: 10px">
+                    <div class="left-image">
+                        <img style="width: 100%; height: auto; object-fit: scale-down" src="~/LayoutTimViec/img/@item.Image" alt="Interior Design Work">
+                    </div>
+                    <br />
+                    <iframe src="@item.About_Me" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-left: 20px;margin-top: 10px;">
+                    <h1 style="font-size: 36px">Company @item.CompanyName1</h1>
+                    <hr />
+                    <div class="right-content">
+                        <div style="display: flex; justify-content: space-evenly">
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/users.png" /><br /><h1 style="font-size:15px; text-align: center">Size</h1>
+                                <p style="display: flex; justify-content: center">@item.Company_Size</p>
+                            </div>
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/hotel.png" /><br /><h1 style="font-size:15px; text-align: center">Type</h1>
+                                <p style="display: flex; justify-content: center">@item.Company_Type</p>
+                            </div>
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/map-pin.png" /><br /><h1 style="font-size:15px; text-align: center">City</h1>
+                                <p style="display: flex; justify-content: center">@item.city</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <h4>Address</h4>
+                                <ul class="info">
+                                    <li>
+                                        <p>
+                                            • @item.Location
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>Description</h4>
+                                <ul class="info">
+                                    <li>
+                                        <p style="text-align: justify;">
+                                            • @item.Description
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                break;
+            }
+        </div>
+    </div>
+    <br />
+</section>
+<section id="explore" class="explore">
+    <div class="container">
+        <div class="section-header">
+            @foreach (var item in Model)
+            {
+                <h2>Job of @item.CompanyName1</h2>
+                break;
+            }
+        </div><!--/.section-header-->
+        <div class="explore-content">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class=" col-md-4 col-sm-6">
+                        <div class="single-explore-item">
+                            <div class="single-explore-img">
+                                <img style="height: 200px; width: 100%; object-fit: scale-down" src="~/LayoutTimViec/img/@item.ImageJob" alt="explore image">
+                                <div class="single-explore-img-info">
+                                    <div class="single-explore-image-icon-box">
+                                        <ul>
+                                            <li>
+                                                <div class="single-explore-image-icon">
+                                                    <i class="fa fa-arrows-alt"></i>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="single-explore-image-icon">
+                                                    <i class="fa fa-bookmark-o favourite_job" id_jobfv="@item.IDJob"></i>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-explore-txt bg-theme-1">
+                                <h2>
+                                    <a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" href="#" class="Detail_Job" id_job="@item.IDJob">@item.JobName</a>
+                                </h2>
+                                <p class="explore-rating-price">
+                                    <a href="#">@item.R1_Language</a>
+                                    <span class="explore-price-box">@item.R2_Language</span>
+                                    <a href="#">@item.R3_Language</a>
+                                </p>
+                                <hr />
+                                <div class="explore-open-close-part">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <button class="welcome-hero-btn how-work-btn Detail_Job" style="cursor: pointer" type="button" id_job="@item.IDJob">Detail</button>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="explore-map-icon">
+                                                <a href="#"><i data-feather="map-pin"></i></a>
+                                                <a href="#"><i data-feather="upload"></i></a>
+                                                <a href="#"><i data-feather="heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div><!--/.container-->
+</section><!--/.explore-->
+<!--explore end -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            //Detail Job
+            $('.Detail_Job').click(function () {
+                const getID_Job = $(this).attr("id_job");
+                debugger;
+                $.ajax({
+                    url: '/Job/Details_Job',
+                    type: 'GET',
+                    data: { id: getID_Job },
+                    success: function (result) {
+                        window.location.href = "/Job/Details_Job/" + getID_Job;
+                    },
+                    error: function (xhr, status, error) {
+                        alert("An error occurred: " + error);
+                    }
+                })
+            })
+
+            //Add favourite job
+            $('.favourite_job').click(function () {
+                const getID_Job = $(this).attr("id_jobfv");
+                $.ajax({
+                    url: '/Job/Favourite_Job',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { id: getID_Job },
+                    success: function (result) {
+                        window.location.href = "/Job/GetAllFavouriteJob"
+                    },
+                    error: function (xhr, status, error) {
+                        alert("An error eccorred: " + error);
+                    }
+                })
+            })
+        });
+    </script>
+} 

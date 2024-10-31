@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TimViec.Models.Job>
+
+@{
+    ViewData["Title"] = "Job";
+}
+
+<h2>Quản lý công việc</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh sách tất cả công việc
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Tên công việc</th>
+                    <th>Ngôn ngữ 1</th>
+                    <th>Ngôn ngữ 2</th>
+                    <th>Ngôn ngữ 3</th>
+                    <th>Sửa</th>
+                    <th>Chi tiết</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {            
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.R1_Language</td>
+                        <td>@item.R2_Language</td>
+                        <td>@item.R3_Language</td>
+                        <td><a asp-action="Edit_Job" asp-route-id="@item.Id" class="btn btn-success">Sửa</a></td>
+                        <td><a asp-action="Details_Job" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a></td>
+                        <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                    </tr>
+                }
+                </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model TimViec.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Details_AccountUser";
+}
+<h1>Thông tin chi tiết cá nhân người dùng</h1>
+<form class="row g-3">
+    <div class="col-md-4">
+        <label for="inputEmail4" class="form-label">Họ</label>
+    <input type="text" class="form-control" id="inputEmail4" value="@Html.DisplayFor(Model => Model.Firstname)" readonly>
+    </div>
+    <div class="col-md-4">
+        <label for="inputPassword4" class="form-label">Tên</label>
+    <input type="text" class="form-control" id="inputPassword4" value="@Html.DisplayFor(Model => Model.Lastname)" readonly>
+    </div>
+<div class="col-md-4">
+    <label for="inputPassword4" class="form-label">Họ và tên</label>
+    <input type="text" class="form-control" id="inputPassword4" value="@Html.DisplayFor(Model => Model.Fullname)" readonly>
+</div>
+    <div class="col-12">
+        <label for="inputAddress" class="form-label">Email</label>
+    <input type="text" class="form-control" id="inputAddress" value="@Html.DisplayFor(Model => Model.Email)" readonly>
+    </div>
+    <div class="col-12">
+        <label for="inputAddress2" class="form-label">Số điện thoại</label>
+    <input type="text" class="form-control" id="inputAddress2" value="@Html.DisplayFor(Model => Model.PhoneNumber)" readonly>
+    </div>
+</form>
+<br />
+<a href="/Admin/Manager/Account_User" class="btn btn-primary" style="float: right">Quay lại</a>

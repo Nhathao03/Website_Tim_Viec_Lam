@@ -1,0 +1,154 @@
+﻿@model TimViec.Models.StatusJob
+
+@{
+    ViewData["Title"] = "Details_Status";
+}
+
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="../../../../Company/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../../Company/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../Company/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="../../../../Company/vendor/quill/quill.snow.css" rel="stylesheet">
+<link href="../../../../Company/vendor/quill/quill.bubble.css" rel="stylesheet">
+<link href="../../../../Company/vendor/remixicon/remixicon.css" rel="stylesheet">
+<link href="../../../../Company/vendor/simple-datatables/style.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="../../../../Company/css/style.css" rel="stylesheet">
+
+
+<div class="pagetitle">
+    <h1>Chi tiết đơn ứng tuyển</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Chi tiết đơn ứng tuyển</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                    <img src="~/@Html.DisplayFor(Model => Model.imgCV)" alt="Profile" >
+                </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Xem ảnh CV
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="margin-left: 19%">
+                        <div class="modal-content" style="width: 1100px;">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Ảnh CV</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="~/@Html.DisplayFor(Model => Model.imgCV)" alt="Profile" style="width: 100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            
+                            <h5 class="card-title">Chi tiết đơn ứng tuyển</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Họ và tên</div>
+                                <div class="col-lg-9 col-md-8">@Html.DisplayFor(Model => Model.Fullname)</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                <div class="col-lg-9 col-md-8">@Html.DisplayFor(Model => Model.Email)</div>
+                            </div>
+
+                            <h5 class="card-title">Ghi chú</h5>
+                            <p class="small fst-italic">@Html.DisplayFor(Model => Model.Note)</p>
+
+                        </div>
+
+                    </div><!-- End Bordered Tabs -->
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        Gửi email cho ứng viên
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" style="margin-left: 19%">
+                            <div class="modal-content" style="width: 1100px;">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" asp-action="SendEmailByAdmin" asp-route-id="@Model.ID">
+                                        <div class="form-group">
+                                            <label for="to">Đến:</label>
+                                            <input type="email" readonly class="form-control" id="to" name="To" placeholder="Nhập email người nhận" value="@Html.DisplayFor(Model => Model.Email)">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="subject">Tiêu đề:</label>
+                                            <input type="text" class="form-control" id="subject" name="Subject" placeholder="Nhập tiêu đề email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="body">Nội dung:</label>
+                                            <p>Kính gửi @ViewBag.FullName </p>
+                                            <p>
+                                                Chúng tôi rất vui mừng thông báo rằng đơn ứng tuyển của bạn cho vị trí @ViewBag.JobName tại công ty @ViewBag.NameCPN đã được xem
+                                                xét và thông qua.
+                                            </p>
+                                            <p>
+                                                Bước tiếp theo, chúng tôi xin mời bạn tham gia buổi phỏng vấn trực tiếp để trao đổi chi tiết hơn về vai trò cũng như để
+                                                hiểu thêm về bạn. Vui lòng liên hệ với chúng tôi qua email @ViewBag.Email  để xác nhận thời gian phỏng vấn thuận tiện nhất cho bạn.
+                                            </p>
+                                            <p>Chúng tôi rất mong đợi được gặp bạn và thảo luận thêm về cơ hội hợp tác này.</p>
+                                        </div>
+                                        <br/>
+                                        <button style="float: right" type="submit" class="btn btn-primary">Gửi email</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a style="float: right;width: 100px;" asp-action="Accept_Status" asp-route-id="@Model.ID" class="btn btn-primary">Duyệt</a>
+                    <a style="float: right;width: 100px;margin-right: 10px;" asp-action="Refuse_Status" asp-route-id="@Model.ID" class="btn btn-danger">Từ chối</a>
+                    <a style="float: right;width: 100px;margin-right: 10px;" asp-action="DeleteConfirmed_Status" asp-route-id="@Model.ID" class="btn btn-danger">Xóa</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+   
+<!-- Vendor JS Files -->
+<script src="../../../Company/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="../../../Company/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../Company/vendor/chart.js/chart.umd.js"></script>
+<script src="../../../Company/vendor/echarts/echarts.min.js"></script>
+<script src="../../../Company/vendor/quill/quill.js"></script>
+<script src="../../../Company/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="../../../Company/vendor/tinymce/tinymce.min.js"></script>
+<script src="../../../Company/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../../../Company/js/main.js"></script>

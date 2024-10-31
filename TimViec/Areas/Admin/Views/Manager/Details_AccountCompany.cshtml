@@ -1,0 +1,114 @@
+﻿@model TimViec.Models.Company
+@{
+    ViewData["Title"] = "Details_AccountCompany";
+}
+
+
+<h1>Chi tiết tài khoản công ty @Html.DisplayFor(model => model.Name_company)</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên công ty
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name_company)
+        </dd>
+        <dt class="col-sm-2">
+            Tên đăng nhập
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            Ảnh công ty
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/LayoutTimViec/img/@Html.DisplayFor(model => model.Image)" alt="Profile" >
+        </dd>
+        <dt class="col-sm-2">
+            Loại hình
+        </dt>
+        <dd class="col-sm-10">
+            @if ( Model.Company_type == "1")
+            {
+                <p>In Office</p>
+            }
+            else if (Model.Company_type == "2")
+            {
+                <p>Hybird</p>
+            }
+            else if (Model.Company_type == "3")
+            {
+                <p>Remote</p>
+            }
+            else
+            {
+                <p>Oversea</p>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Quy mô
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Company_size)
+        </dd>
+        <dt class="col-sm-2">
+            Thành phố
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Company_type == "1")
+            {
+                <p>Hồ Chí Minh</p>
+            }
+            else if (Model.Company_type == "2")
+            {
+                <p>Hà Nội</p>
+            }
+            else if (Model.Company_type == "3")
+            {
+                <p>Đà Nẵng</p>
+            }
+            else
+            {
+                <p>Khác</p>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Địa chỉ
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+   
+
+    </dl>
+    </div>
+    <br />
+<a href="/Admin/Manager/Account_Company" class="btn btn-primary" style="float: right">Quay lại</a>
+@* <h1>Thông tin chi tiết cá nhân người dùng</h1>
+<form class="row g-3">
+    <div class="col-md-4">
+        <label for="inputEmail4" class="form-label">Họ</label>
+        <input type="text" class="form-control" id="inputEmail4" value="@Html.DisplayFor(Model => Model.Firstname)" readonly>
+    </div>
+    <div class="col-md-4">
+        <label for="inputPassword4" class="form-label">Tên</label>
+        <input type="text" class="form-control" id="inputPassword4" value="@Html.DisplayFor(Model => Model.Lastname)" readonly>
+    </div>
+    <div class="col-md-4">
+        <label for="inputPassword4" class="form-label">Họ và tên</label>
+        <input type="text" class="form-control" id="inputPassword4" value="@Html.DisplayFor(Model => Model.Fullname)" readonly>
+    </div>
+    <div class="col-12">
+        <label for="inputAddress" class="form-label">Email</label>
+        <input type="text" class="form-control" id="inputAddress" value="@Html.DisplayFor(Model => Model.Email)">
+    </div>
+    <div class="col-12">
+        <label for="inputAddress2" class="form-label">Số điện thoại</label>
+        <input type="text" class="form-control" id="inputAddress2" value="@Html.DisplayFor(Model => Model.PhoneNumber)">
+    </div>
+</form>
+<br />
+<a href="/Admin/Manager/Account_User" class="btn btn-primary" style="float: right">Quay lại</a> *@

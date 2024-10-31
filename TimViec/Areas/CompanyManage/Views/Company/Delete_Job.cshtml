@@ -1,0 +1,109 @@
+﻿@model TimViec.Models.Job
+
+@{
+    ViewData["Title"] = "Delete_Job";
+}
+
+<!-- For favicon png -->
+<link rel="shortcut icon" type="image/icon" href="../../../LayoutTimViec/logo/logo.png" />
+
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="../../../Company/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../Company/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../Company/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="../../../Company/vendor/quill/quill.snow.css" rel="stylesheet">
+<link href="../../../Company/vendor/quill/quill.bubble.css" rel="stylesheet">
+<link href="../../../Company/vendor/remixicon/remixicon.css" rel="stylesheet">
+<link href="../../../Company/vendor/simple-datatables/style.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="../../../Company/css/style.css" rel="stylesheet">
+
+<div class="pagetitle">
+    <h1>Quản lý đơn tuyển dụng</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Xóa công việc</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Tên công việc
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+      
+        <dt class = "col-sm-2">
+            Địa chỉ
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt class = "col-sm-2">
+            Lương
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+        
+        <dt class = "col-sm-2">
+           Cấp bậc
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.Rank
+        </dd>
+        <dt class = "col-sm-2">
+            Hình ảnh
+        </dt>
+        <dd class = "col-sm-10">
+            <img style="
+                 width: 300px;" src="../../../LayoutTimViec/img/@Html.DisplayFor(model => model.img)" />
+        </dd>
+        <dt class = "col-sm-2">
+            Ngôn ngữ 1
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.R1_Language)
+        </dd>
+        <dt class = "col-sm-2">
+            Ngôn ngữ 2
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.R2_Language)
+        </dd>
+        <dt class = "col-sm-2">
+            Ngôn ngữ 3
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.R3_Language)
+        </dd>
+        <dt class = "col-sm-2">
+           Loại hình
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.Type
+        </dd>
+        <dt class="col-sm-2">
+            Mô tả
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete_Job">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-primary">Trở về</a>
+    </form>
+</div>

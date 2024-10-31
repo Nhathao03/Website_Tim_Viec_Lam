@@ -1,0 +1,160 @@
+﻿@model List<TimViec.ViewModel.ViewInforCompany>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="pagetitle">
+    <h1>Trang chủ</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Trang chủ</a></li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<div class="row" style="margin-top: 40px">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Tổng số công việc
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                           @ViewBag.Count
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-hotel fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Tổng số đơn ứng tuyển
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"> 
+                                    @ViewBag.CountStatus
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-user fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+
+</div>
+
+
+
+<div class="pagetitle">
+    <h1>Thông tin công ty</h1>
+</div><!-- End Page Title -->
+
+<section class="section profile">
+    @foreach (var item in Model)
+     {
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                        <img src="~/LayoutTimViec/img/@item.logo" alt="Profile"  style="width: 100%">
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Thông tin</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Mô tả</button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content pt-2">
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                        
+                            <h5 class="card-title">Thông tin chi tiết</h5>
+                        
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Tên công ty</div>
+                                <div class="col-lg-9 col-md-8">@item.Name</div>
+                            </div>
+                        
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                <div class="col-lg-9 col-md-8">@item.Email</div>
+                            </div>
+                        
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Địa chỉ</div>
+                                <div class="col-lg-9 col-md-8">@item.Location</div>
+                            </div>
+                        
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Quy mô</div>
+                                <div class="col-lg-9 col-md-8">@item.Size</div>
+                            </div>
+                        
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Loại hình</div>
+                                <div class="col-lg-9 col-md-8">
+                                    @if (item.TypeName == "1")
+                                    {
+                                        <p>In Office</p>
+                                    }
+                                    else if (item.TypeName == "2")
+                                    {
+                                        <p>Hybird</p>
+                                    }
+                                    else if (item.TypeName == "3")
+                                    {
+                                        <p>Remote</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Oversea</p>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade pt-3" id="profile-settings">
+                            <h5 class="card-title">Mô tả</h5>
+                            <p class="small fst-italic">@item.Description</p>
+                        </div>
+                    </div><!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</section>

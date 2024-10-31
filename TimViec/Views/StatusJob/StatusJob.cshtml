@@ -1,0 +1,58 @@
+﻿@model List<TimViec.ViewModel.StatusViewModel>
+@{
+    ViewData["Title"] = "CheckST";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<br />
+<h3 style="text-align: center">Danh sách các công việc đang ứng tuyển</h3>
+<div>
+    <hr />
+    <dl class="col-md-10" style="margin-left: 244px;width: 1321px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Họ và tên</th>
+                    <th scope="col">Tên công việc</th>
+                    <th scope="col">Công ty</th>
+                    <th scope="col">CV</th>
+                    <th scope="col">Ghi chú</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Xóa</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td scope="row">@item.Name</td>
+                        <td scope="row">@item.NameJob</td>
+                        <td scope="row">@item.CompanyName</td>
+                        <td scope="row"><img src="~/@item.imgCV" style="width: 100px"></td>
+                        <td scope="row">@item.Note</td>
+                        <td scope="row">
+                            @if (@item.StatusName == "Từ chối")
+                            {
+                                <div style="height: auto; width: 100%; background-color: indianred; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
+                            }
+                            else if (item.StatusName == "Đang chờ duyệt")
+                            {
+                                <div style="height: auto; width: 100%; background-color: cornflowerblue; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
+                            }
+                            else if (item.StatusName == "Đã duyệt")
+                            {
+                                <div style="height: auto; width: 100%; background-color: lightgreen; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
+                            }
+                        </td>
+                        <td>
+                            <form>
+                                <button type="submit" asp-action="Delete_Status" asp-route-id="@item.Id" class="btn btn-danger">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </dl>
+</div>
+

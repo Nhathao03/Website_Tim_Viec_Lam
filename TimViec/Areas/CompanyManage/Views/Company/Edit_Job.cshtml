@@ -1,0 +1,137 @@
+﻿@model TimViec.Models.Job
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="../../../Company/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../Company/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../Company/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="../../../Company/vendor/quill/quill.snow.css" rel="stylesheet">
+<link href="../../../Company/vendor/quill/quill.bubble.css" rel="stylesheet">
+<link href="../../../Company/vendor/remixicon/remixicon.css" rel="stylesheet">
+<link href="../../../Company/vendor/simple-datatables/style.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="../../../Company/css/style.css" rel="stylesheet">
+
+
+
+<div class="pagetitle">
+    <h1>Thay đổi thông tin công việc</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Thay đổi thông tin công việc</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<hr />
+<div class="row" style="display: flex; justify-content: center">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body pt-3">
+                <form asp-action="Edit_Job" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label">Tên công việc</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="img" class="control-label">Ảnh</label>
+                        <input type="file" asp-for="img" class="form-control"/>
+                        <span asp-validation-for="img" class="text-danger"></span>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label asp-for="R1_Language" class="control-label">Ngôn ngữ 1</label>
+                                    <input asp-for="R1_Language" class="form-control" />
+                                    <span asp-validation-for="R1_Language" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label asp-for="R2_Language" class="control-label">Ngôn ngữ 2</label>
+                                    <input asp-for="R2_Language" class="form-control" />
+                                    <span asp-validation-for="R2_Language" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label asp-for="R3_Language" class="control-label">Ngôn ngữ 3</label>
+                                    <input asp-for="R3_Language" class="form-control" />
+                                    <span asp-validation-for="R3_Language" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label asp-for="RankID" class="control-label">Cấp bậc</label>
+                                    <select asp-for="RankID" class="form-control" asp-items="ViewBag.Rank"></select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label asp-for="SkillID" class="control-label">Kỹ năng</label>
+                                    <select asp-for="SkillID" class="form-control" asp-items="ViewBag.Skill"></select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label asp-for="Type_workID" class="control-label">Loại hình</label>
+                                    <select asp-for="Type_workID" class="form-control" asp-items="ViewBag.Type"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Salary" class="control-label">Lương</label>
+                        <input asp-for="Salary" class="form-control" />
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Work_responsibility" class="control-label">Trách nhiệm công việc</label>
+                        <textarea style="height: 300px" asp-for="Work_responsibility" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="treatment" class="control-label">Phúc lợi</label>
+                        <textarea style="height: 300px" asp-for="treatment" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Location" class="control-label">Địa chỉ</label>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Mô tả</label>
+                        <textarea style="height: 300px" asp-for="Description" class="form-control"></textarea>
+                    </div>
+
+                    <br />
+                    <div class="form-group" style="float: right">
+                        <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model List<TimViec.ViewModel.CompanyCheckStatusViewModel>
+
+@{
+    ViewData["Title"] = "Job";
+}
+<div class="pagetitle">
+    <h1>Quản lý đơn tuyển dụng</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Quản lý đơn tuyển dụng</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th >Họ và tên</th>
+                            <th>Tên công việc</th>
+                            <th style="width: 18.118012%;">Ảnh CV</th>
+                            <th>Ghi Chú</th>
+                            <th style="width: 11.431677%;">Trạng thái</th>
+                            <th style="width: 8.627329%;">Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.NameUser</td>
+                                <td>@item.JobName</td>
+                                <td><img style="width: 200px" src="~/@item.imgCV" /></td>
+                                <td>@item.Note</td>
+                                <td>
+                                    @if (@item.Statusname == "Từ chối")
+                                    {
+                                        <div style="height: auto; width: 100%; background-color: indianred; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
+                                    }
+                                    else if (item.Statusname == "Đang chờ duyệt")
+                                    {
+                                        <div style="height: auto; width: 100%; background-color: cornflowerblue; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
+                                    }
+                                    else if (item.Statusname == "Đã duyệt")
+                                    {
+                                        <div style="height: auto; width: 100%; background-color: lightgreen; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
+                                    }
+                                </td>
+                                <td><a asp-action="Read_Status" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,206 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Quản lý công ty</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- For favicon png -->
+    <link rel="shortcut icon" type="image/icon" href="../../LayoutTimViec/logo/logo.png" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../Company/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../Company/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../Company/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../../Company/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="../../Company/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="../../Company/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../../Company/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../../Company/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: NiceAdmin
+    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    * Updated: Apr 20 2024 with Bootstrap v5.3.3
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a asp-area="CompanyManage" asp-controller="Company" asp-action="Index" class="logo d-flex align-items-center">
+                <span class="d-none d-lg-block">Quản lý công ty</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Tìm kiếm" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-danger badge-number">@ViewBag.Bell.Count</span>
+                    </a><!-- End Messages Icon -->
+                    @foreach(var item in ViewBag.Bell){
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            Bạn có @ViewBag.Bell.Count đơn ứng tuyển mới
+                                <a href="/CompanyManage/Company/CompanyCheckStatus"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            @if (ViewBag.Bell != null && ViewBag.Bell.Count > 0)
+                            {
+                                for (int i = 0; i < ViewBag.Bell.Count; i++)
+                                {
+                                    <a href="#">
+                                            <img style="width: 50px;" src="/@ViewBag.Bell[i].imgCV" alt="" class="rounded-circle">
+                                        <div>
+                                                <h4>@ViewBag.Bell[i].NameUser</h4>
+                                                <p>@ViewBag.Bell[i].Email</p>
+                                                <p>@ViewBag.Bell[i].JobName</p>
+                                        </div>
+                                    </a>
+                                    <hr />
+                                }  
+                            }
+                            else
+                            {
+                                <p>Không có đơn ứng tuyển mới</p>
+                            }
+
+                        </li>
+                        
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                                <a href="/CompanyManage/Company/CompanyCheckStatus">Xem tất cả đơn ứng tuyển</a>
+                        </li>
+                    </ul><!-- End Messages Dropdown Items -->
+                    }
+                </li><!-- End Messages Nav -->
+                <li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <form style="margin-right: 0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li style="margin-right: 10px">
+                                    <button style="text-decoration: none;color: black;font-size: 20px;" type="submit" class="btn btn-link navbar-btn navbar-link">
+                                        Đăng xuất
+                                    </button>
+                                </li>
+                            </ul>
+                        </form>
+                    }
+                </li>
+            </ul>
+        </nav><!-- End Icons Navigation --> 
+
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link " asp-area="CompanyManage" asp-controller="Company" asp-action="Index">
+                    <i class="bi bi-house-fill"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <a class="nav-link " asp-area="CompanyManage" asp-controller="Company" asp-action="Edit_company">
+                    <i class="ri-file-list-2-fill"></i>
+                    <span>Thay đổi thông tin</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-table"></i><span>Bảng</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a asp-area="CompanyManage" asp-controller="Company" asp-action="AllJob">
+                            <i class="bi bi-circle"></i><span>Công việc</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="CompanyManage" asp-controller="Company" asp-action="CompanyCheckStatus">
+                            <i class="bi bi-circle"></i><span>Đơn ứng tuyển</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Forms Nav -->
+
+            
+
+            <li class="nav-heading">Pages</li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="CompanyManage" asp-controller="Company" asp-action="Create">
+                    <i class="bi bi-person"></i>
+                    <span>Đăng công việc tuyển dụng</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+        </ul>
+
+    </aside><!-- End Sidebar-->
+
+    <main id="main" class="main">
+                    @RenderBody()
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+       
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="../../Company/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../../Company/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../Company/vendor/chart.js/chart.umd.js"></script>
+    <script src="../../Company/vendor/echarts/echarts.min.js"></script>
+    <script src="../../Company/vendor/quill/quill.js"></script>
+    <script src="../../Company/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="../../Company/vendor/tinymce/tinymce.min.js"></script>
+    <script src="../../Company/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="../../Company/js/main.js"></script>
+
+</body>
+
+</html>

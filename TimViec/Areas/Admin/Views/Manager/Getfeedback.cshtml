@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TimViec.Models.feedback>
+
+@{
+    ViewData["Title"] = "Getfeedback";
+}
+
+
+<h2>Phản hồi của người dùng</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Phản hồi của người dùng
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Ghi chú</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.Note</td>
+                        <td><a asp-action="DetailsFeedback" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

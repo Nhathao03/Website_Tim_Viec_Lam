@@ -1,0 +1,191 @@
+﻿@model List<TimViec.ViewModel.Details_Job>
+
+@{
+    ViewData["Title"] = "Ứng tuyển";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<style>
+    .form-container {
+        margin-left: 400px;
+        width: 800px;
+        margin-top: 100px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+</style>
+<br />
+<section class="explore-work" id="explore" style="margin-top: -20px;">
+    <div class="container expanded">
+        <div class="row" style="margin-top: 25px;">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4" style="width: 28%;background-color: white;border-radius: 10px;margin-left: 20px;padding: 10px;">
+                    <div class="left-image">
+                        <img style="width: 100%; height: auto" src="~/LayoutTimViec/img/@item.Logo" alt="Interior Design Work">
+                    </div>
+                    <hr style="border: solid 1px black" />
+                    <div class="left" style="padding-left: 14px;">
+                        <ul>
+                            <li>
+                                <h4>Level</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • @item.rank
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>Language</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span class="float-start">
+                                            • @item.R1_Language
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="float-start">
+                                            • @item.R2_Language
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="float-start">
+                                            • @item.R3_Language
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>Salary</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • @item.Salary
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <br />
+                    <a class="badge badge-pill badge-danger apply_application" style="font-size: 25px; background-color: rgb(35 97 157); padding: 10px;width: 100%" id_job="@item.Id">Apply now</a>
+
+                </div>
+
+                <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-left: 20px;">
+                    <h1 style="font-size: 30px">@item.Name</h1>
+                    <hr />
+                    <div class="right-content">
+                        <ul>
+                            <li>
+                                <h4>• Reponsible</h4>
+                                <ul class="info">
+                                    <li>
+                                        <p style="text-align: justify; white-space: pre-line">
+                                            @item.work_responsitory
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>• Treatment</h4>
+                                <ul class="info">
+                                    <li>
+                                        <p style="text-align: justify;white-space: pre-line">
+                                            @item.treatment
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>• Your skills</h4>
+                                <ul class="info">
+                                    <li>
+                                        <p style="text-align: justify;white-space: pre-line">
+                                            @item.advanced_skill
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-right: 23px;margin-top: 10px;float: right">
+                    <a asp-action="Details_CPN" asp-controller="Home" asp-route-id="@item.CompanyID"><h1 style="font-size: 36px">Company @item.CompanyName</h1></a>
+                    <hr />
+                    <div class="right-content">
+                        <div style="display: flex; justify-content: space-evenly">
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/users.png" /><br /><h1 style="font-size:15px; text-align: center">Size</h1>
+                                <span style="display: flex; justify-content: center">@item.size</span>
+                            </div>
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/hotel.png" /><br /><h1 style="font-size:15px; text-align: center">Type</h1>
+                                <span style="display: flex; justify-content: center">@item.type</span>
+                            </div>
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/map-pin.png" /><br /><h1 style="font-size:15px; text-align: center">City</h1>
+                                <span style="display: flex; justify-content: center">@item.city</span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <h4>Address</h4>
+                                <ul class="info">
+                                    <li>
+                                        <p>
+                                            • @item.Location
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>Description</h4>
+                                <ul class="info">
+                                    <li>
+                                        <p style="text-align: justify;">
+                                            • @item.descriptioncpn
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <br />
+</section>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.apply_application').click(function () {
+                const getId_job = $(this).attr('id_job')
+                $.ajax({
+                    url: '/StatusJob/CreateApplication',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { id: getId_job},
+                    success: function (result) {
+                        window.location.href = "/StatusJob/CreateApplication" + getId_job;
+                    },
+                    error: function(xhr, status, error){
+                        console.log("Fail")
+                    }
+                })
+            })
+        });
+    </script>
+}

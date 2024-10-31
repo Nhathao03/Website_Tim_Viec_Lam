@@ -1,0 +1,80 @@
+﻿@model TimViec.Models.feedback
+
+@{
+    ViewData["Title"] = "DetailsFeedback";
+}
+
+<h1>Phản hồi của người dùng</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Họ và tên
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Email
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            Phản hồi
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Getfeedback" asp-controller="Manager" style="text-decoration: none" class="btn btn-primary">Trở về</a>
+   
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        Gửi phản hồi
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin-left: 19%">
+            <div class="modal-content" style="width: 1100px;">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Gửi phản hồi đến @Html.DisplayFor(Model => Model.Name)</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-action="SendEmail" asp-route-id="@Model.Id
+">
+                        <div class="form-group">
+                            <label for="to">Đến:</label>
+                            <input type="email" readonly class="form-control" id="to" name="To" placeholder="Nhập email người nhận" value="@Html.DisplayFor(Model => Model.Email)">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Tiêu đề:</label>
+                            <input type="text" class="form-control" id="subject" name="Subject" placeholder="Nhập tiêu đề email" value="Cảm ơn sự đóng góp của bạn">
+                        </div>
+                        <div class="form-group">
+                            <label for="body">Nội dung:</label>
+                            <p>Kính gửi @ViewBag.NameUserFeedback</p>
+                            <p>
+                                Trước hết, chúng tôi xin chân thành cảm ơn bạn đã dành thời gian để chia sẻ ý kiến và đóng góp của mình cho trang web của chúng tôi.
+                                Chúng tôi luôn coi trọng những phản hồi từ phía người dùng để không ngừng cải thiện và nâng cao chất lượng dịch vụ.
+                            </p>
+                            <p>
+                                Chúng tôi đã nhận được góp ý của bạn về @ViewBag.NoteUserFeedback
+                                .Đội ngũ phát triển và quản lý của chúng tôi đã xem xét kỹ lưỡng và rất coi trọng những nhận xét này.
+                            </p>
+                        </div>
+                        <br />
+                        <button style="float: right" type="submit" class="btn btn-primary">Gửi email</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a asp-action="Delete_Feedback" asp-route-id="@Model?.Id" style="text-decoration:none" class="btn btn-danger">Xóa</a>
+</div>

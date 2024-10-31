@@ -1,0 +1,102 @@
+﻿@model List<TimViec.ViewModel.Details_CPN>
+
+@{
+    ViewData["Title"] = "Details_Company";
+}
+
+
+<div class="pagetitle">
+    <h1>Thông tin công ty</h1>
+</div><!-- End Page Title -->
+
+<section class="section profile">
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                        <img src="~/LayoutTimViec/img/@item.Image" alt="Profile" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-8">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Thông tin</button>
+                            </li>
+
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Mô tả</button>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content pt-2">
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                                <h5 class="card-title">Thông tin chi tiết</h5>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label ">Tên công ty</div>
+                                    <div class="col-lg-9 col-md-8">@item.CompanyName1</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Email</div>
+                                    <div class="col-lg-9 col-md-8">@item.Email</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Địa chỉ</div>
+                                    <div class="col-lg-9 col-md-8">@item.Location</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Quy mô</div>
+                                    <div class="col-lg-9 col-md-8">@item.Company_Size</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Loại hình</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @if (item.Company_Type == "1")
+                                        {
+                                            <p>In Office</p>
+                                        }
+                                        else if (item.Company_Type == "2")
+                                        {
+                                            <p>Hybird</p>
+                                        }
+                                        else if (item.Company_Type == "3")
+                                        {
+                                            <p>Remote</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Oversea</p>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade pt-3" id="profile-settings">
+                                <h5 class="card-title">Mô tả</h5>
+                                <p class="small fst-italic">@item.Description</p>
+                            </div>
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        break;
+    }
+</section>
+

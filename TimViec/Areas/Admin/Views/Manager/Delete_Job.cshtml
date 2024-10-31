@@ -1,0 +1,74 @@
+﻿@model TimViec.Models.Job
+
+@{
+    ViewData["Title"] = "Delete_Job";
+}
+<br />
+<h3>Bạn chắc chắn muốn xóa công việc @Html.DisplayFor(model => model.Title) ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Tên công việc</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+      
+        <dt>
+            <p>Địa chỉ làm việc</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt>
+            <p>Lương</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+        <dt>
+            <p>Cấp bậc</p>
+        </dt>
+        <dd>
+            @ViewBag.Rank
+        </dd>
+        <dt>
+            <p>Ngôn ngữ 1</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.R1_Language)
+        </dd>
+        <dt>
+            <p>Ngôn ngữ 2</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.R2_Language)
+        </dd>
+        <dt>
+            <p>Ngôn ngữ 3</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.R3_Language)
+        </dd>
+        <dt>
+            <p>Loại hình</p>
+        </dt>
+        <dd>
+            @ViewBag.Type
+        </dd>
+        <dt>
+            <p>Mô tả</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete_Job">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-action="Job" class="btn btn-primary">Trở về</a>
+    </form>
+
+</div>

@@ -1,0 +1,110 @@
+﻿@model TimViec.Models.Company
+
+@{
+    ViewData["Title"] = "Edit_company";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                <img src="~/LayoutTimViec/img/@Html.DisplayFor(model => model.Image)" alt="Profile" style="width: 100%">
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Xem ảnh
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin-left: 27%">
+                    <div class="modal-content" style="width: 765px;">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ảnh CV</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="~/LayoutTimViec/img/@Html.DisplayFor(Model => Model.Image)" alt="Profile" style="width: 100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body pt-3">
+                <form asp-action="Edit_company" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Name_company" class="control-label">Tên công ty</label>
+                        <input asp-for="Name_company" class="form-control" />
+                        <span asp-validation-for="Name_company" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input asp-for="Email" readonly class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Image" class="control-label">Logo công ty</label>
+                        <input type="file" asp-for="Image" class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Company_size" class="control-label">Quy mô</label>
+                        <input asp-for="Company_size" class="form-control" />
+                        <span asp-validation-for="Company_size" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Company_type" class="control-label">Loại hình</label>
+                        <select asp-for="Company_type" class="form-control" asp-items="ViewBag.Type"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CityID" class="control-label">Thành phố</label>
+                        <select asp-for="CityID" class="form-control" asp-items="ViewBag.City"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Location" class="control-label">Địa chỉ</label>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Mô tả</label>
+                        <textarea style="height: 200px" asp-for="Description" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="About_Me" class="control-label">Địa chỉ nhúng hiển thị google map</label>
+                        <input asp-for="About_Me" class="form-control" />
+                        <span asp-validation-for="About_Me" class="text-danger"></span>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <!-- Button trigger modal -->
+                        <button style="float: right" type="submit" class="btn btn-danger">
+                            <a href="/Admin/Manager/Company" style="color: white; text-decoration: none">Hủy thay đổi</a>
+                        </button>
+                        <button style="float: right; margin-right: 5px" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModl">
+                            Lưu thay đổi
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        Thông tin công ty đã được cập nhật thành công !
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

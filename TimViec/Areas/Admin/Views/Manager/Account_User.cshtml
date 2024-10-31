@@ -1,0 +1,59 @@
+﻿@model List<TimViec.ViewModel.ViewAccountUserModel>
+
+@{
+    ViewData["Title"] = "Job";
+}
+
+<h2>Quản lý tải khoản người dùng</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh sách tài khoản ứng viên
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Ngày sinh</th>
+                    <th>Số điện thoại</th> 
+                    <th>Chi tiết</th> 
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Ngày sinh</th>
+                    <th>Số điện thoại</th>
+                    <th>Chi tiết</th>
+                    <th>Xóa</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.fullname</td>
+                        <td>@item.email</td>
+                        <td>@item.Birth</td>
+                        <td>@item.phonenumber</td>
+                        <td>
+                            <form>
+                                <button type="submit" asp-action="Details_AccountUser" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form>
+                                <button type="submit" asp-action="Delete_User" asp-route-id="@item.Id" class="btn btn-danger">Xóa</button>
+                            </form>  
+                        </td> 
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

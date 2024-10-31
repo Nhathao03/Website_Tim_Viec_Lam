@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TimViec.Models.Company>
+@{
+	ViewData["Title"] = "Job";
+	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<section id="explore" class="explore">
+	<div class="container">
+		<div class="section-header">
+			<h2>List company</h2>
+
+		</div><!--/.section-header-->
+		<div class="explore-content">
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class=" col-md-4 col-sm-6">
+						<div class="single-explore-item">
+							<div class="single-explore-img">
+								<img style="height: 200px; width: 400px; object-fit: scale-down " src="~/LayoutTimViec/img/@item.Image" alt="explore image">
+							</div>
+							<div class="single-explore-txt bg-theme-1">
+								<h2>
+									<a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_CPN" asp-route-id="@item.Id">@item.Name_company</a>
+								</h2>
+								<p class="explore-rating-price">
+									<a href="#">Quy mô: @item.Company_size</a>
+								</p>
+								<hr />
+								<div class="explore-open-close-part">
+									<div class="row">
+										<div class="col-sm-5">
+											<button class="close-btn" onclick="window.location"><a asp-action="Details_CPN" asp-route-id="@item.Id">Chi tiết</a></button>
+										</div>
+										<div class="col-sm-7">
+											<div class="explore-map-icon">
+												<a href="#"><i data-feather="map-pin"></i></a>
+												<a href="#"><i data-feather="upload"></i></a>
+												<a href="#"><i data-feather="heart"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div><!--/.container-->
+</section><!--/.explore-->
+<!--explore end -->

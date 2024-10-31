@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TimViec.Models.Company>
+
+@{
+    ViewData["Title"] = "Company";
+}
+
+
+<h2>Quản lý công ty</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh sách tất cả công ty
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Tên công ty</th>
+                    <th>Địa chỉ</th>
+                    <th>Quy mô</th>
+                    <th>Loại hình</th>
+                    <th>Sửa</th>
+                    <th>Chi tiết</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name_company</td>
+                        <td>@item.Location</td>
+                        <td>@item.Company_size</td>
+                        <td>
+                            @if (@item.Company_type == "1")
+                            {
+                                <p>In Office</p>
+                            }
+                            else if (item.Company_type == "2")
+                            {
+                                <p>Hybird</p>
+                            }
+                            else if (item.Company_type == "3")
+                            {
+                                <p>Remote</p>
+                            }
+                            else if (item.Company_type == "3")
+                            {
+                                <p>Oversea</p>
+                            }
+                        </td>
+                        <td><a asp-action="Edit_Company" asp-route-id="@item.Id" class="btn btn-success">Sửa</a></td>
+                        <td><a style="width: 77px" asp-action="Details_Company" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a></td>
+                        <td><a asp-action="DeleteConfirmed_Company" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

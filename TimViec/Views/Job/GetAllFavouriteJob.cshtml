@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TimViec.Models.favourite_job>
+@{
+	ViewData["Title"] = "Job";
+	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<section id="explore" class="explore">
+	<div class="container">
+		<div class="section-header">
+			<h2>Favorite job</h2>
+
+		</div><!--/.section-header-->
+		<div class="explore-content">
+			<div class="row">
+
+				@foreach (var item in Model)
+				{
+					<div class=" col-md-4 col-sm-6">
+						<div class="single-explore-item">
+							<div class="single-explore-img">
+								<img style="height: 200px; width: 100%; object-fit: scale-down" src="~/LayoutTimViec/img/@item.image" alt="explore image">
+								<div class="single-explore-img-info">
+									<div class="single-explore-image-icon-box">
+										<ul>
+											<li>
+												<div class="single-explore-image-icon">
+													<i class="fa fa-arrows-alt"></i>
+												</div>
+											</li>
+											<li>
+												<div class="single-explore-image-icon">
+													<i class="fa fa-bookmark-o delete_fvr" id_jobfv="@item.Id"></i>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="single-explore-txt bg-theme-1">
+								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.IDJob">@item.Name</a></h2>
+								<p class="explore-rating-price">
+									<a href="#">@item.R1_Language</a>
+									<span class="explore-price-box">@item.R2_Language</span>
+									<a href="#">@item.R3_Language</a>
+								</p>
+								<hr />
+								<div class="explore-open-close-part">
+									<div class="row">
+										<div class="col-sm-5">
+											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.IDJob">Chi tiết</a></button>
+										</div>
+										<div class="col-sm-7">
+											<div class="explore-map-icon">
+												<a href="#"><i data-feather="map-pin"></i></a>
+												<a href="#"><i data-feather="upload"></i></a>
+												<a href="#"><i data-feather="heart"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div><!--/.container-->
+</section><!--/.explore-->
+<!--explore end -->
+
+@section Scripts{
+	<script>
+		$(document).ready(function () {
+			$('.delete_fvr').click(function () {
+				const getId_job = $(this).attr("id_jobfv")
+				$.ajax({
+					url: '/Job/ChangeFavourite_Job',
+					type: 'GET',
+					dataType: 'json',
+					data: { id: getId_job },
+					success: function (result) {
+						window.location.href = "/Job/GetAllFavouriteJob"
+					},
+					error: function (xhr, status, error) {
+						alert("Error");
+					}
+				})
+			})
+		});
+	</script>
+}

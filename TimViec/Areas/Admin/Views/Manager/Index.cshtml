@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row" style="margin-top: 40px">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Tổng số công ty
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @ViewBag.CountCompany
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-hotel fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Tổng số người tìm việc
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@ViewBag.CountUser</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-user fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Được đăng nhập bởi
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Admin: @ViewBag.Admin</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-user fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" style="display: inline-flex; justify-content: center; height: 185px">
+    <div class="col-md-2" style="padding: 9px; height: 181px">
+        <img style="width: 100%; " src="~/LayoutTimViec/img/logo.png" />
+    </div>
+    <div class="col-md-7" style="padding: 20px">
+        <h4><li>Giới thiệu tổng quan về<span style="color: red"> Dev IT</span></li></h4>
+        <p>
+            Dev IT Job Search là nền tảng trực tuyến hàng đầu dành cho những ai đang tìm kiếm cơ hội nghề nghiệp trong lĩnh vực công nghệ thông tin. 
+            Trang web này không chỉ đơn thuần là nơi đăng tuyển các vị trí công việc mà còn là cầu nối giữa nhà tuyển dụng và ứng viên, tạo ra môi trường giao tiếp trực tiếp và hiệu quả. 
+            Với giao diện thân thiện và dễ sử dụng, Dev IT Job Search giúp người dùng nhanh chóng tìm thấy các công việc phù hợp với kỹ năng và mong muốn của mình.
+        </p>
+       
+    </div>
+</div>
+<div class="col-md-9" style="margin-left: 197px">
+    <br />
+    <h4><li>Hỗ trợ ứng viên và nhà tuyển dụng.</li></h4>
+    <p>
+        Dev IT Job Search cung cấp nhiều công cụ hỗ trợ mạnh mẽ cho cả ứng viên và nhà tuyển dụng.
+        Ứng viên có thể cập nhật thông tin cá nhân, và tải lên CV để nhà tuyển dụng dễ dàng tìm thấy.
+        Ngược lại, nhà tuyển dụng có thể đăng tin tuyển dụng, quản lý hồ sơ ứng viên.
+        Tất cả các quy trình đều được tối ưu hóa để đảm bảo sự thuận tiện và hiệu quả cao nhất.
+    </p>
+    <h4><li>Kết nối trực tiếp với nhà tuyển dụng.</li></h4>
+    <p>
+        Dev IT tạo cầu nối trực tiếp giữa ứng viên và nhà tuyển dụng, giúp ứng viên có cơ hội trao đổi trực tiếp với nhà tuyển dụng về
+        yêu cầu công việc và phúc lợi. Ứng viên cũng có thể nhận thông báo ứng tuyển qua email.
+    </p>
+    <h4><li>Công cụ tìm kiếm thông minh và hiệu quả.</li></h4>
+    <p>
+        Dev IT cung cấp công cụ tìm kiếm thông minh, giúp ứng viên dễ dàng tìm kiếm được những công việc phù hợp với năng lực và sở thích của bản thân.
+        Ứng viên có thể lọc tin tuyển dụng theo nhiều tiêu chí như: Ngành nghề, kỹ năng, vị trí, mức lương, kinh nghiệm, địa điểm làm việc,...
+    </p>
+</div>

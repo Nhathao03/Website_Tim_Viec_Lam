@@ -1,0 +1,158 @@
+﻿@model TimViec.Models.Job
+
+@{
+    ViewData["Title"] = "Edit_Job";
+}
+
+<br />
+<h1>Thay đổi thông tin công việc</h1>
+<br />
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                <img src="~/LayoutTimViec/img/@Html.DisplayFor(model => model.img)" alt="Profile" style="width: 100%">
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Xem ảnh
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin-left: 27%">
+                    <div class="modal-content" style="width: 765px;">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ảnh CV</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="~/LayoutTimViec/img/@Html.DisplayFor(Model => Model.img)" alt="Profile" style="width: 100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body pt-3">
+                <form asp-action="Edit_Job" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"><b>Tên công việc</b></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="img" class="control-label"><b>Logo công ty</b></label>
+                        <input type="file" asp-for="img" class="form-control"/>
+                        <span asp-validation-for="img" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Salary" class="control-label"><b>Lương</b></label>
+                        <input asp-for="Salary" class="form-control" />
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display: none">
+                        <label asp-for="CompanyID" class="control-label"><b>Lương</b></label>
+                        <input asp-for="CompanyID" class="form-control" />
+                        <span asp-validation-for="CompanyID" class="text-danger"></span>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label asp-for="R1_Language" class="control-label"><b>Ngôn ngữ 1</b></label>
+                                    <input asp-for="R1_Language" class="form-control" />
+                                    <span asp-validation-for="R1_Language" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label asp-for="R2_Language" class="control-label"><b>Ngôn ngữ 2</b></label>
+                                    <input asp-for="R2_Language" class="form-control" />
+                                    <span asp-validation-for="R2_Language" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label asp-for="R3_Language" class="control-label"><b>Ngôn ngữ 3</b></label>
+                                    <input asp-for="R3_Language" class="form-control" />
+                                    <span asp-validation-for="R3_Language" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label asp-for="RankID" class="control-label">Cấp bậc</label>
+                                    <select asp-for="RankID" class="form-control" asp-items="ViewBag.Rank"></select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label asp-for="SkillID" class="control-label">Kỹ năng</label>
+                                    <select asp-for="SkillID" class="form-control" asp-items="ViewBag.Skill"></select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label asp-for="Type_workID" class="control-label">Loại hình</label>
+                                    <select asp-for="Type_workID" class="form-control" asp-items="ViewBag.Type"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Location" class="control-label"><b>Địa chỉ</b></label>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Work_responsibility" class="control-label"><b>Trách nhiệm công việc</b></label>
+                        <textarea style="height: 300px" asp-for="Work_responsibility" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="treatment" class="control-label"><b>Đãi ngộ</b></label>
+                        <textarea style="height: 300px" asp-for="treatment" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="advanced_skill" class="control-label"><b>Kỹ năng cần có</b></label>
+                        <textarea style=" height: 300px" asp-for="advanced_skill" class="form-control"></textarea>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <!-- Button trigger modal -->
+                        
+                        <button style="float: right" type="submit" class="btn btn-danger">
+                            <a href="/Admin/Manager/Job" style="color: white; text-decoration: none" >Hủy thay đổi</a>
+                        </button> 
+                        <button style="float: right; margin-right:  5px" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModl">
+                            Lưu thay đổi
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        Thông tin công ty đã được cập nhật thành công !
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

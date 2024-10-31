@@ -1,0 +1,48 @@
+﻿@model List<TimViec.ViewModel.AccountCompanyViewModel>
+
+@{
+    ViewData["Title"] = "Job";
+}
+
+<h2>Quản lý tải khoản công ty</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh sách tài khoản công ty
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Tên công ty</th>
+                    <th>Email</th>
+                    <th>Quy mô</th>
+                    <th>Địa chỉ</th>
+                    <th>Chi tiết</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+          
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NameCompany</td>
+                        <td>@item.EmailCompany</td>
+                        <td>@item.CompanySize</td>
+                        <td>@item.Location</td>
+                        <td>
+                            <a style="
+    width: 77px;
+    " asp-action="Details_AccountCompany" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a>
+                        </td>
+                        <td>
+                            <a asp-action ="DeleteConfirmed_Company" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

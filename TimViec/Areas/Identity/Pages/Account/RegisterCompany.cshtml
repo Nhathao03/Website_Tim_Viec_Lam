@@ -1,0 +1,102 @@
+﻿@page
+@model RegisterCompanyModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<br />
+<style>
+    .col-md-4 {
+        border: black solid 2px;
+        border-radius: 15px;
+    }
+</style>
+<body>
+    <div class="row">
+        <div class="container">
+            <div class="col-md-8">
+                <section>
+                    <h1 style="font-size: 24px"><b>Chào mừng bạn đến với</b><b style="color: red;"> Dev IT</b></h1>
+                    <hr style="border: 1px solid black" />
+                    @{
+                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        {
+                            <div>
+                                <p>
+                                    Bằng việc đăng nhập, bạn đồng ý với <a href="#">Điều khoản & Điều kiện</a> và <a href="#">Chính sách quyền riêng tư</a> của Dev IT liên quan đến thông tin riêng tư của bạn.
+                                </p>
+                                <b>Đăng nhập ngay để tận dụng tối đa các công cụ của Dev IT và gia tăng cơ hội tiếp cận công việc IT hot nhất</b>
+                                <ul>
+                                    <li>Ứng tuyển nhanh chóng hơn với hồ sơ đã được lưu.</li>
+                                    <li>Quản lý hồ sơ ứng tuyển và theo dõi cập nhật trạng thái ứng tuyển.</li>
+                                    <li>Xem được mức lương cho mỗi vị trí</li>
+                                    <li>Lưu lại các công việc yêu thích để ứng tuyển sau</li>
+                                    <li>Thực hiện các bài trắc nghiệm đánh giá tính cách làm việc</li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                <div>
+                                    <p>
+                                        @foreach (var provider in Model.ExternalLogins)
+                                        {
+                                            <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                        }
+                                    </p>
+                                </div>
+                            </form>
+                        }
+                    }
+                </section>
+            </div>       
+            <div class="col-md-4">
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <h1 style="text-align: center; margin-top: 5px">Tạo tài khoản mới</h1>
+
+                    <a asp-page="./Register" style="width: 48%" type="button" class="btn btn-primary">Ứng viên</a> | <button onclick="showNewForm()" style="width: 48%" type="button" class="btn btn-success">Nhà tuyển dụng</button>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password">Mật khẩu</label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword">Nhập lại mật khẩu</label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.NameCompany">Nhập tên công ty</label>
+                        <input asp-for="Input.NameCompany" class="form-control" />
+                        <span asp-validation-for="Input.NameCompany" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Location">Địa chỉ</label>
+                        <input asp-for="Input.Location" class="form-control" placeholder="VD: Thủ Đức, TP.Hồ Chí Minh" />
+                        <span asp-validation-for="Input.Location" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.CompanySize">Quy mô</label>
+                        <input asp-for="Input.CompanySize" class="form-control" placeholder="50-100" />
+                        <span asp-validation-for="Input.CompanySize" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-default btn-primary" style="width: 100%">Đăng ký</button>
+                    <br />
+                    <br />
+                    <a asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" class="nav-link">Đã có tài khoản</a>
+                </form>
+            </div>
+        </div>
+</body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

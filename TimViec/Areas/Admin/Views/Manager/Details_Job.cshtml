@@ -1,0 +1,87 @@
+﻿@model List<TimViec.ViewModel.Details_Job>
+
+@{
+    ViewData["Title"] = "Details_Job";
+}
+@foreach(var item in Model)
+{
+<h1>Chi tiết công việc @item.Name</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên công việc
+        </dt>
+        <dd class="col-sm-10">
+            @item.Name
+        </dd>
+        <dt class="col-sm-2">
+            Ảnh công ty
+        </dt>
+        <dd class="col-sm-10">
+            @item.Logo
+        </dd>
+        <dt class="col-sm-2">
+            Ngôn ngữ yêu cầu
+        </dt>
+        <dd class="col-sm-10">
+            @item.R1_Language
+            @item.R2_Language
+            @item.R3_Language
+        </dd>
+        <dt class="col-sm-2">
+            Địa chỉ
+        </dt>
+        <dd class="col-sm-10">
+            @item.Location
+        </dd>
+        <dt class="col-sm-2">
+            Lương
+        </dt>
+        <dd class="col-sm-10">
+            @item.Salary
+        </dd>
+        <dt class="col-sm-2">
+            Cấp bậc
+        </dt>
+        <dd class="col-sm-10">
+            @item.rank
+        </dd>
+   
+        <dt class="col-sm-2">
+            Loại hình
+        </dt>
+        <dd class="col-sm-10">
+            @item.type
+        </dd>
+
+        <dt class="col-sm-2">
+            Quy mô công ty
+        </dt>
+        <dd class="col-sm-10">
+            @item.size
+        </dd>
+
+        <dt class="col-sm-2">
+            Trách nhiệm công việc
+        </dt>
+            <dd class="col-sm-10" style="text-align: justify;white-space: pre-line">
+            @item.work_responsitory
+        </dd>
+        <dt class="col-sm-2">
+            Đãi ngộ
+        </dt>
+            <dd class="col-sm-10" style="text-align: justify;white-space: pre-line">
+            @item.treatment
+        </dd><dt class="col-sm-2">
+            Kỹ năng cần có
+        </dt>
+            <dd class="col-sm-10" style="text-align: justify;white-space: pre-line">
+            @item.advanced_skill
+        </dd>
+
+    </dl>
+    </div>
+    break;
+}
