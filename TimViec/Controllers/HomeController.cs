@@ -76,7 +76,7 @@ namespace TimViec.Controllers
 			//take n = 6 item in table job
 			jobs = jobs.Where(x => x.Id == 25 || x.Id == 27 || x.Id == 35 || x.Id == 32 || x.Id == 39 || x.Id == 40);
 
-			companies = companies.Take(3);
+			//companies = companies.Take(3);
 			HomeViewModel home = new HomeViewModel()
 			{
 				Jobs = jobs,

@@ -4,7 +4,8 @@
 	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 
-<section id="explore" class="explore">
+<section id="explore" class="explore" style="padding-top: 10px">
+	<h1 style="text-align: center; font-size: 34px">Result of search</h1>
 	<div class="container">
 		<div class="explore-content">
 			<div class="row">
@@ -13,15 +14,10 @@
 					<div class=" col-md-4 col-sm-6">
 						<div class="single-explore-item">
 							<div class="single-explore-img">
-								<img style="height: 200px; width: 100%" src="~/LayoutTimViec/img/@item.Image" alt="explore image">
+								<img style="height: 200px; width: 100%; object-fit: scale-down" src="~/LayoutTimViec/img/@item.Image" alt="explore image">
 								<div class="single-explore-img-info">
 									<div class="single-explore-image-icon-box">
 										<ul>
-											<li>
-												<div class="single-explore-image-icon">
-													<i class="fa fa-arrows-alt"></i>
-												</div>
-											</li>
 											<li>
 												<div class="single-explore-image-icon">
 													<i class="fa fa-bookmark-o favourite_job" id_jobfv="@item.Id"></i>
@@ -32,17 +28,19 @@
 								</div>
 							</div>
 							<div class="single-explore-txt bg-theme-1">
-								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.Id">@item.NameJob</a></h2><br />
-								<span class="explore-rating" style="width: 105px">@item.Rankname</span>
+								<h2>
+									<a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" href="#" class="Detail_Job" id_job="@item.Id">@item.NameJob</a>
+								</h2>
 								<p class="explore-rating-price">
 									<a href="#">@item.R1_Language</a>
 									<span class="explore-price-box">@item.R2_Language</span>
 									<a href="#">@item.R3_Language</a>
 								</p>
+								<hr />
 								<div class="explore-open-close-part">
 									<div class="row">
 										<div class="col-sm-5">
-											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.Id">Detail</a></button>
+											<button class="welcome-hero-btn how-work-btn Detail_Job" style="cursor: pointer" type="button" id_job="@item.Id">Detail</button>
 										</div>
 										<div class="col-sm-7">
 											<div class="explore-map-icon">
@@ -66,3 +64,42 @@
 	</div><!--/.container-->
 </section><!--/.explore-->
 <!--explore end -->
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+			//Detail Job
+			$('.Detail_Job').click(function () {
+				const getID_Job = $(this).attr("id_job");
+				debugger;
+				$.ajax({
+					url: '/Job/Details_Job',
+					type: 'GET',
+					data: { id: getID_Job },
+					success: function (result) {
+						window.location.href = "/Job/Details_Job/" + getID_Job;
+					},
+					error: function (xhr, status, error) {
+						alert("An error occurred: " + error);
+					}
+				})
+			})
+
+			//Add favourite job
+			$('.favourite_job').click(function () {
+				const getID_Job = $(this).attr("id_jobfv");
+				$.ajax({
+					url: '/Job/Favourite_Job',
+					type: 'POST',
+					dataType: 'json',
+					data: { id: getID_Job },
+					success: function (result) {
+						window.location.href = "/Job/GetAllFavouriteJob"
+					},
+					error: function (xhr, status, error) {
+						alert("An error eccorred: " + error);
+					}
+				})
+			})
+		});
+	</script>
+} 

@@ -61,18 +61,29 @@ namespace TimViec.Controllers
         }
         // search
         [HttpGet]
-        public async Task<IActionResult> Search(string stringSearch)
+        public async Task<IActionResult>Search(string stringSearch, string location)
         {
             await DisplayDropdown();
-            var result = _jobRepository.Search(stringSearch);
-
-            return View(result);
+            try
+            {
+                if ((stringSearch != null && location != null) || stringSearch != null || location != null )  { 
+                    var result = _jobRepository.Search(stringSearch, location);
+					return View(result);
+                }
+                else{
+                    return NotFound();
+                }
+			}catch  (Exception ex)
+            {
+                return Json(new {success = false , error = ex.Message});
+            }  
         }
 
 
-        //**********************************************************************************************
-        //Search in Dropdown
-        public async Task<IActionResult> ChoeseSearchSkill(int ID)
+		//**********************************************************************************************
+		//Search in Dropdown
+		[HttpGet]
+		public async Task<IActionResult> ChoeseSearchSkill(int ID)
         {
             await DisplayDropdown();
 
@@ -81,7 +92,8 @@ namespace TimViec.Controllers
             return View(skill);
         }
 
-        public async Task<IActionResult> ChoeseSearchType(int ID)
+		[HttpGet]
+		public async Task<IActionResult> ChoeseSearchType(int ID)
         {
             await DisplayDropdown();
 
@@ -90,7 +102,8 @@ namespace TimViec.Controllers
             return View(type);
         }
 
-        public async Task<IActionResult> ChoeseSearchRank(int ID)
+		[HttpGet]
+		public async Task<IActionResult> ChoeseSearchRank(int ID)
         {
             await DisplayDropdown();
 
@@ -99,7 +112,8 @@ namespace TimViec.Controllers
             return View(rank);
         }
 
-        public async Task<IActionResult> ChoeseSearchLocation(int ID)
+		[HttpGet]
+		public async Task<IActionResult> ChoeseSearchLocation(int ID)
         {
             await DisplayDropdown();
 

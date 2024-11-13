@@ -108,30 +108,44 @@ namespace TimViec.Controllers
 			var job = await _jobRepository.GetByIdAsync(id);
 			ViewBag.GetJob = job;
 
-			if (status == null)
-			{
-				return NotFound();
-			}
-			return View();
+            if (status == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+				return View();
+			}		
 		}
+
 		// add status job
 		[HttpPost]
 		public async Task<IActionResult> CreateApplication(Models.StatusJob statusJob, IFormFile imgCV, int id)
 		{
-			statusJob.ID = 0;
-			statusJob.JobID = id;
-			if (imgCV != null)
-			{
-				// save imgae
-				statusJob.imgCV = await SaveImage(imgCV);
-			}
+            if(statusJob.Fullname != null )
+            {
+                statusJob.ID = 0;
+                statusJob.JobID = id;
+                if (imgCV != null)
+                {
+                    // save imgae
+                    statusJob.imgCV = await SaveImage(imgCV);
+                }
+                else
+                {
 
-			statusJob.Status = (int)Constants.StatusJob.Inprogress;
-			statusJob.Read = (int)Constants.ViewStatus.NoRead;
+                }
 
-			await _statusRepository.AddAsync(statusJob);
-			return RedirectToAction(nameof(StatusJob));
+                statusJob.Status = (int)Constants.StatusJob.Inprogress;
+                statusJob.Read = (int)Constants.ViewStatus.NoRead;
 
+                await _statusRepository.AddAsync(statusJob);
+                return RedirectToAction(nameof(StatusJob));
+            }
+            else
+            {
+                return NotFound();
+            }
 		}
 
 		//Luu anh

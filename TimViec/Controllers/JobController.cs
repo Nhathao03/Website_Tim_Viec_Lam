@@ -59,7 +59,8 @@ namespace TimViec.Controllers
 			ViewBag.Location = city.ToList();
 		}
 
-		//all Job                                 
+		//all Job
+		[HttpGet]
 		public async Task<IActionResult> Job()
 		{
 			await DisplayDropdown();
@@ -87,6 +88,7 @@ namespace TimViec.Controllers
 		}
 
 		//Get all favourite job of user by email
+		[HttpGet]
 		public async Task<IActionResult> GetAllFavouriteJob()
 		{
 			await DisplayDropdown();
@@ -98,7 +100,7 @@ namespace TimViec.Controllers
 		}
 
 		//Add new favourite job
-		[HttpGet]
+		[HttpPost]
 		public async Task<IActionResult> Favourite_Job(favourite_job favourite_Job, int ID)
 		{
 			var getemailuser = await _userManager.GetUserAsync(User);
@@ -135,7 +137,7 @@ namespace TimViec.Controllers
 		}
 
 		//Function delete job in class favourite "if job marked in favourite"
-		[HttpGet]
+		[HttpPost]
 		public async Task<IActionResult> ChangeFavourite_Job(int ID)
 		{
 			await DisplayDropdown();

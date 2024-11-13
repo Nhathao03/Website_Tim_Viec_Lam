@@ -4,6 +4,13 @@
 	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 
+<style>
+	.button:hover {
+		background-color: #c3c3c3;
+		color: white;
+	}
+</style>
+
 <section id="explore" class="explore">
 	<div class="container">
 		<div class="section-header">
@@ -30,7 +37,7 @@
 								<div class="explore-open-close-part">
 									<div class="row">
 										<div class="col-sm-5">
-											<button class="close-btn" onclick="window.location"><a asp-action="Details_CPN" asp-route-id="@item.Id">Chi tiết</a></button>
+											<button class="button welcome-hero-btn how-work-btn" style="cursor: pointer"><a asp-action="Details_CPN" asp-route-id="@item.Id">Detail</a></button>
 										</div>
 										<div class="col-sm-7">
 											<div class="explore-map-icon">

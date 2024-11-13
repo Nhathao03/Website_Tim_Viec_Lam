@@ -11,7 +11,7 @@ namespace TimViec.Respository
 		Task UpdateAsync(Job job);
 		Task DeleteAsync(int id);
 
-		List<SearchViewModel> Search(string stringSearch);
+		List<SearchViewModel> Search(string stringSearch, string location);
 
 
 		List<ChoeseSearchSkill> ChoeseSearchSkills(int ID);

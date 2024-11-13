@@ -414,7 +414,7 @@ namespace TimViec.Areas.CompanyManage.Controllers
 			var getNameUser = await _statusRepository.GetByIdAsync(ID);
             var getJob = await _jobRepository.GetByIdAsync(getNameUser.JobID);
 			data.From = "nhathaoha11@gmail.com";		
-            data.Body = System.IO.File.ReadAllText("C:/Users/yukun/source/repos/TimViec/TimViec/wwwroot/Template/BodyEmail.html");
+            data.Body = System.IO.File.ReadAllText("C:/Users/yukun/source/repos/DA_TimViec/TimViec/wwwroot/Template/BodyEmail.html");
             data.Body = data.Body.Replace("{{UserName}}", getNameUser.Fullname)
                                  .Replace("{{Position}}", getJob.Title)
                                  .Replace("{{CompanyName}}", company.Name_company)

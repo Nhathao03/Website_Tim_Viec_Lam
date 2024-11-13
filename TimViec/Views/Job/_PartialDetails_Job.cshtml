@@ -14,6 +14,31 @@
         padding: 10px;
     }
 
+    .button {
+        background-color: #04AA6D; /* Green */
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        width: 310px;
+    }
+
+    .button5 {
+        background-color: white;
+        color: black;
+        border: 2px solid #555555;
+    }
+
+        .button5:hover {
+            background-color: #c3c3c3;
+            color: white;
+        }
 </style>
 <br />
 <section class="explore-work" id="explore" style="margin-top: -20px;">
@@ -73,8 +98,7 @@
                         </ul>
                     </div>
                     <br />
-                    <a class="badge badge-pill badge-danger apply_application" style="font-size: 25px; background-color: rgb(35 97 157); padding: 10px;width: 100%" id_job="@item.Id">Apply now</a>
-
+                    <button class="button button5"><a asp-area="" asp-controller="StatusJob" asp-action="CreateApplication" asp-route-id="@item.Id"> Apply now</a></button>
                 </div>
 
                 <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-left: 20px;">
@@ -83,7 +107,7 @@
                     <div class="right-content">
                         <ul>
                             <li>
-                                <h4>• Reponsible</h4>
+                                <h4>• Responsible</h4>
                                 <ul class="info">
                                     <li>
                                         <p style="text-align: justify; white-space: pre-line">
@@ -105,7 +129,7 @@
                             </li>
                             <br />
                             <li>
-                                <h4>• Your skills</h4>
+                                <h4>• Request</h4>
                                 <ul class="info">
                                     <li>
                                         <p style="text-align: justify;white-space: pre-line">
@@ -119,7 +143,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-right: 23px;margin-top: 10px;float: right">
-                    <a asp-action="Details_CPN" asp-controller="Home" asp-route-id="@item.CompanyID"><h1 style="font-size: 36px">Company @item.CompanyName</h1></a>
+                    <a asp-action="Details_CPN" asp-controller="Company" asp-route-id="@item.CompanyID"><h1 style="font-size: 36px">@item.CompanyName</h1></a>
                     <hr />
                     <div class="right-content">
                         <div style="display: flex; justify-content: space-evenly">
@@ -167,25 +191,3 @@
     </div>
     <br />
 </section>
-
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            $('.apply_application').click(function () {
-                const getId_job = $(this).attr('id_job')
-                $.ajax({
-                    url: '/StatusJob/CreateApplication',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: { id: getId_job},
-                    success: function (result) {
-                        window.location.href = "/StatusJob/CreateApplication" + getId_job;
-                    },
-                    error: function(xhr, status, error){
-                        console.log("Fail")
-                    }
-                })
-            })
-        });
-    </script>
-}

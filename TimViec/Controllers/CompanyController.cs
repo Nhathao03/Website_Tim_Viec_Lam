@@ -59,6 +59,7 @@ namespace TimViec.Controllers
 		}
 
 		//all company
+		[HttpGet]
 		public async Task<IActionResult> Company()
 		{
 			await DisplayDropdown();
@@ -68,6 +69,7 @@ namespace TimViec.Controllers
 		}
 
 		// display details company
+		[HttpGet]
 		public async Task<IActionResult> Details_CPN(int id)
 		{
 			await DisplayDropdown();
