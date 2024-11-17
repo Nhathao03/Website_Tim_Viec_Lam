@@ -5,25 +5,25 @@
 }
 
 <br />
-<h3 style="text-align: center">Danh sách các công việc đang ứng tuyển</h3>
+<h3 style="text-align: center">List of jobs being applied for</h3>
 <div>
     <hr />
-    <dl class="col-md-10" style="margin-left: 244px;width: 1321px;">
+    <dl class="col-md-10" style="width: 1600px; margin-left: 60px">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Họ và tên</th>
-                    <th scope="col">Tên công việc</th>
-                    <th scope="col">Công ty</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Job</th>
+                    <th scope="col">Company</th>
                     <th scope="col">CV</th>
-                    <th scope="col">Ghi chú</th>
-                    <th scope="col">Trạng thái</th>
-                    <th scope="col">Xóa</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             @foreach (var item in Model)
             {
-                <tbody>
+                <tbody style="height: 115px">
                     <tr>
                         <td scope="row">@item.Name</td>
                         <td scope="row">@item.NameJob</td>
@@ -31,22 +31,22 @@
                         <td scope="row"><img src="~/@item.imgCV" style="width: 100px"></td>
                         <td scope="row">@item.Note</td>
                         <td scope="row">
-                            @if (@item.StatusName == "Từ chối")
+                            @if (@item.StatusName == "Decline")
                             {
                                 <div style="height: auto; width: 100%; background-color: indianred; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
                             }
-                            else if (item.StatusName == "Đang chờ duyệt")
+                            else if (item.StatusName == "Waiting")
                             {
                                 <div style="height: auto; width: 100%; background-color: cornflowerblue; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
                             }
-                            else if (item.StatusName == "Đã duyệt")
+                            else if (item.StatusName == "Accept")
                             {
                                 <div style="height: auto; width: 100%; background-color: lightgreen; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
                             }
                         </td>
                         <td>
                             <form>
-                                <button type="submit" asp-action="Delete_Status" asp-route-id="@item.Id" class="btn btn-danger">Xóa</button>
+                                <button type="submit" asp-action="Delete_Status" asp-route-id="@item.Id" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>

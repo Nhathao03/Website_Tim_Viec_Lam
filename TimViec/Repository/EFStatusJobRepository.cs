@@ -75,7 +75,7 @@ namespace TimViec.Repository
                              Status = s.Status,
                              NameUser = s.Fullname,
                              JobName = j.Title,
-                             Read = s.Read,
+                             Read = s.Read
                          };
             return status.ToList();
         }

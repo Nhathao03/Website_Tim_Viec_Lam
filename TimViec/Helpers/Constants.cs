@@ -6,11 +6,11 @@ namespace TimViec.Helpers
 	{
 		public enum StatusJob
 		{
-			[Description("Đang chờ duyệt")]
+			[Description("Waiting")]
 			Inprogress = 1,
-			[Description("Đã duyệt")]
+			[Description("Accepted")]
 			Completed = 2,
-            [Description("Từ chối")]
+            [Description("Decline")]
             Refuse = 3
         }
 
