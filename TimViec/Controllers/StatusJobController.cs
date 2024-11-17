@@ -96,19 +96,19 @@ namespace TimViec.Controllers
 
         }
 
-		//***************************************************************************************
-		//create applications
+        //***************************************************************************************
+        //create applications
+        [HttpGet]
 		public async Task<IActionResult> CreateApplication(int id)
 		{
 			await DisplayDropdown();
 			var user = await _userManager.GetUserAsync(User);
 			ViewBag.Email = user.Email;
-			var status = await _statusRepository.GetAllAsync();
 
 			var job = await _jobRepository.GetByIdAsync(id);
 			ViewBag.GetJob = job;
 
-            if (status == null)
+            if (job == null)
             {
                 return NotFound();
             }
@@ -120,32 +120,29 @@ namespace TimViec.Controllers
 
 		// add status job
 		[HttpPost]
-		public async Task<IActionResult> CreateApplication(Models.StatusJob statusJob, IFormFile imgCV, int id)
+		public async Task<IActionResult> CreateApplication(StatusJob statusJob)
 		{
-            if(statusJob.Fullname != null )
+            try
             {
-                statusJob.ID = 0;
-                statusJob.JobID = id;
-                if (imgCV != null)
+                if (statusJob.Fullname != null)
                 {
-                    // save imgae
-                    statusJob.imgCV = await SaveImage(imgCV);
+                    statusJob.ID = 0;
+
+                    statusJob.Status = (int)Constants.StatusJob.Inprogress;
+                    statusJob.Read = (int)Constants.ViewStatus.NoRead;
+
+                    await _statusRepository.AddAsync(statusJob);
+                    return Json(new {success = true});
                 }
                 else
                 {
-
+                    return NotFound();
                 }
-
-                statusJob.Status = (int)Constants.StatusJob.Inprogress;
-                statusJob.Read = (int)Constants.ViewStatus.NoRead;
-
-                await _statusRepository.AddAsync(statusJob);
-                return RedirectToAction(nameof(StatusJob));
-            }
-            else
+            }catch (Exception ex)
             {
-                return NotFound();
+                return Json(new { success = false, error = ex.Message });
             }
+            
 		}
 
 		//Luu anh
@@ -159,5 +156,16 @@ namespace TimViec.Controllers
 			return "LayoutTimViec/img/" + image.FileName;
 		}
 
-	}
+        [HttpPost]
+        public async Task<JsonResult> UploadImage(IFormFile file)
+        {
+            var path = await SaveImage(file);
+
+            if (!string.IsNullOrEmpty(path))
+            {
+                return Json(new { success = true, imageUrl = path });
+            }
+            return Json(new { success = false });
+        }
+    }
 }

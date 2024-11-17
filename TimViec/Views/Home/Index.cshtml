@@ -9,6 +9,7 @@
 		color: black;
 	}
 </style>
+
 <!--welcome-hero start -->
 <section id="home" class="welcome-hero">
 	<div class="container">
@@ -183,7 +184,7 @@
 <!--reviews start -->
 <section id="reviews" class="reviews">
 	<div class="section-header">
-		<h2>Some company in DevIT</h2>		
+		<h2>Comments of user</h2>		
 	</div><!--/.section-header-->
 	<div class="reviews-content">
 		<div class="testimonial-carousel">
@@ -310,17 +311,17 @@
 	<div class="container">
 		<div class="subscribe-title text-center">
 			<h2>
-				do you want to add your business listing with us?
+				Contribute comments
 			</h2>
 			<p>
-				Listrace offer you to list your business with us and we very much able to promote your Business.
+				We will collect and analyze your comments to improve our website
 			</p>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="subscription-input-group">
 					<form action="#">
-						<input type="email" class="subscription-input-form" placeholder="Enter your email here">
+						<input type="email" class="subscription-input-form" placeholder="Enter your comment here">
 						<button class="appsLand-btn subscribe-btn" onclick="window.location.href='#'">
 							SEND
 						</button>
@@ -329,8 +330,8 @@
 			</div>
 		</div>
 	</div>
-
 </section><!--/subscription-->
+
 <!--subscription end -->
 @section Scripts {
 	<script>
@@ -394,18 +395,13 @@
 					location: $('#location').val(),
 				};
 
+				debugger;
 				$.ajax({
 					url: '/Search/Search',
-					type: 'POST',
+					type: 'GET',
 					data: searchData,
-					success: function (result) {
-						if (result.success == true) {
-							console.log("Create new post success")
-							location.reload()
-						}
-						else {
-							console.log("Create new post fail")
-						}
+					success: function (result) {				
+						window.location.href = "/Search/Search/" + result;
 					},
 					error: function (xhr, status, error) {
 						alert("An error occurred: " + error);
@@ -413,5 +409,7 @@
 				})
 			})
 		});
+
 	</script>
-} 
+
+}

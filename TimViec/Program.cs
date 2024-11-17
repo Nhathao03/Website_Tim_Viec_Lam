@@ -1,12 +1,17 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TimViec;
 using TimViec.Data;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -19,7 +24,21 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
  .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
+//builder.Services.AddAuthentication(options =>
+//{
+//	options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//	options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+//}).AddCookie().AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+//{
+//	options.ClientId = builder.Configuration.GetSection("Authentication:ClientId").Value;
+//	options.ClientSecret = builder.Configuration.GetSection("Authentication:ClientSecret").Value;
+//});
 
+builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+{
+	googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+	googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -72,7 +91,6 @@ app.UseEndpoints(endpoints =>
 	 name: "Company",
 	 pattern: "{area:exists}/{controller=Company}/{action=Index}/{id?}"
    );
-
     endpoints.MapGet("/TestGmail", async (context) =>
 	{
 		var message = await SendMail.SendGmail("nhathaoha11@gmail.com", "yukunvip21@gmail.com", "hello", "Xin chao", "nhathaoha11@gmail.com", "gheh wppp gokl rmrn");
@@ -80,6 +98,7 @@ app.UseEndpoints(endpoints =>
 		await context.Response.WriteAsync(message);
     });
 });
+
 
 app.MapWhen(context => context.Request.Path.Value.Contains("hello"), builder =>
 {
