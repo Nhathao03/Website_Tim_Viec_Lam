@@ -1,0 +1,117 @@
+﻿/* General reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Container for templates */
+.template-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual template item */
+.template-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .template-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Image styling */
+    .template-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+/* Information section */
+.template-info {
+    padding: 15px;
+}
+
+    .template-info h3 {
+        font-size: 18px;
+        color: #007bff;
+        margin: 10px 0 5px;
+    }
+
+    .template-info p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+    /* Buttons */
+    .template-info .btn-preview,
+    .template-info .btn-use {
+        padding: 8px 16px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .template-info .btn-preview {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+    .template-info .btn-use {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .template-info .btn-preview:hover {
+        background-color: #5a6268;
+    }
+
+    .template-info .btn-use:hover {
+        background-color: #218838;
+    }
+
+/* Container for templates */
+.template-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cột, mỗi cột chiếm 1 phần bằng nhau */
+    gap: 20px; /* Khoảng cách giữa các item */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsive design: Hiển thị ít cột hơn trên màn hình nhỏ */
+@media (max-width: 1024px) {
+    .template-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 cột trên màn hình vừa */
+    }
+}
+
+@media (max-width: 768px) {
+    .template-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột trên màn hình nhỏ */
+    }
+}
+
+@media (max-width: 480px) {
+    .template-container {
+        grid-template-columns: 1fr; /* 1 cột trên màn hình rất nhỏ */
+    }
+}

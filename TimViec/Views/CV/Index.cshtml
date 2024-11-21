@@ -1,0 +1,88 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<link rel="stylesheet" href="../../css/CV.css">
+<link rel="stylesheet" href="../../css/popup.css">
+<div class="top-banner">
+    <div class="container top-banner_content">
+        <div class="top-banner_content-detail">
+            <h1 style="color: white" class="title">Danh sách mẫu CV xin việc Đơn giản chuẩn 2023</h1>
+            <p style="color: white" class="caption">
+                Các mẫu CV được thiết kế chuẩn theo từng ngành nghề.<br>
+                Phù hợp với cả sinh viên và người đi làm.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="header">
+        <div class="filters">
+            <select id="language">
+                <option value="vi">Tiếng Việt</option>
+                <option value="en">English</option>
+            </select>
+            <select id="style">
+                <option value="simple">Đơn giản</option>
+                <option value="modern">Hiện đại</option>
+            </select>
+        </div>  
+    </div>
+    @for(int i = 0; i < 10; i++)
+    {
+        <div class="template-container">
+            <div class="template-item">
+                <img src="image1.jpg" alt="CV Template 1">
+                <div class="template-info">
+                    <h3>Trang trọng</h3>
+                    <p>Đơn giản - Chuyên nghiệp +10</p>
+                    <button class="btn-preview" onclick="openPopup()">Xem trước</button>
+                    <button class="btn-use">Dùng mẫu</button>
+                </div>
+            </div>
+        </div>
+    }
+    
+
+    <!-- Popup Preview -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <div class="cv-preview">
+                <div class="cv-left">
+                    <h2>Nguyễn Văn A</h2>
+                    <p>CHUYÊN VIÊN ĐÀO TẠO NỘI BỘ</p>
+                    <p><i>"02 năm kinh nghiệm đào tạo kỹ năng bán hàng..."</i></p>
+                    <h4>Kinh nghiệm làm việc</h4>
+                    <p><strong>08/2020 - 08/2022</strong></p>
+                    <p>Chuyên Viên Đào Tạo Nội Bộ</p>
+                    <p>Công ty ABC</p>
+                </div>
+                <div class="cv-right">
+                    <h4>Thông tin</h4>
+                    <ul>
+                        <li><strong>Điện thoại:</strong> 024-6860-5588</li>
+                        <li><strong>Email:</strong> hotro@topcv.vn</li>
+                        <li><strong>Địa chỉ:</strong> Quận A, Hà Nội</li>
+                    </ul>
+                    <h4>Học vấn</h4>
+                    <p>Đại học TOPCV, 2016 - 2020</p>
+                </div>
+            </div>
+            <button class="btn-use">Dùng mẫu này</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openPopup() {
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+
+</script>

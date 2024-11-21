@@ -18,20 +18,39 @@
         <div class="col-md-5 col-md-offset-2">
             <section>
                 <h3 style="font-size: 24px"><b>Welcome to</b><b style="color: red;"> Dev IT</b></h3>
-                <hr style ="border: 1px solid black" />
-                <div>
-                    <p>
-                        By continuing, you agree to Dev IT's <a href="/Home/Rules">Terms of Use</a> and <a href="/Home/Policy">Privacy Policy </a> regarding to your private information.
-                    </p>
-                    <b>Log in now to take full advantage of Dev IT tools and increase your chances of accessing the hottest IT jobs</b>
-                    <ul>
-                        <li>Apply faster with your saved profile.</li>
-                        <li>Manage application documents and track application status updates.</li>
-                        <li>View salary for each position</li>
-                        <li>Save your favorite jobs to apply for later</li>
-                        <li>Take personality assessment tests</li>
-                    </ul>
-                </div>
+                <hr style ="border: 1px solid black" />          
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                                By continuing, you agree to Dev IT's <a href="/Home/Rules">Terms of Use</a> and <a href="/Home/Policy">Privacy Policy </a> regarding to your private information.
+                            </p>
+                            <b>Log in now to take full advantage of Dev IT tools and increase your chances of accessing the hottest IT jobs</b>
+                            <ul>
+                                <li>Apply faster with your saved profile.</li>
+                                <li>Manage application documents and track application status updates.</li>
+                                <li>View salary for each position</li>
+                                <li>Save your favorite jobs to apply for later</li>
+                                <li>Take personality assessment tests</li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins!)
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+
+                }
             </section>
         </div>
         <div class="col-md-3">
@@ -67,17 +86,8 @@
                         
                     </div>
                 </form>
-                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                    <div>
-                        <p>
-                            @foreach (var provider in Model.ExternalLogins!)
-                            {
-                                <button type="submit" class="w-100 btn btn-primary" name="provider" value="@provider.Name" style="width: 100%" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                            }
-                        </p>
-                    </div>
-                </form>
             </section>
+
         </div>
     </div>
 </body>

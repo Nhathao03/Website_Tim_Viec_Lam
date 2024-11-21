@@ -67,6 +67,21 @@
 
 @section Scripts{
 	<script>
-
+		//Detail Job
+		$('.Detail_Job').click(function () {
+			const getID_Job = $(this).attr("id_job");
+			debugger;
+			$.ajax({
+				url: '/Job/Details_Job',
+				type: 'GET',
+				data: { id: getID_Job },
+				success: function (result) {
+					window.location.href = "/Job/Details_Job/" + getID_Job;
+				},
+				error: function (xhr, status, error) {
+					alert("An error occurred: " + error);
+				}
+			})
+		})
 	</script>
 }

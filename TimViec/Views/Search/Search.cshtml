@@ -4,26 +4,53 @@
 	ViewData["Title"] = "Search";
 	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
+<!--welcome-hero start -->
+<section id="home" class="welcome-hero" style="height: 220px;">
+	<div class="container">
+		<div class="welcome-hero-serch-box">
+			<div class="welcome-hero-form">
+				<div class="single-welcome-hero-form">
+					<h3>what?</h3>
+					<form>
+						<input type="text" id="stringsearch" placeholder="Ex: Java, Back-End, Tester, App Mobile" />
+					</form>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-list-with-dots"></i>
+					</div>
+				</div>
+				<div class="single-welcome-hero-form">
+					<h3>location</h3>
+					<form>
+						<input type="text" id="location" placeholder="Ex: Hồ Chí Minh, Hà Nội, Đà Nẵng,..." />
+					</form>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-gps-fixed-indicator"></i>
+					</div>
+				</div>
+			</div>
+			<div class="welcome-hero-serch">
+				<button class="welcome-hero-btn btn_search" type="button">
+					search  <i data-feather="search"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+
+</section><!--/.welcome-hero-->
 <br />
-<section id="explore" class="explore">
+<section id="explore" class="explore" style="padding: 0">
 	<div class="container">
 		<div class="explore-content">
 			<div class="row">
-
 				@foreach (var item in Model)
 				{
 					<div class=" col-md-4 col-sm-6">
 						<div class="single-explore-item">
 							<div class="single-explore-img">
-								<img style="height: 200px; width: 100%" src="/LayoutTimViec/img/@item.Image" alt="explore image">
+								<img style="height: 200px; width: 100%; object-fit: scale-down" src="~/LayoutTimViec/img/@item.Image" alt="explore image">
 								<div class="single-explore-img-info">
 									<div class="single-explore-image-icon-box">
 										<ul>
-											<li>
-												<div class="single-explore-image-icon">
-													<i class="fa fa-arrows-alt"></i>
-												</div>
-											</li>
 											<li>
 												<div class="single-explore-image-icon">
 													<i class="fa fa-bookmark-o favourite_job" id_jobfv="@item.Id"></i>
@@ -34,23 +61,17 @@
 								</div>
 							</div>
 							<div class="single-explore-txt bg-theme-1">
-								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.Id">@item.JobName</a></h2>
+								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px; cursor: pointer" class="Detail_Job"  id_job="@item.Id">@item.JobName</a></h2>
 								<p class="explore-rating-price">
 									<a href="#">@item.R1_Language</a>
 									<span class="explore-price-box">@item.R2_Language</span>
 									<a href="#">@item.R3_Language</a>
 								</p>
-								<div class="explore-person">
-									<div class="row">
-										<div class="col-sm-10">
-											@item.City
-										</div>
-									</div>
-								</div>
+								<hr />
 								<div class="explore-open-close-part">
 									<div class="row">
 										<div class="col-sm-5">
-											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.Id">Detail</a></button>
+											<button class="button welcome-hero-btn how-work-btn Detail_Job" id_job="@item.Id" style="cursor: pointer">Detail</button>
 										</div>
 										<div class="col-sm-7">
 											<div class="explore-map-icon">
@@ -65,12 +86,56 @@
 						</div>
 					</div>
 				}
-				@if (Model.Count == 0)
-				{
-					<p style="text-align: center;font-size: 20px;">Your option don't have on Website now</p>
-				}
 			</div>
 		</div>
 	</div><!--/.container-->
 </section><!--/.explore-->
 <!--explore end -->
+@section Scripts {
+	<script>
+		//Detail Job
+		$('.Detail_Job').click(function () {
+			const getID_Job = $(this).attr("id_job");
+			debugger;
+			$.ajax({
+				url: '/Job/Details_Job',
+				type: 'GET',
+				data: { id: getID_Job },
+				success: function (result) {
+					window.location.href = "/Job/Details_Job/" + getID_Job;
+				},
+				error: function (xhr, status, error) {
+					alert("An error occurred: " + error);
+				}
+			})
+			//Add favourite job
+			$('.favourite_job').click(function () {
+				const getID_Job = $(this).attr("id_jobfv");
+				debugger;
+				$.ajax({
+					url: '/Job/Favourite_Job',
+					type: 'POST',
+					dataType: 'json',
+					data: { id: getID_Job },
+					success: function (result) {
+						window.location.href = "/Job/GetAllFavouriteJob"
+					},
+					error: function (xhr, status, error) {
+						alert("An error eccorred: " + error);
+					}
+				})
+			})
+
+			//Search
+			$('.btn_search').click(function () { 
+				let searchData = {
+					stringSearch: $('#stringsearch').val(),
+					location: $('#location').val(),
+				};
+
+				window.location.href = '/Search/Search?stringSearch=' + searchData.stringSearch + '&location=' + searchData.location;
+
+			})
+		})
+	</script>
+}

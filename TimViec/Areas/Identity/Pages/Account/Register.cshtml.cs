@@ -47,7 +47,6 @@ namespace TimViec.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
-
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
@@ -55,13 +54,13 @@ namespace TimViec.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            public string Firstname { get; set; }
+            public string? Firstname { get; set; }
 
             [Required]
-            public string Lastname { get; set; }
+            public string? Lastname { get; set; }
 
             [Required]
-            public string Fullname { get; set; }
+            public string? Fullname { get; set; }
 
             [Required]
             [EmailAddress]

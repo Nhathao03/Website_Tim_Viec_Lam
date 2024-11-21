@@ -75,11 +75,14 @@
 				const getId_job = $(this).attr("id_jobfv")
 				$.ajax({
 					url: '/Job/ChangeFavourite_Job',
-					type: 'GET',
+					type: 'POST',
 					dataType: 'json',
 					data: { id: getId_job },
 					success: function (result) {
-						window.location.href = "/Job/GetAllFavouriteJob"
+						if(result.success){
+							window.location.href = "/Job/GetAllFavouriteJob"
+						}
+						
 					},
 					error: function (xhr, status, error) {
 						alert("Error");
