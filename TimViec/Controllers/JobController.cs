@@ -144,7 +144,7 @@ namespace TimViec.Controllers
 			try
 			{
 				await _favouriteJob.DeleteAsync(ID);
-				return Json(new { Success = true});
+				return Json(new { success = true});
 			}catch(Exception ex)
 			{
 				return Json(new { success = false, error = ex.Message });

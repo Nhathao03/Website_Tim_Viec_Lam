@@ -68,7 +68,7 @@ namespace TimViec.Controllers
             {
                 if ((stringSearch != null && location != null) || stringSearch != null || location != null )  { 
                     var result = _jobRepository.Search(stringSearch, location);
-					return PartialView("_PartialSearch", result);
+                    return View(result);
 				}
                 else{
                     return NotFound();

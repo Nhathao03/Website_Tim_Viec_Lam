@@ -46,6 +46,20 @@
 				</button>
 			</div>
 		</div>
+		<div class="items-center gap-4 md:flex">
+            <span class="mb-3 block text-sm md:mb-0 md:text-base">
+              Đề xuất từ khóa:
+            </span>
+            <div class="flex flex-wrap gap-2 md:flex-nowrap md:gap-4">
+				<button class="suggestion_keyboard">Java</button>
+				<button class="suggestion_keyboard">C#</button>
+				<button class="suggestion_keyboard">UX/UI</button>
+				<button class="suggestion_keyboard">JavaScript</button>
+				<button class="suggestion_keyboard">Python</button>
+				<button class="suggestion_keyboard">PHP</button>
+				<button class="suggestion_keyboard">C++</button>
+            </div>
+        </div>
 	</div>
 
 </section><!--/.welcome-hero-->
@@ -395,18 +409,11 @@
 					location: $('#location').val(),
 				};
 
-				debugger;
-				$.ajax({
-					url: '/Search/Search',
-					type: 'GET',
-					data: searchData,
-					success: function (result) {				
-						window.location.href = "/Search/Search/" + result;
-					},
-					error: function (xhr, status, error) {
-						alert("An error occurred: " + error);
-					}
-				})
+				if (searchData.stringSearch === "" && searchData.location === "") {
+					return; 
+				} else {
+					window.location.href = '/Search/Search?stringSearch=' + searchData.stringSearch + '&location=' + searchData.location;
+				}	
 			})
 		});
 
