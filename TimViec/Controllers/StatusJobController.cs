@@ -8,7 +8,6 @@ using TimViec.Respository;
 
 namespace TimViec.Controllers
 {
-    [Authorize]
     [Authorize(Roles = "User")]
     public class StatusJobController : Controller
     {

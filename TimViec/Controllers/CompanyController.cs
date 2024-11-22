@@ -7,8 +7,6 @@ using TimViec.Respository;
 
 namespace TimViec.Controllers
 {
-	[Authorize]
-	[Authorize(Roles = "User")]
 	public class CompanyController : Controller
 	{
 		private readonly IJobRespository _jobRepository;
@@ -65,6 +63,7 @@ namespace TimViec.Controllers
 			await DisplayDropdown();
 
 			var companies = await _companyRepository.GetAllAsync();
+			ViewBag.CountCompany = companies.Count();
 			return View(companies);
 		}
 

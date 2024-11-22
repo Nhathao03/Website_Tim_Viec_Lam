@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TimViec.Controllers
 {
-	public class CVController : Controller
+    [Authorize]
+    [Authorize(Roles = "User")]
+    public class CVController : Controller
 	{
 		// GET: CreateCVController
 		public ActionResult Index()

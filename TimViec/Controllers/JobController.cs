@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TimViec.Controllers
 {
-	[Authorize]
-	[Authorize(Roles = "User")]
 	public class JobController : Controller
 	{
 		private readonly IJobRespository _jobRepository;
@@ -87,8 +85,9 @@ namespace TimViec.Controllers
 
 		}
 
-		//Get all favourite job of user by email
-		[HttpGet]
+        //Get all favourite job of user by email
+        [Authorize(Roles = "User")]
+        [HttpGet]
 		public async Task<IActionResult> GetAllFavouriteJob()
 		{
 			await DisplayDropdown();
@@ -99,8 +98,9 @@ namespace TimViec.Controllers
 			return View(display);
 		}
 
-		//Add new favourite job
-		[HttpPost]
+        //Add new favourite job
+        [Authorize(Roles = "User")]
+        [HttpPost]
 		public async Task<IActionResult> Favourite_Job(favourite_job favourite_Job, int ID)
 		{
 			var getemailuser = await _userManager.GetUserAsync(User);
@@ -136,8 +136,9 @@ namespace TimViec.Controllers
 			}
 		}
 
-		//Function delete job in class favourite "if job marked in favourite"
-		[HttpPost]
+        //Function delete job in class favourite "if job marked in favourite"
+        [Authorize(Roles = "User")]
+        [HttpPost]
 		public async Task<IActionResult> ChangeFavourite_Job(int ID)
 		{
 			await DisplayDropdown();

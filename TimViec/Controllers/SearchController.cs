@@ -7,9 +7,6 @@ using TimViec.Respository;
 
 namespace TimViec.Controllers
 {
-
-    [Authorize]
-    [Authorize(Roles = "User")]
     public class SearchController : Controller
     {
 
@@ -68,6 +65,7 @@ namespace TimViec.Controllers
             {
                 if ((stringSearch != null && location != null) || stringSearch != null || location != null )  { 
                     var result = _jobRepository.Search(stringSearch, location);
+                    ViewBag.CountResultSearch = result.Count();
                     return View(result);
 				}
                 else{
