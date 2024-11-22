@@ -22,19 +22,22 @@ namespace TimViec.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
-            ILogger<ExternalLoginModel> logger,
+            RoleManager<IdentityRole> roleManager,
+        ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -52,6 +55,8 @@ namespace TimViec.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            public string Fullname { get; set; }
+            public string UserName { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -102,9 +107,12 @@ namespace TimViec.Areas.Identity.Pages.Account
                 {
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                        Fullname = info.Principal.FindFirstValue(ClaimTypes.Name),
+                        UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
                     };
                 }
+
                 return Page();
             }
         }
@@ -122,12 +130,14 @@ namespace TimViec.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email ,Fullname = Input.Fullname};
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
                     result = await _userManager.AddLoginAsync(user, info);
+                    var roles = _roleManager.Roles;
+                    await _userManager.AddToRoleAsync(user, "User");
                     if (result.Succeeded)
                     {
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);

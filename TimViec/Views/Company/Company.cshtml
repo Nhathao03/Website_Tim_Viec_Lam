@@ -11,13 +11,50 @@
 	}
 </style>
 
+<!--welcome-hero start -->
+<section id="home" class="welcome-hero" style="height: 220px;">
+	<div class="container">
+		<div class="welcome-hero-serch-box">
+			<div class="welcome-hero-form">
+				<div class="single-welcome-hero-form">
+					<h3>what?</h3>
+					<form>
+						<input type="text" id="stringsearch" placeholder="Enter Company Keyword" style="color: black"/>
+					</form>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-list-with-dots"></i>
+					</div>
+				</div>
+				<div class="single-welcome-hero-form">
+					<h3>location</h3>
+					<select name="cars" id="cars" style="color: black;width: 250px;margin-left: 20px;border-style: none;font-size: 15px;">
+						<option value="hcm">Hồ Chí Minh</option>
+						<option value="hn">Hà Nội</option>
+						<option value="dn">Đà Nẵng</option>
+						<option value="other">Khác</option>
+					</select>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-gps-fixed-indicator"></i>
+					</div>
+				</div>
+			</div>
+			<div class="welcome-hero-serch">
+				<button class="welcome-hero-btn btn_search" type="button">
+					search  <i data-feather="search"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</section><!--/.welcome-hero-->
 <section id="explore" class="explore">
 	<div class="container">
-		<div class="section-header">
-			<h2>List company</h2>
-
-		</div><!--/.section-header-->
-		<div class="explore-content">
+		<h1>
+			<strong class="tit-top tit_txt font-size20">
+				<span style="color: lightcoral">@ViewBag.CountCompany</span>
+				Companies in Total
+			</strong>
+		</h1>
+		<div class="explore-content" style="margin-top: 20px">
 			<div class="row">
 				@foreach (var item in Model)
 				{

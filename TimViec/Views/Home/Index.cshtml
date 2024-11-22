@@ -24,7 +24,7 @@
 				<div class="single-welcome-hero-form">
 					<h3>what?</h3>
 					<form>
-						<input type="text" id="stringsearch" placeholder="Ex: Java, Back-End, Tester, App Mobile" />
+						<input id="stringsearch" placeholder="Ex: Java, Back-End, Tester, App Mobile" />
 					</form>
 					<div class="welcome-hero-form-icon">
 						<i class="flaticon-list-with-dots"></i>
@@ -350,7 +350,6 @@
 @section Scripts {
 	<script>
 		$(document).ready(function () {
-
 			//Detail Company
 			$('.Detail_Company').click(function () {
 				const getID_Company = $(this).attr("id_company");
@@ -408,11 +407,14 @@
 					stringSearch: $('#stringsearch').val(),
 					location: $('#location').val(),
 				};
+				//Use encodeURI to send character special
+				let strSearch = encodeURIComponent(searchData.stringSearch);
 
-				if (searchData.stringSearch === "" && searchData.location === "") {
+				if (strSearch === "" && location === "") {
 					return; 
-				} else {
-					window.location.href = '/Search/Search?stringSearch=' + searchData.stringSearch + '&location=' + searchData.location;
+				} 
+				else {
+					window.location.href = '/Search/Search?stringSearch=' + strSearch + '&location=' + location;
 				}	
 			})
 		});

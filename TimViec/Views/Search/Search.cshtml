@@ -35,12 +35,17 @@
 			</div>
 		</div>
 	</div>
-
 </section><!--/.welcome-hero-->
 <br />
 <section id="explore" class="explore" style="padding: 0">
 	<div class="container">
-		<div class="explore-content">
+		<h1>
+			<strong class="tit-top tit_txt font-size20">
+				<span style="color: lightcoral">@ViewBag.CountResultSearch</span>
+				Jobs base on your keyword
+			</strong>
+		</h1>
+		<div class="explore-content" style="margin-top: 20px">
 			<div class="row">
 				@foreach (var item in Model)
 				{
@@ -107,35 +112,35 @@
 				error: function (xhr, status, error) {
 					alert("An error occurred: " + error);
 				}
+			})	
+		})
+		//Add favourite job
+		$('.favourite_job').click(function () {
+			const getID_Job = $(this).attr("id_jobfv");
+			debugger;
+			$.ajax({
+				url: '/Job/Favourite_Job',
+				type: 'POST',
+				dataType: 'json',
+				data: { id: getID_Job },
+				success: function (result) {
+					window.location.href = "/Job/GetAllFavouriteJob"
+				},
+				error: function (xhr, status, error) {
+					alert("An error eccorred: " + error);
+				}
 			})
-			//Add favourite job
-			$('.favourite_job').click(function () {
-				const getID_Job = $(this).attr("id_jobfv");
-				debugger;
-				$.ajax({
-					url: '/Job/Favourite_Job',
-					type: 'POST',
-					dataType: 'json',
-					data: { id: getID_Job },
-					success: function (result) {
-						window.location.href = "/Job/GetAllFavouriteJob"
-					},
-					error: function (xhr, status, error) {
-						alert("An error eccorred: " + error);
-					}
-				})
-			})
+		})
 
-			//Search
-			$('.btn_search').click(function () { 
-				let searchData = {
-					stringSearch: $('#stringsearch').val(),
-					location: $('#location').val(),
-				};
+		//Search
+		$('.btn_search').click(function () {
+			let searchData = {
+				stringSearch: $('#stringsearch').val(),
+				location: $('#location').val(),
+			};
 
-				window.location.href = '/Search/Search?stringSearch=' + searchData.stringSearch + '&location=' + searchData.location;
+			window.location.href = '/Search/Search?stringSearch=' + searchData.stringSearch + '&location=' + searchData.location;
 
-			})
 		})
 	</script>
 }

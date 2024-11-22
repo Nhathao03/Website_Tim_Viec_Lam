@@ -92,7 +92,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp"
-                            style="margin-right: 350px">
+                            style="margin-right: 260px">
                             <div class="dropdn">
                                 <button class="dropbtn"><a href="/Home/Index">Home</a></button>
                             </div>
@@ -202,6 +202,14 @@
                                 <button class="dropbtn"><a href="/Company/Company">Company</a></button>
                             </div>
                             <div class="dropdn">
+                                <button class="dropbtn">Tools</button>
+                                <div class="dropdn-content">
+                                    <div class="dropdn-submenu">
+                                        <a href="/CV/Index">Create CV</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdn">
                                 <button class="dropbtn"><a href="/StatusJob/StatusJob">Status job</a>
                             </div>
                             <div class="dropdn">
@@ -241,7 +249,7 @@
                     <div class="col-sm-7">
                         <div class="footer-social">
                             <span><i class="fa fa-phone"> +84 366768703</i></span>
-                            <a href="https://www.facebook.com/nhathao721179786105/"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-facebook" id="openTabButton"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-linkedin"></i></a>
                             <a href="#"><i class="fa fa-google-plus"></i></a>
@@ -290,6 +298,11 @@
     <!--Custom JS-->
     <script src="../../assets/js/custom.js"></script>
 
+    <script>
+        document.getElementById("openTabButton").onclick = function () {
+            window.open('https://www.facebook.com/nhathao721179786105/', '_blank'); // Change the URL to the desired link
+        };
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

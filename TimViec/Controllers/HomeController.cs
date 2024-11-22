@@ -12,8 +12,6 @@ using TimViec.ViewModel;
 
 namespace TimViec.Controllers
 {
-    [Authorize]
-	[Authorize(Roles = "User")]
 	public class HomeController : Controller
 	{
 		private readonly IJobRespository _jobRepository;
@@ -84,12 +82,13 @@ namespace TimViec.Controllers
 			};
 
 			return View(home);
-		}		
+		}
 
-		//*******************************************************************************************
-		
-		//feedback                               
-		public async Task<IActionResult> feedback()
+        //*******************************************************************************************
+
+        //feedback
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> feedback()
 		{
 
 			await DisplayDropdown();
@@ -97,6 +96,7 @@ namespace TimViec.Controllers
 		}
 
         // add status job
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> feedback(feedback feedback)
         {

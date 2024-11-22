@@ -37,37 +37,24 @@
         <div class="container">
             <div class="col-md-8">
                 <section>
-                    <h1 style="font-size: 24px"><b>Chào mừng bạn đến với</b><b style="color: red;"> Dev IT</b></h1>
+                    <h3 style="font-size: 24px"><b>Welcome to</b><b style="color: red;"> Dev IT</b></h3>
                     <hr style="border: 1px solid black" />
                     @{
-                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        if ((Model.ExternalLogins?.Count ?? 0) != 0)
                         {
                             <div>
                                 <p>
-                                    Bằng việc đăng nhập, bạn đồng ý với <a href="#">Điều khoản & Điều kiện</a> và <a href="#">Chính sách quyền riêng tư</a> của Dev IT liên quan đến thông tin riêng tư của bạn.
+                                    By continuing, you agree to Dev IT's <a href="/Home/Rules">Terms of Use</a> and <a href="/Home/Policy">Privacy Policy </a> regarding to your private information.
                                 </p>
-                                <b>Đăng nhập ngay để tận dụng tối đa các công cụ của Dev IT và gia tăng cơ hội tiếp cận công việc IT hot nhất</b>
+                                <b>Log in now to take full advantage of Dev IT tools and increase your chances of accessing the hottest IT jobs</b>
                                 <ul>
-                                    <li>Ứng tuyển nhanh chóng hơn với hồ sơ đã được lưu.</li>
-                                    <li>Quản lý hồ sơ ứng tuyển và theo dõi cập nhật trạng thái ứng tuyển.</li>
-                                    <li>Xem được mức lương cho mỗi vị trí</li>
-                                    <li>Lưu lại các công việc yêu thích để ứng tuyển sau</li>
-                                    <li>Thực hiện các bài trắc nghiệm đánh giá tính cách làm việc</li>
+                                    <li>Apply faster with your saved profile.</li>
+                                    <li>Manage application documents and track application status updates.</li>
+                                    <li>View salary for each position</li>
+                                    <li>Save your favorite jobs to apply for later</li>
+                                    <li>Take personality assessment tests</li>
                                 </ul>
                             </div>
-                        }
-                        else
-                        {
-                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                                <div>
-                                    <p>
-                                        @foreach (var provider in Model.ExternalLogins)
-                                        {
-                                            <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                        }
-                                    </p>
-                                </div>
-                            </form>
                         }
                     }
                 </section>
@@ -75,49 +62,50 @@
             <div class="col-md-4">
                 <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <h1 style="text-align: center; margin-top: 5px">Create New Account</h1>
-                    <button style="width: 48%" type="button" class="btn btn-primary">Ứng viên</button> | <a asp-page="./RegisterCompany" asp-route-returnUrl="@Model.ReturnUrl" style="width: 48%" type="button" class="btn btn-success">Nhà tuyển dụng</a>
+                    <br />
+                    <button style="width: 48%" type="button" class="btn btn-primary">Applicant</button> | <a asp-page="./RegisterCompany" asp-route-returnUrl="@Model.ReturnUrl" style="width: 48%" type="button" class="btn btn-success">Employer</a>
 
                     <div class="row gx-3 mb-3">
                         <div class="col-md-6">
-                            <label asp-for="Input.Firstname">First Name</label>
-                            <input asp-for="Input.Firstname" class="form-control" placeholder=" Enter first name"/>
+                            <label asp-for="Input.Firstname" style="font-weight: 450 !important; color: black">First name</label>
+                            <input asp-for="Input.Firstname" class="form-control" placeholder="Enter first name"/>
                             <span asp-validation-for="Input.Firstname" class="text-danger"></span>
                         </div>
                         <div class="col-md-6">
-                            <label asp-for="Input.Lastname">Last Name</label>
-                            <input asp-for="Input.Lastname" class="form-control" placeholder=" Enter last name" />
+                            <label asp-for="Input.Lastname" style="font-weight: 450 !important; color: black">Last name</label>
+                            <input asp-for="Input.Lastname" class="form-control" placeholder="Enter last name" />
                             <span asp-validation-for="Input.Lastname" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Input.Fullname">Full Name</label>
-                        <input asp-for="Input.Fullname" class="form-control" placeholder=" Enter fullname"/>
+                        <label asp-for="Input.Fullname" style="font-weight: 450 !important; color: black">Full name</label>
+                        <input asp-for="Input.Fullname" class="form-control" placeholder="Enter fullname"/>
                         <span asp-validation-for="Input.Fullname" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Input.Email"></label>
-                        <input asp-for="Input.Email" class="form-control" placeholder=" Enter email"/>
+                        <label asp-for="Input.Email" style="font-weight: 450 !important; color: black"></label>
+                        <input asp-for="Input.Email" class="form-control" placeholder="Enter email"/>
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Input.Password">Password</label>
+                        <label asp-for="Input.Password" style="font-weight: 450 !important; color: black">Password</label>
                         <br />
-                        <input type="password" id="password" asp-for="Input.Password" placeholder=" Enter password" style="width: 100%; height: 35px" />
+                        <input type="password" id="password" asp-for="Input.Password" placeholder="  Enter password" style="width: 100%; height: 35px" />
                         <br />
                         <input type="checkbox" onclick="togglePassword()" style="margin-top: 5px"> Show Password
                         <br />
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                        <label asp-for="Input.ConfirmPassword" style="font-weight: 450 !important; color: black">Confirm Password</label>
                         <br />
-                        <input type="password" id="password2" asp-for="Input.ConfirmPassword" placeholder=" Enter password" style="width: 100%; height: 35px"/>
+                        <input type="password" id="password2" asp-for="Input.ConfirmPassword" placeholder="  Enter confirm password" style="width: 100%; height: 35px"/>
                         <br />
                         <input type="checkbox" onclick="togglePassword2()" style="margin-top: 5px"> Show Password
                         <br />
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
-                    <button type="submit" class="btn btn-default btn-primary" style="width: 100%">Register</button>
+                    <button type="submit" class="btn btn-default btn-primary" style="width: 100%; font-size: 18px">Register</button>
                     <br />
                     <br />
                     <a asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" class="nav-link">Have an account</a>
