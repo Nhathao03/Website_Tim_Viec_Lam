@@ -5,10 +5,72 @@
 }
 
 <style>
-	.button:hover {
-		background-color: #c3c3c3;
-		color: white;
+	.card-container1 {
+		display: inline-grid;	
+		gap: 16px;
+		justify-content: center;
+		padding: 17px;
 	}
+
+	.card1 {
+		background: #fff;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		width: 250px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.image-wrapper1 {
+		position: relative;
+		width: 100%;
+		height: 150px;
+	}
+
+	.background-image1 {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.overlay-image1 {
+		position: absolute;
+		bottom: -20px;
+		left: 16px;
+		width: 80px;
+		height: 80px;
+		border: 2px solid #fff;
+		border-radius: 50%;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	}
+
+	.card-content1 {
+		padding: 20px;
+		text-align: left;
+	}
+
+		.card-content1 h3 {
+			margin: 0;
+			font-size: 18px;
+			color: #333;
+		}
+
+		.card-content1 p {
+			margin: 8px 0;
+			font-size: 14px;
+			color: #555;
+		}
+
+		.card-content1 a {
+			color: lightcoral;
+			transition: color 0.3s;
+		}
+
+			.card-content1 a:hover {
+				color: #0056b3;
+			}
+
 </style>
 
 <!--welcome-hero start -->
@@ -58,36 +120,21 @@
 			<div class="row">
 				@foreach (var item in Model)
 				{
-					<div class=" col-md-4 col-sm-6">
-						<div class="single-explore-item">
-							<div class="single-explore-img">
-								<img style="height: 200px; width: 400px; object-fit: scale-down " src="~/LayoutTimViec/img/@item.Image" alt="explore image">
+					<div class="card-container1">
+						<div class="card1">
+							<div class="image-wrapper1">
+								<!-- Image 1 -->
+								<img src="https://via.placeholder.com/250x150" alt="Background Image" class="background-image1">
+								<!-- Image 2 -->
+								<img src="~/LayoutTimViec/img/@item.Image" alt="Logo" class="overlay-image1">
 							</div>
-							<div class="single-explore-txt bg-theme-1">
-								<h2>
-									<a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_CPN" asp-route-id="@item.Id">@item.Name_company</a>
-								</h2>
-								<p class="explore-rating-price">
-									<a href="#">Quy mô: @item.Company_size</a>
-								</p>
-								<hr />
-								<div class="explore-open-close-part">
-									<div class="row">
-										<div class="col-sm-5">
-											<button class="button welcome-hero-btn how-work-btn" style="cursor: pointer"><a asp-action="Details_CPN" asp-route-id="@item.Id">Detail</a></button>
-										</div>
-										<div class="col-sm-7">
-											<div class="explore-map-icon">
-												<a href="#"><i data-feather="map-pin"></i></a>
-												<a href="#"><i data-feather="upload"></i></a>
-												<a href="#"><i data-feather="heart"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
+							<div class="card-content1">
+								<h3><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 208px; color: black" asp-action="Details_CPN" asp-route-id="@item.Id">@item.Name_company</a></h3>
+								<p style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 208px; color: black">@item.Location</p>
+								<a asp-action="Details_CPN" asp-route-id="@item.Id">@ViewBag.CountCompany Job ➔</a>
 							</div>
 						</div>
-					</div>
+					</div>					
 				}
 			</div>
 		</div>

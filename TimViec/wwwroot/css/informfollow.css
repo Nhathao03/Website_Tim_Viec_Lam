@@ -1,0 +1,93 @@
+﻿/* styles.css */
+/*body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+    margin: 0;
+}*/
+
+.notification {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    width: 444px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateY(-20px);
+    opacity: 0;
+    z-index: 9999; /* Make sure this is higher than other elements */
+}
+
+    .notification.hidden {
+        display: none;
+    }
+
+    .notification.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check-icon {
+    font-size: 24px;
+    color: #28a745;
+    border: 2px solid #c8e6c9;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: #e8f5e9;
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    text-align: center;
+    line-height: 26px;
+}
+
+.notification-content p {
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.progress-bar1 {
+    width: 100%;
+    height: 5px;
+    background-color: #c8e6c9;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+    .progress-bar1::before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: #28a745;
+        animation: progress 3s linear forwards;
+    }
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
