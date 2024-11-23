@@ -6,13 +6,14 @@ namespace TimViec.Controllers
 {
     [Authorize]
     [Authorize(Roles = "User")]
-    public class CVController : Controller
+    public class ToolsController : Controller
 	{
 		// GET: CreateCVController
 		public ActionResult Index()
 		{
 			return View();
 		}
+		
 
 		// GET: CreateCVController/Details/5
 		public ActionResult Details(int id)

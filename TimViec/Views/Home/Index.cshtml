@@ -10,6 +10,7 @@
 	}
 </style>
 
+<link rel="stylesheet" href="../../css/informfollow.css">
 <!--welcome-hero start -->
 <section id="home" class="welcome-hero">
 	<div class="container">
@@ -162,7 +163,7 @@
 										<ul>
 											<li>
 												<div class="single-explore-image-icon">
-													<i class="fa fa-bookmark-o favourite_job" id_jobfv="@item.Id"></i>
+													<i class="fa fa-bookmark-o favourite_job" id="follow-button" id_jobfv="@item.Id"></i>
 												</div>
 											</li>
 										</ul>
@@ -188,8 +189,19 @@
 								</div>
 							</div>
 						</div>
+					</div>					
+				}		
+				<div id="notification" class="notification hidden">
+					<div class="notification-content">
+						<span class="check-icon">✔</span>
+						<p id="follow">
+							You are following
+							<br />
+							<p id="display_name_follow"></p>
+						</p>
 					</div>
-				}							
+					<div class="progress-bar1"></div>
+				</div>
 			</div>
 		</div>
 	</div><!--/.container-->
@@ -319,6 +331,7 @@
 	</div><!--/.container-->
 
 </section><!--/.blog-->
+
 <!--blog end -->
 <!--subscription strat -->
 <section id="contact" class="subscription">
@@ -393,7 +406,39 @@
 					dataType: 'json',
 					data: { id: getID_Job },
 					success: function (result) {
-						window.location.href = "/Job/GetAllFavouriteJob"
+						if(result.success){
+							const notification = document.getElementById('notification');
+
+							// Show notification
+							notification.classList.remove('hidden');
+							notification.classList.add('show');
+							document.getElementById("display_name_follow").innerHTML = result;
+
+
+							// Hide notification after 5 seconds
+							setTimeout(() => {
+								notification.classList.remove('show');
+								notification.classList.add('hidden');
+							}, 3000); // 5 seconds
+						}else{
+							
+							const notification = document.getElementById('notification');
+
+							// Show notification
+							notification.classList.remove('hidden');
+							document.getElementById("follow").innerHTML = "Job is already marked as favorite.";
+							notification.classList.add('show');
+							document.getElementById("display_name_follow").innerHTML = result;
+
+
+							// Hide notification after 5 seconds
+							setTimeout(() => {
+								notification.classList.remove('show');
+								notification.classList.add('hidden');
+							}, 3000); // 5 seconds
+						}
+						
+
 					},
 					error: function (xhr, status, error) {
 						alert("An error eccorred: " + error);

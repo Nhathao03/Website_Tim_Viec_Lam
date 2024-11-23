@@ -105,6 +105,8 @@ namespace TimViec.Controllers
 		{
 			var getemailuser = await _userManager.GetUserAsync(User);
 			await DisplayDropdown();
+			var get_Job_byID = await _jobRepository.GetByIdAsync(ID);
+			var Job_name = get_Job_byID.Title;
 
 			try
 			{
@@ -127,7 +129,7 @@ namespace TimViec.Controllers
 					favourite_Job.favourite = (int)Constants.favouriteJob.favourite;
 
 					await _favouriteJob.AddAsync(favourite_Job);
-					return Json(new { success = true });
+					return Json(new { success = true , result = Job_name });
 				}	
 			}
 			catch(Exception ex)

@@ -8,7 +8,7 @@
 		background-color: #c3c3c3;
 	}
 </style>
-
+<link rel="stylesheet" href="../../css/informfollow.css">
 <section id="explore" class="explore">
 	<div class="container">
 		<div class="section-header">
@@ -61,6 +61,16 @@
 							</div>
 						</div>
 					</div>
+					<div id="notification" class="notification hidden">
+						<div class="notification-content">
+							<span class="check-icon">✔</span>
+							<p>
+								You have unfollowed <br>
+								<strong class="display_name_follow"></strong>
+							</p>
+						</div>
+						<div class="progress-bar1"></div>
+					</div>
 				}
 			</div>
 		</div>
@@ -80,9 +90,25 @@
 					data: { id: getId_job },
 					success: function (result) {
 						if(result.success){
-							window.location.href = "/Job/GetAllFavouriteJob"
-						}
-						
+							console.log(result)
+							const notification = document.getElementById('notification');
+
+							// Show notification
+							notification.classList.remove('hidden');
+							notification.classList.add('show');
+
+							// Hide notification after 5 seconds
+							setTimeout(() => {
+								notification.classList.remove('show');
+								notification.classList.add('hidden');
+
+								// Reload the page after the notification is hidden
+								setTimeout(() => {
+									location.reload();
+								}, 500);
+							}, 3000); // 5 seconds	
+							
+						}			
 					},
 					error: function (xhr, status, error) {
 						alert("Error");
