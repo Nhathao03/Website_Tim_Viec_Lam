@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TimViec.Controllers
 {
-    [Authorize]
-    [Authorize(Roles = "User")]
     public class ToolsController : Controller
 	{
 		// GET: CreateCVController

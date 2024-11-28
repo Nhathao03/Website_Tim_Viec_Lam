@@ -9,13 +9,12 @@
 	}
 </style>
 <link rel="stylesheet" href="../../css/informfollow.css">
-<section id="explore" class="explore">
+<section id="explore" class="explore" style="padding-top: 20px">
 	<div class="container">
-		<div class="section-header">
-			<h2>Favorite job</h2>
-
+		<div class="section-header" style="text-align: left !important">
+			<h2 style="text-transform: none !important;"><span style="color: lightcoral">@ViewBag.Count_follow_job</span> Following job</h2>
 		</div><!--/.section-header-->
-		<div class="explore-content">
+		<div class="explore-content" style="margin-top: 25px">
 			<div class="row">
 
 				@foreach (var item in Model)
@@ -36,25 +35,15 @@
 									</div>
 								</div>
 							</div>
-							<div class="single-explore-txt bg-theme-1">
+							<div class="single-explore-txt bg-theme-1" style="padding: 10px">
 								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.IDJob">@item.Name</a></h2>
-								<p class="explore-rating-price">
-									<a href="#">@item.R1_Language</a>
-									<span class="explore-price-box">@item.R2_Language</span>
-									<a href="#">@item.R3_Language</a>
+								<p class="explore-rating-price" style="margin: 0">
+									<a href="#"><i class="fa fa-money"></i> @item.</a>
 								</p>
-								<hr />
-								<div class="explore-open-close-part">
+								<div class="explore-open-close-part" style="margin-top: 0">
 									<div class="row">
-										<div class="col-sm-5">
-											<button class="button welcome-hero-btn how-work-btn" style="cursor: pointer"><a asp-action="Details_Job" asp-route-id="@item.Id">Detail</a></button>
-										</div>
-										<div class="col-sm-7">
-											<div class="explore-map-icon">
-												<a href="#"><i data-feather="map-pin"></i></a>
-												<a href="#"><i data-feather="upload"></i></a>
-												<a href="#"><i data-feather="heart"></i></a>
-											</div>
+										<div class="col-sm-5" style="width: 100%;">
+											<button class="button welcome-hero-btn how-work-btn Detail_Job" style="cursor: pointer; width: 100%; font-size: 16px" type="button" id_job="@item.IDJob">Apply now</button>
 										</div>
 									</div>
 								</div>
@@ -112,6 +101,22 @@
 					},
 					error: function (xhr, status, error) {
 						alert("Error");
+					}
+				})
+			})
+			//Detail Job
+			$('.Detail_Job').click(function () {
+				const getID_Job = $(this).attr("id_job");
+				debugger;
+				$.ajax({
+					url: '/Job/Details_Job',
+					type: 'GET',
+					data: { id: getID_Job },
+					success: function (result) {
+						window.location.href = "/Job/Details_Job/" + getID_Job;
+					},
+					error: function (xhr, status, error) {
+						alert("An error occurred: " + error);
 					}
 				})
 			})

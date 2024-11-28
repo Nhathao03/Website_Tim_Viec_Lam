@@ -2,15 +2,14 @@
     Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 
-<link rel="stylesheet" href="../../css/CV.css">
 <link rel="stylesheet" href="../../css/popup.css">
-<div class="top-banner">
+<div class="top-banner" style="background-image: url(../../assets/img/background.png); height: 150px">
     <div class="container top-banner_content">
         <div class="top-banner_content-detail">
-            <h1 style="color: white" class="title">Danh sách mẫu CV xin việc Đơn giản chuẩn 2023</h1>
-            <p style="color: white" class="caption">
-                Các mẫu CV được thiết kế chuẩn theo từng ngành nghề.<br>
-                Phù hợp với cả sinh viên và người đi làm.
+            <h1 style="color: white;font-size: 30px;margin-top: 15px;" class="title">List sample CV applicant simple 2023</h1>
+            <p style="color: white;font-size: 18px;" class="caption">
+                All sample designed by industry.<br>
+                Reasonable with all student and worker.
             </p>
         </div>
 
@@ -18,32 +17,61 @@
 </div>
 
 <div class="container">
-    <div class="header">
+    <div class="header" style="margin-top: 15px">
         <div class="filters">
-            <select id="language">
+            <select id="language" style="width: 150px;height: 35px;border-radius: 5px;color: black">
                 <option value="vi">Tiếng Việt</option>
                 <option value="en">English</option>
             </select>
-            <select id="style">
+            <select id="style" style="width: 150px;height: 35px;border-radius: 5px; color: black">
                 <option value="simple">Đơn giản</option>
                 <option value="modern">Hiện đại</option>
             </select>
         </div>  
     </div>
-    @for(int i = 0; i < 10; i++)
-    {
-        <div class="template-container">
-            <div class="template-item">
-                <img src="image1.jpg" alt="CV Template 1">
-                <div class="template-info">
-                    <h3>Trang trọng</h3>
-                    <p>Đơn giản - Chuyên nghiệp +10</p>
-                    <button class="btn-preview" onclick="openPopup()">Xem trước</button>
-                    <button class="btn-use">Dùng mẫu</button>
+    <section id="explore" class="explore" style="padding-top:0">
+        <div class="container">
+            <div class="explore-content" style="margin-top: 25px !important">
+                <div class="row">
+                    @for (var i =0; i< 10; i++)
+                    {
+                        <div class=" col-md-4 col-sm-6" style="width: 24.333333% !important">
+                            <div class="single-explore-item">
+                                <div class="single-explore-img">
+                                    <img style="height: 200px; width: 100%; object-fit: scale-down" src="../../LayoutTimViec/img/floware.png" alt="explore image">
+                                    <div class="single-explore-img-info">
+                                        <div class="single-explore-image-icon-box" style="font-family: Arial">
+                                            <ul>
+                                                <li onclick="openPopup()" style="border-radius: 10px; width: 65px !important; background: lightslategray; color: white; cursor: pointer ">
+                                                    <div class="single-explore-image-icon">
+                                                        <i class="fa fa-eye see_item" id_jobfv="Id"> See</i>
+                                                    </div>
+                                                </li>
+                                                <li style="border-radius: 10px; width: 65px !important; background: #bec4ff;color: black; cursor: pointer; font-style:">
+                                                    <div class="single-explore-image-icon">
+                                                        <i class="use_item" id_jobfv="Id">Use</i>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-explore-txt bg-theme-1" style="padding: 5px">
+                                    <h2>
+                                        <a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" href="#" class="Detail_Job" id_job=".Id">.Title</a>
+                                    </h2>
+                                    <p class="explore-rating-price">
+                                        <a href="#">.R1_Language</a>
+                                        <span>| R2_Language</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
-        </div>
-    }
+        </div><!--/.container-->
+    </section><!--/.explore-->
     
 
     <!-- Popup Preview -->

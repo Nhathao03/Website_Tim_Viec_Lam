@@ -95,6 +95,8 @@ namespace TimViec.Controllers
 
 			var fbJob = await _favouriteJob.GetAllAsync();
 			var display = fbJob.Where(e => e.email == getemailuser.Email);
+			ViewBag.Count_follow_job = display.Count();
+			
 			return View(display);
 		}
 

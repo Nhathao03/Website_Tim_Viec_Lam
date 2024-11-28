@@ -38,14 +38,14 @@ namespace TimViec.Models
        
         public string? About_Me { get; set; }
 
-        //[Required]
-        //public string? Image_background1 { get; set; }
+        [Required]
+        public string? Image_background1 { get; set; }
 
-        //[Required]
-        //public string? Image_background2 { get; set; }
+        [Required]
+        public string? Image_background2 { get; set; }
 
-        //[Required]
-        //public string? Image_background3 { get; set; }
+        [Required]
+        public string? Image_background3 { get; set; }
 
 
     }

@@ -1,4 +1,4 @@
-﻿using Azure.Core;
+﻿ using Azure.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -97,13 +97,16 @@ namespace TimViec.Areas.CompanyManage.Controllers
 
         // Process the company update
         [HttpPost]
-        public async Task<IActionResult> Edit_company(Company company, IFormFile Image)
+        public async Task<IActionResult> Edit_company(Company company, IFormFile Image, IFormFile Image_background1, IFormFile Image_background2, IFormFile Image_background3)
         {
             //var user = await _userManagers.GetUserAsync(User);
             //var result = await _companyRepository.GetByEmailAsync(user.Email);
             if (Image != null)
             {
                 company.Image = await SaveImageEdit(Image);
+                company.Image_background1 = await SaveImageEdit(Image_background1);
+                company.Image_background2 = await SaveImageEdit(Image_background2);
+                company.Image_background3 = await SaveImageEdit(Image_background3);
             }
             //else
             //{
@@ -125,6 +128,39 @@ namespace TimViec.Areas.CompanyManage.Controllers
                 await Image.CopyToAsync(fileStream);
             }
             return Image.FileName;
+        }
+
+        //Luu anh
+        private async Task<string> SaveImage_Background1(IFormFile Image_background1)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", Image_background1.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await Image_background1.CopyToAsync(fileStream);
+            }
+            return Image_background1.FileName;
+        }
+
+        //Luu anh
+        private async Task<string> SaveImage_Background2(IFormFile Image_background2)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", Image_background2.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await Image_background2.CopyToAsync(fileStream);
+            }
+            return Image_background2.FileName;
+        }
+
+        //Luu anh
+        private async Task<string> SaveImage_Background3(IFormFile Image_background3)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", Image_background3.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await Image_background3.CopyToAsync(fileStream);
+            }
+            return Image_background3.FileName;
         }
 
         //**********************************************************************************************
