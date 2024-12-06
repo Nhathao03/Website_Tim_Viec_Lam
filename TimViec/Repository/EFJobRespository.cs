@@ -42,16 +42,8 @@ namespace TimViec.Respository
             var result = from j in _context.Jobs
                          join c in _context.Companies on j.CompanyID equals c.Id
                          join ct in _context.Cities on c.CityID equals ct.Id
-                         where ((j.Title.Contains(stringsearch)
-                                || j.R1_Language.Equals(stringsearch)
-                                || j.R2_Language.Equals(stringsearch)
-                                || j.R3_Language.Equals(stringsearch)
-                                || c.Name_company.Contains(stringsearch) && (ct.Name_city.Contains(location))) 
-                                || (j.Title.Contains(stringsearch)
-								|| j.R1_Language.Equals(stringsearch)
-								|| j.R2_Language.Equals(stringsearch)
-								|| j.R3_Language.Equals(stringsearch)
-								|| c.Name_company.Contains(stringsearch)) 
+                         where ((j.Title.Contains(stringsearch) || j.R1_Language.Equals(stringsearch) || j.R2_Language.Equals(stringsearch) || j.R3_Language.Equals(stringsearch) || c.Name_company.Contains(stringsearch) && (ct.Name_city.Contains(location))) 
+                                || (j.Title.Contains(stringsearch)|| j.R1_Language.Equals(stringsearch)|| j.R2_Language.Equals(stringsearch)|| j.R3_Language.Equals(stringsearch)|| c.Name_company.Contains(stringsearch)) 
                                 || (ct.Name_city.Contains(location)))
 						 select new SearchViewModel
                          {  
@@ -67,7 +59,6 @@ namespace TimViec.Respository
                              City = ct.Name_city
                          };
 		    return result.ToList();
-
         }
 
 		public List<ChoeseSearchSkill> ChoeseSearchSkills(int ID)

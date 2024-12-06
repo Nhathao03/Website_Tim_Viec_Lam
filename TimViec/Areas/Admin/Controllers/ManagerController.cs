@@ -363,8 +363,6 @@ namespace TimViec.Areas.Admin.Controllers
         [HttpPost] 
         public async Task<IActionResult> Edit_Job(Job job, IFormFile img)
         {
-     
-            job.Description = "abc";
             if (img != null)
             {
                 job.img = await SaveImageEdit(img);
@@ -403,14 +401,12 @@ namespace TimViec.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit_company(Company company, IFormFile Image)
         {
+            var getEmail_copompany = await _userManagers.GetUserAsync(User);
+            var getImage = await _companyRepository.GetByEmailAsync(Convert.ToString(getEmail_copompany));
             if (Image != null)
             {
                 company.Image = await SaveImageEdit(Image);
             }
-            //else
-            //{
-            //    company.Image = result.Image;
-            //}
 
             await _companyRepository.UpdateAsync(company);
             await Task.Delay(2000);
@@ -428,6 +424,5 @@ namespace TimViec.Areas.Admin.Controllers
             }
             return View(result);
         }
-
     }
 }

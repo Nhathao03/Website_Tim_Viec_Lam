@@ -1,0 +1,143 @@
+﻿@model IEnumerable<TimViec.Models.TypeCV>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .add-category-form form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-category-form label {
+        margin-bottom: 8px;
+        color: #555;
+    }
+
+    .add-category-form input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .add-category-form button {
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .add-category-form button:hover {
+            background-color: #0056b3;
+        }
+</style>
+<h2>Danh sách loại CV</h2>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh sách loại CV
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Loại</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Loại</th>
+                    <th>Xóa</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>
+                            <button type="submit" id_category="@item.Id" class="btn btn-danger delete_category">Xóa</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+
+<!-- Add New Category -->
+<div class="add-category-form">
+    <h2>Thêm loại mới</h2>
+    <form id="category-form">
+        <label for="category-name">Tên loại:</label>
+        <input type="text" id="category-name" name="category-name" placeholder="Nhập loại CV" required>
+        <button type="submit" class="addnewtype">Thêm loại</button>
+    </form>
+</div>
+
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+			//Add new category cv
+            $('.addnewtype').click(function () {
+                let category_name = $('#category-name').val();
+				debugger;
+				$.ajax({
+                    url: '/Admin/TypeCV/AddNew_TypeCV',
+					type: 'POST',
+                    data: { Name: category_name },
+                    dataType: 'json',
+					success: function (status) {
+                        if (status.success) {
+                            console.log("Add new category success !")
+                            window.location.href = "/Admin/TypeCV/ListNew_TypeCV";
+                        }else
+                        {
+                            console.log("Add new category fail !")
+                        }         
+					},
+					error: function (xhr, status, error) {
+						alert("An error occurred: " + error);
+					}
+				})
+                $('#datatablesSimple').DataTable().ajax.reload();
+			})
+            
+            //Delete category cv
+            $('.delete_category').click(function () {
+                const getID_Category = $(this).attr("id_category");
+				debugger;
+				$.ajax({
+                    url: '/Admin/TypeCV/Delete',
+					type: 'POST',
+                    data: { id: getID_Category },
+                    dataType: 'json',
+					success: function (status) {
+                        if (status.success) {
+                            console.log("Delete category success !")
+                        }else
+                        {
+                            console.log("Delete category fail !")
+                        }         
+					},
+					error: function (xhr, status, error) {
+						alert("An error occurred: " + error);
+					}
+				})
+			})
+		});
+	</script>
+
+}

@@ -106,7 +106,7 @@ namespace TimViec.Areas.Identity.Pages.Account
                     var roles = _roleManager.Roles;
                     await _userManager.AddToRoleAsync(user, "Company");
 
-                    var company = new Company { Name_company = Input.NameCompany, Company_size = Input.CompanySize, Company_type = "1", Location = Input.Location, Description = Input.NameCompany, Email = Input.Email, Image = "companny.jpg", CityID = 1 };
+                    var company = new Company { Name_company = Input.NameCompany, Company_size = Input.CompanySize, Company_type = "1", Location = Input.Location, Description = Input.NameCompany, Email = Input.Email, Image = "companny.jpg", CityID = 1 ,Image_background1="background1.jpg", Image_background2 = "background2.jpg", Image_background3 = "background3.jpg",};
                     await _companyRepository.AddAsync(company);
                     _logger.LogInformation("User created a new account with password.");
 

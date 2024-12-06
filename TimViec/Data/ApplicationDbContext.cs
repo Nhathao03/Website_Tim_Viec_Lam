@@ -21,15 +21,11 @@ namespace TimViec.Data
         public DbSet<Type_work> Type_Works { get; set; }
         public DbSet<StatusJob> StatusJobs { get; set; }
         public DbSet<favourite_job> favourite_Jobs { get; set; }
-        public DbSet<CVDetails> CV { get; set; }
-        public DbSet<CVCertifications> Certifications { get; set; }
-        public DbSet<CVActivities> Activities { get; set; }
-        public DbSet<CVEducation> Educations { get; set; }
-        public DbSet<CVProject> Projects { get; set; }
-        public DbSet<CVSkill> CV_Skills { get; set; }
-        public DbSet<CVExperience> Experiences { get; set; }
-        public DbSet<CVHonors_Awards> Honors_Awards { get; set; }
         public DbSet<feedback> feedbacks { get; set; }
+        public DbSet<CV> cv { get; set; }
+        public DbSet<Sections> section { get; set; }
+        public DbSet<Template> template { get; set; }
+        public DbSet<TypeCV> types { get; set; }
         public DbSet<TimViec.ViewModel.SearchViewModel> SearchViewModel { get; set; } = default!;
         public DbSet<TimViec.ViewModel.Details_CPN> Details_CPN { get; set; } = default!;
         public DbSet<TimViec.ViewModel.StatusViewModel> StatusViewModel { get; set; } = default!;

@@ -3,11 +3,47 @@
 	ViewData["Title"] = "Job";
 	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
-
-<section id="explore" class="explore" style="padding-top: 10px">
-	<h1 style="text-align: center; font-size: 34px">Result of search</h1>
+<!--welcome-hero start -->
+<section id="home" class="welcome-hero" style="height: 220px;">
 	<div class="container">
-		<div class="explore-content">
+		<div class="welcome-hero-serch-box">
+			<div class="welcome-hero-form">
+				<div class="single-welcome-hero-form">
+					<h3>what?</h3>
+					<form>
+						<input type="text" id="stringsearch" placeholder="Ex: Java, Back-End, Tester, App Mobile" />
+					</form>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-list-with-dots"></i>
+					</div>
+				</div>
+				<div class="single-welcome-hero-form">
+					<h3>location</h3>
+					<form>
+						<input type="text" id="location" placeholder="Ex: Hồ Chí Minh, Hà Nội, Đà Nẵng,..." />
+					</form>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-gps-fixed-indicator"></i>
+					</div>
+				</div>
+			</div>
+			<div class="welcome-hero-serch">
+				<button class="welcome-hero-btn btn_search" type="button">
+					search  <i data-feather="search"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</section><!--/.welcome-hero-->
+<section id="explore" class="explore" style="padding-top: 30px">
+	<h1>
+		<strong class="tit-top tit_txt font-size20" style="margin-left: 272px">
+			<span style="color: lightcoral">@ViewBag.Count_Jobs</span>
+			Jobs base on your select
+		</strong>
+	</h1>
+<div class="container">
+	<div class="explore-content" style="margin-top: 30px">
 			<div class="row">
 				@foreach (var item in Model)
 				{

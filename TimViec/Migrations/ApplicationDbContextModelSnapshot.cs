@@ -238,7 +238,7 @@ namespace TimViec.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("TimViec.Models.CVActivities", b =>
+            modelBuilder.Entity("TimViec.Models.CV", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,265 +246,28 @@ namespace TimViec.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Activity_description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("EndDate")
+                    b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Organization_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("Activities");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVCertifications", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Certification_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("Certifications");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Additional_information")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Carrer_objective")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image_user")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Interests")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Job_opening")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("References")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("UpdateAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("templateId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("templateId");
 
                     b.ToTable("CV");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVEducation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("From")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GPA")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("School_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("To")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("Educations");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVExperience", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Company_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Experience_description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("Experiences");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVHonors_Awards", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Award_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Time")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("Honors_Awards");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVProject", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Customer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Project_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("Team_size")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Technologies_description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVSkill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Skill_description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Skill_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("CV_Skills");
                 });
 
             modelBuilder.Entity("TimViec.Models.City", b =>
@@ -684,6 +447,39 @@ namespace TimViec.Migrations
                     b.ToTable("Ranks");
                 });
 
+            modelBuilder.Entity("TimViec.Models.Sections", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ContentJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StyleJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("cvId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("cvId");
+
+                    b.ToTable("Section");
+                });
+
             modelBuilder.Entity("TimViec.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
@@ -739,6 +535,53 @@ namespace TimViec.Migrations
                     b.HasIndex("JobID");
 
                     b.ToTable("StatusJobs");
+                });
+
+            modelBuilder.Entity("TimViec.Models.Template", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("HtmlTemplate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("typeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("typeId");
+
+                    b.ToTable("Template");
+                });
+
+            modelBuilder.Entity("TimViec.Models.TypeCV", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeCV");
                 });
 
             modelBuilder.Entity("TimViec.Models.Type_work", b =>
@@ -1051,81 +894,15 @@ namespace TimViec.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TimViec.Models.CVActivities", b =>
+            modelBuilder.Entity("TimViec.Models.CV", b =>
                 {
-                    b.HasOne("TimViec.Models.CVDetails", "CV")
-                        .WithMany("Activities")
-                        .HasForeignKey("CVId")
+                    b.HasOne("TimViec.Models.Template", "template")
+                        .WithMany("cv")
+                        .HasForeignKey("templateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CV");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVCertifications", b =>
-                {
-                    b.HasOne("TimViec.Models.CVDetails", "CV")
-                        .WithMany("Certifications")
-                        .HasForeignKey("CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVEducation", b =>
-                {
-                    b.HasOne("TimViec.Models.CVDetails", "CV")
-                        .WithMany("Educations")
-                        .HasForeignKey("CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVExperience", b =>
-                {
-                    b.HasOne("TimViec.Models.CVDetails", "CV")
-                        .WithMany("Experiences")
-                        .HasForeignKey("CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVHonors_Awards", b =>
-                {
-                    b.HasOne("TimViec.Models.CVDetails", "CV")
-                        .WithMany("Honors_Awards")
-                        .HasForeignKey("CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVProject", b =>
-                {
-                    b.HasOne("TimViec.Models.CVDetails", "CV")
-                        .WithMany("Projects")
-                        .HasForeignKey("CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
-                });
-
-            modelBuilder.Entity("TimViec.Models.CVSkill", b =>
-                {
-                    b.HasOne("TimViec.Models.CVDetails", "CV")
-                        .WithMany("Skills")
-                        .HasForeignKey("CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
+                    b.Navigation("template");
                 });
 
             modelBuilder.Entity("TimViec.Models.Company", b =>
@@ -1166,6 +943,17 @@ namespace TimViec.Migrations
                     b.Navigation("Type_work");
                 });
 
+            modelBuilder.Entity("TimViec.Models.Sections", b =>
+                {
+                    b.HasOne("TimViec.Models.CV", "cv")
+                        .WithMany("section")
+                        .HasForeignKey("cvId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("cv");
+                });
+
             modelBuilder.Entity("TimViec.Models.StatusJob", b =>
                 {
                     b.HasOne("TimViec.Models.Job", "Job")
@@ -1177,21 +965,30 @@ namespace TimViec.Migrations
                     b.Navigation("Job");
                 });
 
-            modelBuilder.Entity("TimViec.Models.CVDetails", b =>
+            modelBuilder.Entity("TimViec.Models.Template", b =>
                 {
-                    b.Navigation("Activities");
+                    b.HasOne("TimViec.Models.TypeCV", "type")
+                        .WithMany("Templates")
+                        .HasForeignKey("typeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Certifications");
+                    b.Navigation("type");
+                });
 
-                    b.Navigation("Educations");
+            modelBuilder.Entity("TimViec.Models.CV", b =>
+                {
+                    b.Navigation("section");
+                });
 
-                    b.Navigation("Experiences");
+            modelBuilder.Entity("TimViec.Models.Template", b =>
+                {
+                    b.Navigation("cv");
+                });
 
-                    b.Navigation("Honors_Awards");
-
-                    b.Navigation("Projects");
-
-                    b.Navigation("Skills");
+            modelBuilder.Entity("TimViec.Models.TypeCV", b =>
+                {
+                    b.Navigation("Templates");
                 });
 #pragma warning restore 612, 618
         }

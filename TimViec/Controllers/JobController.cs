@@ -64,7 +64,9 @@ namespace TimViec.Controllers
 			await DisplayDropdown();
 
 			var job = await _jobRepository.GetAllAsync();
-			return View(job);
+			var sortedJob = job.OrderBy(j => j.Title);
+			ViewBag.CountJob = job.Count();
+			return View(sortedJob);
 		}
 
 		//details job
