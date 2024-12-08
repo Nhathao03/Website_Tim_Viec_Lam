@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -9,15 +7,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using TimViec.Models;
 
 namespace TimViec.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager; // Sử dụng ApplicationUser thay vì IdentityUser
 
-        public ResetPasswordModel(UserManager<IdentityUser> userManager)
+        public ResetPasswordModel(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
@@ -44,6 +43,7 @@ namespace TimViec.Areas.Identity.Pages.Account
             public string Code { get; set; }
         }
 
+        // Phương thức GET để nhận mã reset password
         public IActionResult OnGet(string code = null)
         {
             if (code == null)
@@ -54,12 +54,13 @@ namespace TimViec.Areas.Identity.Pages.Account
             {
                 Input = new InputModel
                 {
-                    Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
+                    Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code)) // Giải mã mã reset password
                 };
                 return Page();
             }
         }
 
+        // Phương thức POST để reset password
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -67,23 +68,27 @@ namespace TimViec.Areas.Identity.Pages.Account
                 return Page();
             }
 
+            // Tìm người dùng qua email
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-                // Don't reveal that the user does not exist
+                // Không thông báo người dùng không tồn tại vì lý do bảo mật
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
 
+            // Reset mật khẩu
             var result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
             if (result.Succeeded)
             {
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
 
+            // Nếu lỗi, hiển thị thông báo lỗi cho người dùng
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError(string.Empty, error.Description);
             }
+
             return Page();
         }
     }

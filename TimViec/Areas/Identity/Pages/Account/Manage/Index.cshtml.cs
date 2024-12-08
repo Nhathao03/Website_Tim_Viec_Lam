@@ -113,7 +113,7 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
 			await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Hồ sơ của bạn đã được cập nhật thành công !";
+            StatusMessage = "Your profile has been updated successfully.!";
             return RedirectToPage();
         }
 
