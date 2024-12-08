@@ -86,7 +86,8 @@ namespace TimViec.Controllers
             await DisplayDropdown();
 
             var skill = _jobRepository.ChoeseSearchSkills(ID);
-
+            var Count_Jobs = _jobRepository.ChoeseSearchSkills(ID).Count();
+            ViewBag.Count_Jobs = Count_Jobs;
             return View(skill);
         }
 
@@ -96,8 +97,9 @@ namespace TimViec.Controllers
             await DisplayDropdown();
 
             var type = _jobRepository.ChoeseSearchType(ID);
-
-            return View(type);
+			var Count_Jobs = _jobRepository.ChoeseSearchType(ID).Count();
+			ViewBag.Count_Jobs = Count_Jobs;
+			return View(type);
         }
 
 		[HttpGet]
@@ -106,8 +108,9 @@ namespace TimViec.Controllers
             await DisplayDropdown();
 
             var rank = _jobRepository.ChoeseSearchRank(ID);
-
-            return View(rank);
+			var Count_Jobs = _jobRepository.ChoeseSearchRank(ID).Count();
+			ViewBag.Count_Jobs = Count_Jobs;
+			return View(rank);
         }
 
 		[HttpGet]
@@ -116,8 +119,9 @@ namespace TimViec.Controllers
             await DisplayDropdown();
 
             var location = _jobRepository.ChoeseSearchLocation(ID);
-
-            return View(location);
+			var Count_Jobs = _jobRepository.ChoeseSearchLocation(ID).Count();
+			ViewBag.Count_Jobs = Count_Jobs;
+			return View(location);
         }
     }
 }

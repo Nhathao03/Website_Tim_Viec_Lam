@@ -14,5 +14,6 @@ namespace TimViec.Respository
         Task<Company> GetByEmailAsync(string email);
         List<CountJobInCompany> CountJobInCompanies(int ID);
         List<GetJobByEmail> GetJobByEmail(string email);
+        List<All_Company_ViewModel> Get_All_Company();
     }
 }

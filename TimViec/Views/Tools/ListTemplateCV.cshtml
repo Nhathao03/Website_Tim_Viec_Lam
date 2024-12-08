@@ -1,0 +1,107 @@
+﻿@model List<TimViec.ViewModel.CreateCV_ViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<link rel="stylesheet" href="../../css/popup.css">
+
+<div class="top-banner" style="background-image: url(../../assets/img/background.png); height: 150px">
+    <div class="container top-banner_content">
+        <div class="top-banner_content-detail">
+            <h1 style="color: white;font-size: 30px;margin-top: 15px;" class="title">List of standard CV templates 2023</h1>
+            <p style="color: white;font-size: 18px;" class="caption">
+                CV templates are designed according to each industry.<br>
+                Suitable for both students and working people.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="header" style="margin-top: 15px">
+        <div class="filters">
+            <select id="style" style="width: 170px;height: 35px;border-radius: 5px; color: black">
+                @foreach(var item in Model)
+                {
+                    <option>@item.Type_Name</option>
+                }
+            </select>
+        </div>  
+    </div> 
+    <section id="explore" class="explore" style="padding-top:0">
+        <div class="container">
+            <div class="explore-content" style="margin-top: 25px !important">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class=" col-md-4 col-sm-6" style="width: 20.333333% !important; margin-right: 35px">
+                            <div class="single-explore-item" style="border-radius: 9px">
+                                <div class="single-explore-img" style="border-radius: 9px">
+                                    <img style="height: 200px; width: 100%; object-fit: scale-down" src="../../CV/background_image/@item.Image" alt="explore image">
+                                    <div class="single-explore-img-info">
+                                        <div class="single-explore-image-icon-box" style="font-family: Arial">
+                                            <ul>
+                                                <li onclick="openPopup()" style="border-radius: 10px; width: 85px !important; background-color: transparent; ; color: black; cursor: pointer;border: 2px solid #ffffff;">
+                                                    <div class="single-explore-image-icon">
+                                                        <i class="fa fa-eye see_item" id_jobfv="Id"> See</i>
+                                                    </div>
+                                                </li>
+                                                <li style="border-radius: 10px; width: 85px !important; background-color: lightcoral ;color: black; cursor: pointer;">
+                                                    <div class="single-explore-image-icon">
+                                                        <a asp-controller="Tools" asp-action="CreateCV" ><i class="use_item">Use</i></a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-explore-txt bg-theme-1" style="padding: 5px">
+                                    <h2>
+                                        <a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px; margin: 5px" href="#" class="Detail_Job" id_job="@item.Id">@item.Type_Name</a>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div><!--/.container-->
+    </section><!--/.explore-->
+    <!-- Popup Preview -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <div class="cv-preview">
+                <div class="cv-left">
+                    <img src="../../CV/background_image/delicate_2_v2.png"  />
+                </div>
+                <div class="cv-right">
+                    <h4>Thông tin</h4>
+                    <ul>
+                        <li><strong>Điện thoại:</strong> 024-6860-5588</li>
+                        <li><strong>Email:</strong> hotro@topcv.vn</li>
+                        <li><strong>Địa chỉ:</strong> Quận A, Hà Nội</li>
+                    </ul>
+                    <h4>Học vấn</h4>
+                    <p>Đại học TOPCV, 2016 - 2020</p>
+                    <button class="btn-use">Use this template</button>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function openPopup() {
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+
+</script>
+

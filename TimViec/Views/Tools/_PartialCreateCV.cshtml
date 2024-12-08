@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<style>
+    .contentdata {
+        justify-self: center;
+        margin-top: 20px;
+    }
+    .navbar {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: white;
+        border-bottom: 1px solid #eee;
+        gap: 20px;
+    }
+
+    .cv-title {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 200px;
+    }
+
+    .language-selector {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .flag {
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .controls {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .control-item {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+    }
+</style>
+<link rel="stylesheet" href="../../CV/style_template/@ViewBag.Style">
+<nav class="navbar" style="border: 1px solid black;margin-top: 22px;">
+    <input type="text" class="cv-title" placeholder="CV chưa đặt tên">
+    <div class="language-selector">
+        <span>Ngôn ngữ CV</span>
+        <img src="flag-vn.png" alt="Vietnamese" class="flag">
+        <img src="flag-en.png" alt="English" class="flag">
+        <img src="flag-jp.png" alt="Japanese" class="flag">
+    </div>
+    <select class="control-item">
+        <option>Roboto</option>
+    </select>
+    <div class="control-item">
+        Mẫu chủ đề
+        <span class="color-circle"
+              style="background: #00875A; width: 16px; height: 16px; border-radius: 50%;"></span>
+    </div>
+    <div class="controls">
+        <button class="preview-button">
+            <i class="fa fa-eye"></i>
+            Xem trước
+        </button>
+        <button class="btn green-button">Lưu lại</button>
+    </div>
+    
+</nav>
+<div class="contentdata">
+    @Html.Raw(ViewBag.HTML)
+</div>

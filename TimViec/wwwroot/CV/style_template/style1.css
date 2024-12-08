@@ -1,0 +1,186 @@
+﻿
+.resume {
+    background-color: white;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 3000px;
+    width: 1000px;
+}
+
+.profile {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    background-color: #ddd;
+}
+
+h1 {
+    color: #00B1EA;
+    margin: 0 0 10px 0;
+}
+
+h2 {
+    margin: 0 0 20px 0;
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.section {
+    flex: 1;
+    min-width: 250px;
+}
+
+h3 {
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.contact-info div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contact-info img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.education-item {
+    margin-bottom: 20px;
+}
+
+    .education-item h4 {
+        margin: 0;
+    }
+
+    .education-item p {
+        margin: 5px 0;
+    }
+
+.skills p {
+    margin: 5px 0;
+}
+
+hr {
+    border: 1px solid #00B1EA;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.timeline {
+    height: 275px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 30px;
+}
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #00B1EA;
+    }
+
+    .timeline-item .date {
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .timeline-item .company {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .timeline-item ul {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+
+    .timeline-item li {
+        margin-bottom: 5px;
+    }
+
+.certificate-item {
+    margin-bottom: 20px;
+}
+
+    .certificate-item .year {
+        font-weight: bold;
+        color: #000000;
+    }
+
+.award-item {
+    margin-bottom: 20px;
+}
+
+    .award-item .year {
+        font-weight: bold;
+        color: #000000;
+    }
+
+
+.activity-item {
+    margin-bottom: 20px;
+}
+
+    .activity-item .date {
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .activity-item .role {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .activity-item ul {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+
+.content-experience {
+    width: 400px;
+    float: right;
+}
+
+.infordate {
+    width: 40%;
+}
+
+.experience {
+    width: 60%;
+    float: right;
+    margin-top: -60px;
+}
+
+
+@media (max-width: 768px) {
+    .profile {
+        flex-direction: column;
+    }
+
+    .avatar {
+        margin: 0 auto;
+    }
+}

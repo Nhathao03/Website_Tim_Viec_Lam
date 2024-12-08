@@ -19,7 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     <PackageReference Include="MimeKit" Version="4.6.0" />
   </ItemGroup>
 
@@ -29,6 +29,7 @@
     <Folder Include="Areas\CompanyManage\Models\Data\" />
     <Folder Include="Areas\CompanyManage\Models\" />
     <Folder Include="Data\" />
+    <Folder Include="wwwroot\CV\background_image\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
     <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />

@@ -43,13 +43,9 @@ builder.Services.AddScoped<IType_WorkRespository, EFType_WorkRespository>();
 builder.Services.AddScoped<ISkillRespository, EFSkillRespository>();
 builder.Services.AddScoped<IfavouriteJob, EFfavouriteJob>();
 builder.Services.AddScoped<IfeedbackRepository, EFfeedbackRepository>();
-builder.Services.AddScoped<ICvDetailsRepository, EFCvDetailsRepository>();
-builder.Services.AddScoped<ICvCertificationRepository, EFCvCertificationRepository>();
-builder.Services.AddScoped<ICvProjectRepository, EFCvProjectRepository>();
-builder.Services.AddScoped<ICvEducationRepository, EFCvEducationRepository>();
-builder.Services.AddScoped<ICvExperienceRepository, EFCvExperienceRepository>();
-builder.Services.AddScoped<ICvHonor_AwardRepository, EFCvHonor_awardRepository>();
-builder.Services.AddScoped<ICvSkillRepository, EFCvSkillRepository>();
+builder.Services.AddScoped<ITypeCVRepository, EFTypeCVRepository>();
+builder.Services.AddScoped<ITemplateRepository, EFTemplateRepository>();
+builder.Services.AddScoped<ISectionRespository, EFSectionRepository>();
 
 var app = builder.Build();
 
