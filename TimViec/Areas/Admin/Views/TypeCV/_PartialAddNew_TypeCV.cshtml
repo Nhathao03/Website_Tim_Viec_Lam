@@ -102,9 +102,9 @@
 					success: function (status) {
                         if (status.success) {
                             console.log("Add new category success !")
-                            window.location.href = "/Admin/TypeCV/ListNew_TypeCV";
-                        }else
-                        {
+                            $('#datatablesSimple').load('/Admin/TypeCV/ListNew_TypeCV');
+                        }
+                        else{
                             console.log("Add new category fail !")
                         }         
 					},
@@ -125,8 +125,9 @@
                     data: { id: getID_Category },
                     dataType: 'json',
 					success: function (status) {
-                        if (status.success) {
+                        if (status.success == true) {
                             console.log("Delete category success !")
+                            $('#datatablesSimple').load('/Admin/TypeCV/ListNew_TypeCV'); 
                         }else
                         {
                             console.log("Delete category fail !")
@@ -137,6 +138,8 @@
 					}
 				})
 			})
+            
+            
 		});
 	</script>
 

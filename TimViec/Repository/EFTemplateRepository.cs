@@ -50,7 +50,11 @@ namespace TimViec.Repository
                              TypeID = type.Id,
                          };
             return result.ToList();
-
         }
+
+        //public List<ListTemplateCV> Get_ListTemplates()
+        //{
+        //     var result = from 
+        //}
     }
 }

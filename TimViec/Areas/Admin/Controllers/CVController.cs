@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimViec.Models;
+using TimViec.Repository;
 
 namespace TimViec.Areas.Admin.Controllers
 {
@@ -9,9 +10,18 @@ namespace TimViec.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class CVController : Controller
 	{
-		// GET: CVController
-		public ActionResult Index()
+		private readonly ITemplateRepository _templateRepository;
+		private readonly ITypeCVRepository _typeCVRepository;
+        public CVController(ITemplateRepository templateRepository,
+            ITypeCVRepository typeCVRepository)
+        {
+            _templateRepository = templateRepository;
+            _typeCVRepository = typeCVRepository;
+        }
+        // GET: CVController
+        public async Task<IActionResult> ListTemplateCV()
 		{
+			var getLis_TemplateCV = await _templateRepository.GetAllAsync();
 			return View();
 		}
 

@@ -5,7 +5,7 @@
 }
 
 <h2 style="text-align: center">Thêm mẫu CV mới</h2>
-
+<link rel="stylesheet" href="../../css/informfollow.css">
 <div class="row" style="display: flex; justify-content: center">
     <div class="col-xl-8">
         <div class="card">
@@ -26,15 +26,15 @@
                     </div>
                     
                     <div class="container">
-                        <div class="row">
-
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="control-label">Loại CV</label>
-                                    <select class="form-control"  id="category" asp-items="ViewBag.List_category"></select>
-                                </div>
-                            </div>
-                            
+                        <div class="row">                           
+                            <label class="control-label">Loại CV</label>
+                            <select id="categorySelect" name="CategoryId" class="form-control">
+                                <option value="">Chọn loại</option>
+                                @foreach (var item in ViewBag.List_category as SelectList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>                    
                         </div>
                     </div>
 
@@ -43,6 +43,7 @@
                         <input  class="form-control" id="html_template"/>
                         <span  class="text-danger"></span>
                     </div>
+                    <br />
                     <button class="btn btn-primary btn_add_new_template">Thêm mới</button>
                 </form>
             </div>
@@ -50,28 +51,33 @@
     </div>
 </div>
 
-
 @section Scripts {
     <script>
         $(document).ready(function () {
+            //get id category
+            var id_category = null;
+            $('#categorySelect').change(function () {
+                const selectedId = $(this).val();
+                id_category = selectedId;
+            });
+
             //add new template
             $('.btn_add_new_template').click(function(){
                 let data_template = {
                     Name: $('#template_name').val(),
                     HtmlTemplate: $('#html_template').val(),
-                    TypeID: $('#content_post').val(),
+                    TypeID: id_category,
                     ImagePath: image
                 };
 
                 debugger;
                 $.ajax({
-                    url: '/Home/CreatePost',
+                    url: '/Admin/Template/AddNewTemplate',
                     type: 'POST',
-                    data: postData,
+                    data: data_template,
                     success: function (result) {
                         if (result.success == true) {
                             console.log("Create new post success")
-                            location.reload()
                         }
                         else {
                             console.log("Create new post fail")
@@ -117,6 +123,7 @@
                     }
                 });
             })
+           
         });
     </script>
 

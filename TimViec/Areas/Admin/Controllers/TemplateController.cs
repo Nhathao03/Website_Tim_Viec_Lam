@@ -39,7 +39,7 @@ namespace TimViec.Areas.Admin.Controllers
             {
                 await image.CopyToAsync(fileStream);
             }
-            return "CV/background_image/" + image.FileName;
+            return image.FileName;
         }
 
         [HttpPost]
@@ -60,7 +60,7 @@ namespace TimViec.Areas.Admin.Controllers
             ViewBag.List_category = new SelectList(getList_category, "Id", "Name");
             return PartialView("_PartialAddNewTemplateSampleCV");
         }
-
+        [HttpPost]
         //Add new template sample
         public async Task<IActionResult> AddNewTemplate(Template template)
         {
