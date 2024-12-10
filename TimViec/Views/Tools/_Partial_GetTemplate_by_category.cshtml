@@ -1,4 +1,4 @@
-﻿@model List<TimViec.ViewModel.GetAllTemplate_ViewModel>
+﻿@model List<TimViec.ViewModel.Get_template_by_category_ViewModel>
 @{
     Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
@@ -20,14 +20,14 @@
 <div class="container">
     <div class="header" style="margin-top: 15px">
         <div class="filters">
-            <select id="select_category" style="width: 170px;height: 35px;border-radius: 5px; color: black">
-                @foreach(var item in Model)
+            <select id="style" style="width: 170px;height: 35px;border-radius: 5px; color: black">
+                @foreach (var item in Model)
                 {
-                    <option class="@("Category_Id" + item.CV_Id)" category_id="@item.CV_Id">@item.Type_Name</option>
+                    <option class="@("Category_Id" + item.Id)" class="select_category" category_id="@item.Id">@item.Category</option>
                 }
             </select>
-        </div>  
-    </div> 
+        </div>
+    </div>
     <section id="explore" class="explore" style="padding-top:0">
         <div class="container">
             <div class="explore-content" style="margin-top: 25px !important">
@@ -48,7 +48,7 @@
                                                 </li>
                                                 <li style="border-radius: 10px; width: 85px !important; background-color: lightcoral ;color: black; cursor: pointer;">
                                                     <div class="single-explore-image-icon">
-                                                        <a class="renderCV" id_cv="@item.CV_Id"><i class="use_item">Use</i></a>
+                                                        <a asp-controller="Tools" asp-action="CreateCV"><i class="use_item">Use</i></a>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="single-explore-txt bg-theme-1" style="padding: 5px">
                                     <h2>
-                                        <a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px; margin: 5px; cursor: pointer;" asp-controller="Tools" asp-action="RenderCreateCV" asp-route-id="@item.CV_Id" class="@("ID" + item.CV_Id) " id_cv="@item.CV_Id">@item.Type_Name</a>
+                                        <a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px; margin: 5px" href="#" class="Detail_Job" id_job="@item.Id">@item.Category</a>
                                     </h2>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
             <span class="close" onclick="closePopup()">&times;</span>
             <div class="cv-preview">
                 <div class="cv-left">
-                    <img src="../../CV/background_image/delicate_2_v2.png"  />
+                    <img src="../../CV/background_image/delicate_2_v2.png" />
                 </div>
                 <div class="cv-right">
                     <h4>Thông tin</h4>
@@ -87,7 +87,7 @@
                     <button class="btn-use">Use this template</button>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
@@ -102,25 +102,22 @@
     }
 </script>
 
-@section Scripts{
+@section Scripts {
     <script>
         $(document).ready(function () {
-            $('#select_category').change(function () {
-                const get_Category_ID = $(this).find(':selected').attr('category_id');
+            $('.select_category').change(function () {
+                const get_Category_ID = $(this).attr("category_id");
                 debugger;
-                $.ajax({
+                $ajax({
                     url: '/Tools/Get_template_by_category',
                     type: 'GET',
-                    data: { category_id : get_Category_ID},
-                    success: function () {
-                        console.log('success');
-                    },
-                    error: function (xhr, status, error) {
-                        alert("An error occurred: " + error);
+                    dataType: 'json',
+                    data: { category_id: get_Category_ID },
+                    success: function (result) {
+
                     }
                 })
             })
-
         })
     </script>
 }

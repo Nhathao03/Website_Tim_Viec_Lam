@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
+using Newtonsoft.Json;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
+using TimViec.ViewModel;
 
 namespace TimViec.Controllers
 {
@@ -15,48 +19,64 @@ namespace TimViec.Controllers
         private readonly ITemplateRepository _templateRepository;
         private readonly ITypeCVRepository _typeCVRepository;
         private readonly ISectionRespository _sectionRespository;
+        private readonly ICVsRepository _cvRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         public ToolsController(ITemplateRepository templateRepository,
             ITypeCVRepository typeCVRepository,
 			ISectionRespository sectionRespository,
+			ICVsRepository cVsRepository,
 			UserManager<ApplicationUser> userManager)
         {
             _templateRepository = templateRepository;
             _typeCVRepository = typeCVRepository;
 			_sectionRespository = sectionRespository;
+			_cvRepository = cVsRepository;
 			_userManager = userManager;
         }
-        // GET: CreateCVController
+        // Get list template
         public async Task<IActionResult> ListTemplateCV()
 		{
 			var getAll_TemplateCV = _templateRepository.GetAllInformation_Table_Template_and_TypeCV();
-            var getHTML_Template = await _templateRepository.GetByIdAsync(14);
-            ViewBag.HTML = getHTML_Template.HtmlTemplate;
-            var getStyle_Template = await _sectionRespository.GetByIdAsync(2);
-            ViewBag.Style = getStyle_Template.StyleJson;
             return View(getAll_TemplateCV);
 		}
-		
 
-		// GET: CreateCVController/Details/5
-		public ActionResult Details(int id)
+        [HttpGet]
+		// Get template by category
+		public async Task<IActionResult> Get_template_by_category(int category_id)
 		{
-			return View();
+			var getTemplate_by_category = _templateRepository.Get_Template_By_Categories(category_id);
+			return PartialView("_Partial_GetTemplate_by_category",getTemplate_by_category);
+			
 		}
 
-		// GET: CreateCVController/Create
-		public async Task<IActionResult> CreateCV()
-		{
-			var getUser = await _userManager.GetUserAsync(User);
-			var getHTML_Template = await _templateRepository.GetByIdAsync(14);
-			ViewBag.HTML = getHTML_Template.HtmlTemplate;
-			var getStyle_Template = await _sectionRespository.GetByIdAsync(2);
-			ViewBag.Style = getStyle_Template.StyleJson;
-            return PartialView("_PartialCreateCV",getUser);
-		}
 
-		// POST: CreateCVController/Create
-		[HttpPost]
+        [HttpGet]
+        public async Task<IActionResult> RenderCreateCV(int id)
+        {
+			//try
+			//{
+				var renderCV = _cvRepository.GetTemplates_by_ID_CV(id);
+				var sectionList = new List<Get_CV_ByCvid_ViewModelResult>();
+				foreach (var item in renderCV)
+				{
+					sectionList.Add(new Get_CV_ByCvid_ViewModelResult()
+					{
+						Id = item.Id,
+						TypeName = item.TypeName,
+						Content = !string.IsNullOrEmpty(item.ContentJson) ? JsonConvert.DeserializeObject<dynamic>(item.ContentJson) : null,
+						Style = !string.IsNullOrEmpty(item.StyleJson) ? JsonConvert.DeserializeObject<dynamic>(item.StyleJson) : null,
+					});
+				}
+				return View(sectionList);
+			//}
+			//catch(Exception ex)
+			//{
+			//	return Json(new {success = false, error = ex.Message});
+			//}
+        }
+
+        // POST: CreateCVController/Create
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(IFormCollection collection)
 		{

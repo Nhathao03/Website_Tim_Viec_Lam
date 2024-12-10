@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimViec.Models
 {
-    [Table("CV")]
+    [Table("CVs")]
     public class CV
     {
         public int Id { get; set; }
@@ -11,8 +11,10 @@ namespace TimViec.Models
         public string Title { get; set; }       
         public DateTime CreateAt { get; set; }
         public DateTime UpdateAt { get; set; }
-        public virtual Template template { get; set; }
-        public virtual ICollection<Sections> section { get; set; } = new List<Sections>();
+        public bool IsDefault { get; set; }
+		public virtual Template template { get; set; }
+		public int templateId { get; set; }
+		public virtual ICollection<Sections> section { get; set; } = new List<Sections>();
 
     }
 }

@@ -18,11 +18,11 @@ namespace TimViec.Areas.Admin.Controllers
             _templateRepository = templateRepository;
             _typeCVRepository = typeCVRepository;
         }
-        // GET: CVController
-        public async Task<IActionResult> ListTemplateCV()
+        // GET: CVController 
+        public IActionResult ListTemplateCV()
 		{
-			var getLis_TemplateCV = await _templateRepository.GetAllAsync();
-			return View();
+			var getLis_TemplateCV = _templateRepository.Get_ListTemplates();
+			return View(getLis_TemplateCV);
 		}
 
 		// GET: CVController/Details/5

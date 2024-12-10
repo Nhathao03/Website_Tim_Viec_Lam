@@ -21,9 +21,7 @@ namespace TimViec.Repository
         
         public async Task<Sections> GetByIdAsync(int Id)
         {
-            var list = await _context.section.ToListAsync();
-            var a = await _context.section.FindAsync(Id);
-            return a;
+            return await _context.section.FindAsync(Id);            
         }
         public async Task AddAsync(Sections sections)
         {

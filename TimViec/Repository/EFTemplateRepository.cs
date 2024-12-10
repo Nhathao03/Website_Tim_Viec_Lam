@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using TimViec.Data;
 using TimViec.Models;
 using TimViec.ViewModel;
@@ -37,24 +38,47 @@ namespace TimViec.Repository
             _context.template.Remove(template);
             await _context.SaveChangesAsync();
         }
-        public List<CreateCV_ViewModel> GetAllInformation_Table_Template_and_TypeCV()
+
+        //USER USE
+        public List<GetAllTemplate_ViewModel> GetAllInformation_Table_Template_and_TypeCV()
         {
-            var result = from t in _context.template
-                         join type in _context.types on t.TypeID equals type.Id         
-                         select new CreateCV_ViewModel
+            var result = from cv in _context.cv
+                         join tem in _context.template on cv.templateId equals tem.Id
+                         join typeCV in _context.types on tem.TypeID equals typeCV.Id
+                         select new GetAllTemplate_ViewModel
                          {
-                             Id = t.Id,
-                             Type_Name = type.Name,
-                             HtmlTemplate = t.HtmlTemplate,
-                             Image = t.ImagePath,
-                             TypeID = type.Id,
+                             CV_Id = cv.Id,
+                             TypeID = typeCV.Id,
+                             Type_Name = typeCV.Name,
+                             Image = tem.ImagePath,
                          };
             return result.ToList();
         }
 
-        //public List<ListTemplateCV> Get_ListTemplates()
-        //{
-        //     var result = from 
-        //}
+        //ADMIN USE
+        public List<ListTemplateCV> Get_ListTemplates()
+        {
+            var result = from t in _context.template
+                         join type in _context.types on t.TypeID equals type.Id
+                         select new ListTemplateCV
+                         {
+                             Id = t.Id,
+                             ImageCV = t.ImagePath,
+                             TypeCV = type.Name,
+                         };
+            return result.ToList();
+        }
+        public List<Get_template_by_category_ViewModel> Get_Template_By_Categories(int category_Id)
+        {
+            var result = from t in _context.template
+                         where(t.TypeID.Equals(category_Id))
+                         select new Get_template_by_category_ViewModel
+                         {
+                             Id = t.Id,
+                             Image = t.ImagePath,
+                             Category = t.Name,
+                         };
+            return result.ToList();
+        }
     }
 }

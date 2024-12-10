@@ -39,6 +39,7 @@ builder.Services.AddScoped<IfeedbackRepository, EFfeedbackRepository>();
 builder.Services.AddScoped<ITypeCVRepository, EFTypeCVRepository>();
 builder.Services.AddScoped<ITemplateRepository, EFTemplateRepository>();
 builder.Services.AddScoped<ISectionRespository, EFSectionRepository>();
+builder.Services.AddScoped<ICVsRepository, EFCVsRepository>();
 
 var app = builder.Build();
 

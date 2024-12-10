@@ -26,6 +26,7 @@ namespace TimViec.Data
         public DbSet<Sections> section { get; set; }
         public DbSet<Template> template { get; set; }
         public DbSet<TypeCV> types { get; set; }
+        public DbSet<TypeSection> typeSections { get; set; }
         public DbSet<TimViec.ViewModel.SearchViewModel> SearchViewModel { get; set; } = default!;
         public DbSet<TimViec.ViewModel.Details_CPN> Details_CPN { get; set; } = default!;
         public DbSet<TimViec.ViewModel.StatusViewModel> StatusViewModel { get; set; } = default!;
