@@ -11,6 +11,6 @@ namespace TimViec.Repository
         Task UpdateAsync(Template template);
         Task DeleteAsync(int id);
         List<CreateCV_ViewModel> GetAllInformation_Table_Template_and_TypeCV();
-        List<ListTemplateCV> Get_ListTemplates();
+        //List<ListTemplateCV> Get_ListTemplates();
     }
 }

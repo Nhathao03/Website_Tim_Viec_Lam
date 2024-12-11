@@ -1,0 +1,185 @@
+:root {
+    --primary-color: #008000;
+    --text-color: #333;
+    --background-color: #fff;
+    --border-color: #e0e0e0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.header-content h1 {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.header-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+main {
+    display: flex;
+    gap: 30px;
+}
+
+.left-column {
+    flex: 1;
+}
+
+.right-column {
+    flex: 2;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.personal-info ul li {
+    margin-bottom: 10px;
+}
+
+.icon-email::before,
+.icon-phone::before,
+.icon-location::before,
+.icon-website::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-color: var(--primary-color);
+    vertical-align: middle;
+}
+
+.education-item {
+    margin-bottom: 15px;
+}
+
+.education-item h4 {
+    font-weight: bold;
+}
+
+.skills ul {
+    columns: 2;
+}
+
+.skills li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.skills li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
+
+.job {
+    margin-bottom: 20px;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.job-date {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.job h5 {
+    margin-bottom: 10px;
+}
+
+.job ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.two-columns {
+    display: flex;
+    gap: 30px;
+}
+
+.two-columns > section {
+    flex: 1;
+}
+
+.certificate,
+.activity {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .two-columns {
+        flex-direction: column;
+    }
+
+    .skills ul {
+        columns: 1;
+    }
+}
+
