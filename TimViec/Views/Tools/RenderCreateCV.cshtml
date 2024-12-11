@@ -245,230 +245,315 @@
     <div class="controls">
         <button class="preview-button">
             <i class="fa fa-eye"></i>
-            Xem trước
+            See
         </button>
         <button class="btn green-button">Save</button>
     </div>
 </nav>
 
 <div class="cv-container">
-    @if (Model != null && Model.Count > 0)
-    {
-        foreach (var item in Model)
+    <div class="resume">
+        @if (Model != null && Model.Count > 0)
         {
-            <div class="resume">
-                <div class="profile">
-                    <div class="avatar">
+            <div class="profile">
+                <div class="avatar">
+                    @foreach (var item in Model)
+                    {
                         @if (item.TypeName == "Avatar")
                         {
-                            <img src="../../CV/image_user/@item.Content.Url" />
-                        }
-                    </div>
-                    <div>
-                        <div class="input_data" data-gramm="false" spellcheck="false">
-                            @if (item.TypeName == "UserName")
+                            if (item.Content.Url != null)
                             {
-                                <p>@item.Content.Name<br></p>
+                                <img src="../../CV/image_user/@item.Content.Url" />
                             }
                             else
                             {
-                                <p><textarea style="width: 600px;border: none;font-size: 20px;" placeholder="Your name"></textarea><br></p>
-
+                                <img src="../../CV/image_user/user_default.png" />
+                            }
+                        }
+                    }
+                </div>
+                <div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="input_data" data-gramm="false" spellcheck="false">
+                            @if (item.TypeName == "UserName")
+                            {
+                                if (item.Content.Name != null)
+                                {
+                                    <p>@item.Content.Name<br></p>
+                                }
+                                else
+                                {
+                                    <p><textarea style="width: 600px;border: none;" placeholder="Your name"></textarea><br></p>
+                                }
                             }
                             @if (item.TypeName == "Title")
                             {
-                                <div class="input_data" data-gramm="false" spellcheck="false">
-                                    <p><textarea style="width: 600px;border: none;font-size: 20px;" placeholder="Job Position"></textarea><br></p>
-                                </div>
+                                if (item.Content.Job_position != null)
+                                {
+                                    <div class="input_data" data-gramm="false" spellcheck="false">
+                                        <p><textarea style="width: 600px;border: none;" placeholder="Job Position">@item.Content.Job_position</textarea><br></p>
+                                    </div>
+                                    <hr style="border: 1px solid black;">
+                                }
+                                else
+                                {
+                                    <div class="input_data" data-gramm="false" spellcheck="false">
+                                        <p><textarea style="width: 600px;border: none;font-size: 20px;" placeholder="Job Position"></textarea><br></p>
+                                    </div>
+                                    <hr style="border: 1px solid black;">
+                                }
                             }
                             @if (item.TypeName == "Career_goal")
                             {
-                                <hr style="border: 1px solid black;">
-                                <div class="input_data" data-gramm="false" spellcheck="false">
-                                    <p><textarea style="width: 600px;border: none;font-size: 20px;" placeholder="Job Position"></textarea><br></p>
-                                </div>
+                                if (item.Content.Career_goal != null)
+                                {
+                                    <div class="input_data" data-gramm="false" spellcheck="false">
+                                        <p><textarea style="width: 600px;border: none;font-size: 20px;" placeholder="Career goals: short-term, long-term">@item.Content.Career_goal</textarea><br></p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="input_data" data-gramm="false" spellcheck="false">
+                                        <p><textarea style="width: 600px;border: none;font-size: 20px;" placeholder="Career goals: short-term, long-term"></textarea><br></p>
+                                    </div>
+                                }
                             }
                         </div>
-                    </div>
+                    }
                 </div>
-                <div class="main-content">
-                    <div class="section">
-                        <hr>
-                        <h3>PROFILE</h3>
-                        <hr>
-                        <div class="contact-info">
-                            <div>
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
-                                     alt="Email">
-                                <span>@item.Content</span>
-                            </div>
-                            <div>
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
-                                     alt="Phone">
-                                <span>(024) 6680 5588</span>
-                            </div>
-                            <div>
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
-                                     alt="Website">
-                                <span>https://fb.com/topcv.vn</span>
-                            </div>
-                            <div>
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
-                                     alt="Location">
-                                <span>Quận A, Hà Nội</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="section">
-                        <hr>
-                        <h3>HỌC VẤN</h3>
-                        <hr>
-                        <div class="education-item">
-                            <h4>ĐẠI HỌC TOPCV</h4>
-                            <p>CHUYÊN NGÀNH SƯ PHẠM</p>
-                            <p>2016 - 2020</p>
-                            <p>Tốt nghiệp loại Giỏi</p>
-                        </div>
-                        <div class="education-item">
-                            <h4>UDEMY</h4>
-                            <p>KHÓA HỌC KỸ NĂNG QUẢN LÝ LỚP HỌC</p>
-                            <p>2021 - 2021</p>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <hr>
-                        <h3>CÁC KỸ NĂNG</h3>
-                        <hr>
-                        <p>(BẠN CÓ THỂ CHỌN 4-6 KỸ NĂNG ĐƯỢC VIẾT BÊN DƯỚI HOẶC TỰ VIẾT MỚI)</p>
-                        <div class="skills">
-                            <p>THIẾT LẬP MỐI QUAN HỆ VỚI HỌC SINH & PHỤ HUYNH</p>
-                            <p>QUẢN LÝ HÀNH VI NGƯỜI HỌC</p>
-                            <p>SỬ DỤNG CÔNG CỤ ĐÀO TẠO TRỰC TUYẾN ZOOM, TEAMS</p>
-                            <p>THÀNH THẠO PHƯƠNG PHÁP S.M.A.R.T ĐẠT MỤC TIÊU</p>
-                            <p>XÂY DỰNG CHƯƠNG TRÌNH ĐÀO TẠO</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Work Experience Section -->
-                <div class="section full-width">
-                    <hr />
-                    <h3>KINH NGHIỆM LÀM VIỆC</h3>
-                    <hr />
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="infordate">
-                                <div class="date">08/2020 - 08/2022</div>
-                                <div class="company">CÔNG TY ABC</div>
-                            </div>
-                            <div class="experience">
-                                <h4>CHUYÊN VIÊN ĐÀO TẠO NỘI BỘ</h4>
-                                <ul>
-                                    <li>Biên soạn và cập nhật 100+ tài liệu đào tạo theo lộ trình</li>
-                                    <li>Phân tích nhu cầu và lập kế hoạch đào tạo cho 500 nhân viên</li>
-                                    <li>Xây dựng, giám sát và cải tiến quy trình đào tạo theo định hướng của công ty</li>
-                                    <li>Theo dõi, đánh giá học viên sau đào tạo sử dụng phương pháp SMART</li>
-                                    <li>Trực tiếp đứng lớp 10 chương trình đào tạo theo kế hoạch</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="infordate">
-                                <div class="date">08/2020 - 08/2022</div>
-                                <div class="company">CÔNG TY ABC</div>
-                            </div>
-                            <div class="experience">
-                                <h4>CHUYÊN VIÊN ĐÀO TẠO NỘI BỘ</h4>
-                                <ul>
-                                    <li>Biên soạn và cập nhật 100+ tài liệu đào tạo theo lộ trình</li>
-                                    <li>Phân tích nhu cầu và lập kế hoạch đào tạo cho 500 nhân viên</li>
-                                    <li>Xây dựng, giám sát và cải tiến quy trình đào tạo theo định hướng của công ty</li>
-                                    <li>Theo dõi, đánh giá học viên sau đào tạo sử dụng phương pháp SMART</li>
-                                    <li>Trực tiếp đứng lớp 10 chương trình đào tạo theo kế hoạch</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="main-content">
-                    <!-- Certificates Section -->
-                    <div class="section">
-                        <hr />
-                        <h3>CHỨNG CHỈ</h3>
-                        <hr />
-                        <div class="certificate-item">
-                            <div class="year">2022</div>
-                            <p>Chứng chỉ nghiệp vụ sư phạm - Đại học Sư phạm</p>
-                        </div>
-                        <div class="certificate-item">
-                            <div class="year">2021</div>
-                            <p>Phát triển Kỹ năng thuyết trình chuyên nghiệp - SMEI Vietnam</p>
-                        </div>
-                    </div>
-
-                    <!-- Activities Section -->
-                    <div class="section">
-                        <hr />
-                        <h3>HOẠT ĐỘNG</h3>
-                        <hr />
-                        <div class="activity-item">
-                            <div class="date">06/2016 - 09/2020</div>
-                            <h4>Câu lạc bộ Truyền thông, trường Đại học A</h4>
-                            <div class="role">Ban Nhân Sự</div>
-                            <ul>
-                                <li>Xây dựng chương trình đào tạo kỹ năng cho 30 thành viên CLB.</li>
-                                <li>Mời 2 chuyên gia về chia sẻ kỹ năng viết CV và phỏng vấn.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="main-content">
-                    <div class="section">
-                        <hr>
-                        <h3>DANH HIỆU VÀ GIẢI THƯỞNG</h3>
-                        <hr>
-                        <div class="award-item">
-                            <div class="year">2022</div>
-                            <p>Chứng chỉ nghiệp vụ sư phạm - Đại học Sư phạm</p>
-                        </div>
-                        <div class="award-item">
-                            <div class="year">2021</div>
-                            <p>Phát triển Kỹ năng thuyết trình chuyên nghiệp - SMEI Vietnam</p>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <hr>
-                        <h3>SỞ THÍCH</h3>
-                        <hr>
-                        <div class="favorite">
-                            <p>THIẾT LẬP MỐI QUAN HỆ VỚI HỌC SINH & PHỤ HUYNH</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="main-content">
-                    <div class="section">
-                        <hr>
-                        <h3>THÔNG TIN THÊM</h3>
-                        <hr>
-                        <div class="additional-item">
-                            <p>abc</p>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <hr>
-                        <h3>NGƯỜI GIỚI THIỆU</h3>
-                        <hr>
-                        <div class="refer">
-                            <p>THIẾT LẬP MỐI QUAN HỆ VỚI HỌC SINH & PHỤ HUYNH</p>
-                        </div>
-                    </div>
-                </div>
             </div>
-        }
-    }
-</div>
+            <div class="main-content">
+                <div class="section">
+                    <hr>
+                    <h3>PROFILE</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        <div class="contact-info">
+                            @if (item.TypeName == "About_me")
+                            {
+                                if (item.Content.Email != null)
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
+                                             alt="Email">
+                                        <span>@item.Content.Email</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
+                                             alt="Email">
+                                        <textarea></textarea>
+                                    </div>
+                                }
+                                if (item.Content.Phone != null)
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
+                                             alt="Phone">
+                                        <span>@item.Content.Phone</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
+                                             alt="Phone">
+                                        <textarea></textarea>
+                                    </div>
+                                }
+                                if (item.Content.Website != null)
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
+                                             alt="Website">
+                                        <span>@item.Content.Website</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
+                                             alt="Website">
+                                        <textarea></textarea>
+                                    </div>
+                                }
+                                if (item.Content.Address != null)
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
+                                             alt="Location">
+                                        <span>@item.Content.Address</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
+                                             alt="Location">
+                                        <textarea></textarea>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+                @*   <div class="section">
+            <hr>
+            <h3>EDUCATION</h3>
+            <hr>
+            @if (item.TypeName == "Education")
+            {
+            foreach (var edu in item.Content)
+            {
+            <div class="education-item">
+            <h4>@item.Content.Insitution</h4>
+            <p>@item.Content.Major</p>
+            <p>@item.Content.StartYear - @item.Content.EndYear</p>
+            <p>@item.Content.Grade</p>
+            </div>
+
+            }
+            }
+            </div>
+
+            <div class="section">
+            <hr>
+            <h3>SKILLS</h3>
+            <hr>
+            @if (item.TypeName == "Skill")
+            {
+            <div class="skills">
+            @foreach (var skill in item.Content)
+            {
+            }
+            </div>
+            }
+            </div>
+            </div>
+            <!-- Work Experience Section -->
+            <div class="section full-width">
+            <hr />
+            <h3>EXPERIENCE</h3>
+            <hr />
+            <div class="timeline">
+            <div class="timeline-item">
+            <div class="infordate">
+            <div class="date">08/2020 - 08/2022</div>
+            <div class="company">CÔNG TY ABC</div>
+            </div>
+            <div class="experience">
+            <h4>CHUYÊN VIÊN ĐÀO TẠO NỘI BỘ</h4>
+            <ul>
+            <li>Biên soạn và cập nhật 100+ tài liệu đào tạo theo lộ trình</li>
+            <li>Phân tích nhu cầu và lập kế hoạch đào tạo cho 500 nhân viên</li>
+            <li>Xây dựng, giám sát và cải tiến quy trình đào tạo theo định hướng của công ty</li>
+            <li>Theo dõi, đánh giá học viên sau đào tạo sử dụng phương pháp SMART</li>
+            <li>Trực tiếp đứng lớp 10 chương trình đào tạo theo kế hoạch</li>
+            </ul>
+            </div>
+            </div>
+            </div>
+            <div class="timeline">
+            <div class="timeline-item">
+            <div class="infordate">
+            <div class="date">08/2020 - 08/2022</div>
+            <div class="company">CÔNG TY ABC</div>
+            </div>
+            <div class="experience">
+            <h4>CHUYÊN VIÊN ĐÀO TẠO NỘI BỘ</h4>
+            <ul>
+            <li>Biên soạn và cập nhật 100+ tài liệu đào tạo theo lộ trình</li>
+            <li>Phân tích nhu cầu và lập kế hoạch đào tạo cho 500 nhân viên</li>
+            <li>Xây dựng, giám sát và cải tiến quy trình đào tạo theo định hướng của công ty</li>
+            <li>Theo dõi, đánh giá học viên sau đào tạo sử dụng phương pháp SMART</li>
+            <li>Trực tiếp đứng lớp 10 chương trình đào tạo theo kế hoạch</li>
+            </ul>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="main-content">
+            <!-- Certificates Section -->
+            <div class="section">
+            <hr />
+            <h3>CERTIFICATION</h3>
+            <hr />
+            <div class="certificate-item">
+            <div class="year">2022</div>
+            <p>Chứng chỉ nghiệp vụ sư phạm - Đại học Sư phạm</p>
+            </div>
+            <div class="certificate-item">
+            <div class="year">2021</div>
+            <p>Phát triển Kỹ năng thuyết trình chuyên nghiệp - SMEI Vietnam</p>
+            </div>
+            </div>
+
+            <!-- Activities Section -->
+            <div class="section">
+            <hr />
+            <h3>HOẠT ĐỘNG</h3>
+            <hr />
+            <div class="activity-item">
+            <div class="date">06/2016 - 09/2020</div>
+            <h4>Câu lạc bộ Truyền thông, trường Đại học A</h4>
+            <div class="role">Ban Nhân Sự</div>
+            <ul>
+            <li>Xây dựng chương trình đào tạo kỹ năng cho 30 thành viên CLB.</li>
+            <li>Mời 2 chuyên gia về chia sẻ kỹ năng viết CV và phỏng vấn.</li>
+            </ul>
+            </div>
+            </div>
+            </div>
+            <div class="main-content">
+            <div class="section">
+            <hr>
+            <h3>DANH HIỆU VÀ GIẢI THƯỞNG</h3>
+            <hr>
+            <div class="award-item">
+            <div class="year">2022</div>
+            <p>Chứng chỉ nghiệp vụ sư phạm - Đại học Sư phạm</p>
+            </div>
+            <div class="award-item">
+            <div class="year">2021</div>
+            <p>Phát triển Kỹ năng thuyết trình chuyên nghiệp - SMEI Vietnam</p>
+            </div>
+            </div>
+
+            <div class="section">
+            <hr>
+            <h3>SỞ THÍCH</h3>
+            <hr>
+            <div class="favorite">
+            <p>THIẾT LẬP MỐI QUAN HỆ VỚI HỌC SINH & PHỤ HUYNH</p>
+            </div>
+            </div>
+            </div>
+            <div class="main-content">
+            <div class="section">
+            <hr>
+            <h3>THÔNG TIN THÊM</h3>
+            <hr>
+            <div class="additional-item">
+            <p>abc</p>
+            </div>
+            </div>
+
+            <div class="section">
+            <hr>
+            <h3>NGƯỜI GIỚI THIỆU</h3>
+            <hr>
+            <div class="refer">
+            <p>THIẾT LẬP MỐI QUAN HỆ VỚI HỌC SINH & PHỤ HUYNH</p>
+            </div>
+            </div>*@
+            </div> 
+
+
+                }
+            </div>
+        </div>

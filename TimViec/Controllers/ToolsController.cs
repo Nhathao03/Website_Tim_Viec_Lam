@@ -53,8 +53,6 @@ namespace TimViec.Controllers
         [HttpGet]
         public async Task<IActionResult> RenderCreateCV(int id)
         {
-			//try
-			//{
 				var renderCV = _cvRepository.GetTemplates_by_ID_CV(id);
 				var sectionList = new List<Get_CV_ByCvid_ViewModelResult>();
 				foreach (var item in renderCV)
@@ -68,11 +66,6 @@ namespace TimViec.Controllers
 					});
 				}
 				return View(sectionList);
-			//}
-			//catch(Exception ex)
-			//{
-			//	return Json(new {success = false, error = ex.Message});
-			//}
         }
 
         // POST: CreateCVController/Create
