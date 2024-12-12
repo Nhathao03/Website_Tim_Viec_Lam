@@ -8,12 +8,51 @@
 		background-color: #c3c3c3;
 	}
 </style>
-<section id="explore" class="explore">
+<!--welcome-hero start -->
+<section id="home" class="welcome-hero" style="height: 220px;">
 	<div class="container">
-		<div class="section-header">
-			<h2>List job</h2>
-		</div><!--/.section-header-->
-		<div class="explore-content">
+		<div class="welcome-hero-serch-box">
+			<div class="welcome-hero-form">
+				<div class="single-welcome-hero-form">
+					<h3>what?</h3>
+					<form>
+						<input type="text" id="stringsearch" placeholder="Enter Company Keyword" style="color: black" />
+					</form>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-list-with-dots"></i>
+					</div>
+				</div>
+				<div class="single-welcome-hero-form">
+					<h3>location</h3>
+					<select name="cars" id="cars" class="select_city" style="color: black;width: 250px;margin-left: 20px;border-style: none;font-size: 15px;">
+						<option  value="0">Select location</option>
+						<option  value="1">Hồ Chí Minh</option>
+						<option  value="2">Hà Nội</option>
+						<option  value="3">Đà Nẵng</option>
+						<option  value="4">Different</option>
+					</select>
+					<div class="welcome-hero-form-icon">
+						<i class="flaticon-gps-fixed-indicator"></i>
+					</div>
+				</div>
+			</div>
+			<div class="welcome-hero-serch">
+				<button class="welcome-hero-btn btn_search" type="button">
+					search  <i data-feather="search"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</section><!--/.welcome-hero-->
+<section id="explore" class="explore" style="padding-top: 50px">
+	<div class="container">
+		<h1>
+			<strong class="tit-top tit_txt font-size20">
+				<span style="color: lightcoral">@ViewBag.CountJob</span>
+				Jobs in Total
+			</strong>
+		</h1>
+		<div class="explore-content" style="margin-top: 20px">
 			<div class="row">
 				@foreach (var item in Model)
 				{
@@ -67,21 +106,17 @@
 
 @section Scripts{
 	<script>
-		//Detail Job
-		$('.Detail_Job').click(function () {
-			const getID_Job = $(this).attr("id_job");
-			debugger;
-			$.ajax({
-				url: '/Job/Details_Job',
-				type: 'GET',
-				data: { id: getID_Job },
-				success: function (result) {
-					window.location.href = "/Job/Details_Job/" + getID_Job;
-				},
-				error: function (xhr, status, error) {
-					alert("An error occurred: " + error);
+		$(document).ready(function () {
+			//Search
+			$('.btn_search').click(function () {
+				let city_id =  $('.select_city').find(':selected').val();
+				//Use encodeURI to send character special
+				let strSearch = encodeURIComponent($('#stringsearch').val());
+				if(strSearch != '' || city_id != 0)
+				{
+					window.location.href = '/Search/Search?stringSearch=' + strSearch + '&id=' + city_id;
 				}
 			})
-		})
+		});
 	</script>
 }

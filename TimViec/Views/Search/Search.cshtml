@@ -20,9 +20,13 @@
 				</div>
 				<div class="single-welcome-hero-form">
 					<h3>location</h3>
-					<form>
-						<input type="text" id="location" placeholder="Ex: Hồ Chí Minh, Hà Nội, Đà Nẵng,..." />
-					</form>
+					<select name="cars" id="cars" class="select_city" style="color: black;width: 250px;margin-left: 20px;border-style: none;font-size: 15px;">
+						<option value="0">Select location</option>
+						<option value="1">Hồ Chí Minh</option>
+						<option value="2">Hà Nội</option>
+						<option value="3">Đà Nẵng</option>
+						<option value="4">Different</option>
+					</select>
 					<div class="welcome-hero-form-icon">
 						<i class="flaticon-gps-fixed-indicator"></i>
 					</div>
@@ -134,13 +138,12 @@
 
 		//Search
 		$('.btn_search').click(function () {
-			let searchData = {
-				stringSearch: $('#stringsearch').val(),
-				location: $('#location').val(),
-			};
-
-			window.location.href = '/Search/Search?stringSearch=' + searchData.stringSearch + '&location=' + searchData.location;
-
+			let city_id = $('.select_city').find(':selected').val();
+			//Use encodeURI to send character special
+			let strSearch = encodeURIComponent($('#stringsearch').val());
+			if (strSearch != '' || city_id != 0) {
+				window.location.href = '/Search/Search?stringSearch=' + strSearch + '&id=' + city_id;
+			}
 		})
 	</script>
 }

@@ -63,8 +63,9 @@ namespace TimViec.Controllers
 			await DisplayDropdown();
 
 			var companies = await _companyRepository.GetAllAsync();
+			var GetInforCompany = _companyRepository.Get_All_Company();
 			ViewBag.CountCompany = companies.Count();
-			return View(companies);
+			return View(GetInforCompany);
 		}
 
 		// display details company

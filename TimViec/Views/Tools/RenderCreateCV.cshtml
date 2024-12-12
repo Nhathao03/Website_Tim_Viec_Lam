@@ -1,0 +1,600 @@
+﻿@model List<TimViec.ViewModel.Get_CV_ByCvid_ViewModelResult>
+
+@{
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<style>
+    .contentdata {
+        justify-self: center;
+        margin-top: 20px;
+    }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: white;
+        border-bottom: 1px solid #eee;
+        gap: 20px;
+    }
+
+    .cv-title {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 200px;
+    }
+
+    .controls {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .control-item {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .resume {
+        background-color: white;
+        padding: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: 3000px;
+        width: 1000px;
+    }
+
+    .profile {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .avatar {
+        width: 200px;
+        height: 200px;
+        background-color: #ddd;
+    }
+
+    h1 {
+        color: #00B1EA;
+        margin: 0 0 10px 0;
+    }
+
+    h2 {
+        margin: 0 0 20px 0;
+    }
+
+    .main-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .section {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    h3 {
+        color: #000000;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .contact-info div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .contact-info img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    .education-item {
+        margin-bottom: 20px;
+    }
+
+        .education-item h4 {
+            margin: 0;
+        }
+
+        .education-item p {
+            margin: 5px 0;
+        }
+
+    .skills p {
+        margin: 5px 0;
+    }
+
+    hr {
+        border: 1px solid #00B1EA;
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+    .timeline {
+        height: 275px;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 30px;
+    }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #00B1EA;
+        }
+
+        .timeline-item .date {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .company {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .timeline-item li {
+            margin-bottom: 5px;
+        }
+
+    .certificate-item {
+        margin-bottom: 20px;
+    }
+
+        .certificate-item .year {
+            font-weight: bold;
+            color: #000000;
+        }
+
+    .award-item {
+        margin-bottom: 20px;
+    }
+
+        .award-item .year {
+            font-weight: bold;
+            color: #000000;
+        }
+
+
+    .activity-item {
+        margin-bottom: 20px;
+    }
+
+        .activity-item .date {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .activity-item .role {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .activity-item ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+    .content-experience {
+        width: 400px;
+        float: right;
+    }
+
+    .infordate {
+        width: 40%;
+    }
+
+    .experience {
+        width: 60%;
+        float: right;
+        margin-top: -88px;
+    }
+
+    .input_data :hover {
+        outline: 1px dashed #7F878F;
+        outline-offset: 0;
+        border-radius: 4px;
+    }
+
+    .input_data :focus {
+        outline: 1px solid #53aaf1 !important;
+        outline-offset: 0;
+        border-radius: 4px;
+    }
+
+</style>
+
+<nav class="navbar" style="border: 1px solid black;margin-top: 22px;">
+    <input type="text" class="cv-title" placeholder="CV chưa đặt tên">
+    <select class="control-item">
+        <option>Roboto</option>
+    </select>
+    <div class="control-item">
+        Mẫu chủ đề
+        <span class="color-circle"
+              style="background: #00875A; width: 16px; height: 16px; border-radius: 50%;"></span>
+    </div>
+    <div class="controls">
+        <button class="preview-button">
+            <i class="fa fa-eye"></i>
+            See
+        </button>
+        <button class="btn green-button">Save</button>
+    </div>
+</nav>
+
+<div class="cv-container">
+    <div class="resume">
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="profile">
+                <div class="avatar">
+                    @foreach (var item in Model)
+                    {
+                        @if (item.TypeName == "Avatar")
+                        {
+                            if (item.Content.Url != null)
+                            {
+                                <img src="../../CV/image_user/@item.Content.Url" />
+                            }
+                            else
+                            {
+                                <img src="../../CV/image_user/user_default.png" />
+                            }
+                        }
+                    }
+                </div>
+                <div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="input_data" data-gramm="false" spellcheck="false">
+                            @if (item.TypeName == "UserName")
+                            {
+                                if (item.Content.Name != null)
+                                {
+                                    <p><textarea style="width: 600px;border: none;" placeholder="Your name">@item.Content.Name</textarea><br></p>
+                                }
+                                else
+                                {
+                                    <p><textarea style="width: 600px;border: none;" placeholder="Your name"></textarea><br></p>
+                                }
+                            }
+                            @if (item.TypeName == "Title")
+                            {
+                                if (item.Content.Job_position != null)
+                                {
+                                    <div class="input_data" data-gramm="false" spellcheck="false">
+                                        <p><textarea style="width: 600px;border: none;" placeholder="Job Position">@item.Content.Job_position</textarea><br></p>
+                                    </div>
+                                    <hr style="border: 1px solid black;">
+                                }
+                                else
+                                {
+                                    <div class="input_data" data-gramm="false" spellcheck="false">
+                                        <p><textarea style="width: 600px;border: none;font-size: 20px;" placeholder="Job Position"></textarea><br></p>
+                                    </div>
+                                    <hr style="border: 1px solid black;">
+                                }
+                            }
+                            @if (item.TypeName == "Career_goal")
+                            {
+                                if (item.Content.Career_goal != null)
+                                {
+                                    <div class="input_data" data-gramm="false" spellcheck="false">
+                                        <p><textarea style="width: 600px;border: none;" placeholder="Career goals: short-term, long-term">@item.Content.Career_goal</textarea><br></p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="input_data" data-gramm="false" spellcheck="false">
+                                        <p><textarea style="width: 600px;border: none;" placeholder="Career goals: short-term, long-term"></textarea><br></p>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <div class="main-content">
+                <div class="section">
+                    <hr>
+                    <h3>PROFILE</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        <div class="contact-info">
+                            @if (item.TypeName == "Profile")
+                            {
+                                if (item.Content.Email != null)
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
+                                             alt="Email">
+                                        <span>@item.Content.Email</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
+                                             alt="Email">
+                                        <textarea></textarea>
+                                    </div>
+                                }
+                                if (item.Content.Phone != null)
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
+                                             alt="Phone">
+                                        <span>@item.Content.Phone</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
+                                             alt="Phone">
+                                        <textarea></textarea>
+                                    </div>
+                                }
+                                if (item.Content.Website != null)
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
+                                             alt="Website">
+                                        <span>@item.Content.Website</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
+                                             alt="Website">
+                                        <textarea></textarea>
+                                    </div>
+                                }
+                                if (item.Content.Address != null)
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
+                                             alt="Location">
+                                        <span>@item.Content.Address</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
+                                             alt="Location">
+                                        <textarea></textarea>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="section">
+                    <hr>
+                    <h3>EDUCATION</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeName == "Education")
+                        {
+                            <div class="education-item">
+                                @if (item.Content != null)
+                                {
+                                    for (int i = 0; i < item.Content.Count; i++)
+                                    {
+                                        <p>@item.Content[i].Institution</p>
+                                        <p>@item.Content[i].Major</p>
+                                        <p>@item.Content[i].StartYear - @item.Content[i].EndYear</p>
+                                        <p>@item.Content[i].Grade</p>
+                                    }
+                                }
+                                else
+                                {
+                                    <textarea placeholder="School"></textarea>
+                                    <textarea placeholder="Your major"></textarea>
+                                    <textarea placeholder="Start"></textarea>
+
+                                    <p>-</p>
+
+                                    <textarea placeholder="End"></textarea>
+                                    <textarea placeholder="Grade"></textarea>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="section">
+                    <hr>
+                    <h3>SKILLS</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeName == "Skills")
+                        {
+                            <div class="skills">
+                                @if (item.Content != null)
+                                {
+                                    for (int i = 0; i < item.Content.Count; i++)
+                                    {
+                                        <p>@item.Content[i].Name</p>
+                                        <p>@item.Content[i].Description</p>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>
+                                        <textarea style="width: 600px; border: none;" placeholder="Your skill"></textarea><br>
+                                        <textarea style="width: 600px; border: none;" placeholder="Description"></textarea><br>
+                                    </p>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="section full-width">
+                <hr />
+                <h3>EXPERIENCE</h3>
+                <hr />
+                @foreach (var item in Model)
+                {
+                    if (item.TypeName == "Experience")
+                    {
+                        <div class="timeline">
+                            @if (item.Content != null)
+                            {
+                                for (int i = 0; i < item.Content.Count; i++)
+                                {
+                                    <div class="timeline-item">
+                                        <div class="infordate">
+                                            <div class="date">@item.Content[i].StartDate - @item.Content[i].EndDate</div>
+                                            <div class="company">@item.Content[i].Company</div>
+                                        </div>
+                                        <div class="experience">
+                                            <h4>@item.Content[i].Position</h4>
+                                            <ul>
+                                                @for (int j = 0; j < item.Content[i].Responsibilities.Count; j++)
+                                                {
+                                                    <li>@item.Content[i].Responsibilities[j]</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="timeline-item">
+                                    <div class="infordate">
+                                        <div class="date"><textarea placeholder="Start"></textarea> - <textarea placeholder="End"></textarea></div>
+                                        <div class="company"><textarea placeholder="Company"></textarea></div>
+                                    </div>
+                                    <div class="experience">
+                                        <h4><textarea placeholder="Position"></textarea></h4>
+                                        <ul>
+                                            <li><textarea placeholder="Description"></textarea></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    }
+                }
+            </div>
+            <div class="main-content">
+                <!-- Certificates Section -->
+                <div class="section">
+                    <hr />
+                    <h3>CERTIFICATION</h3>
+                    <hr />
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeName == "Certification")
+                        {
+                            <div class="certificate-item">
+                                @if (item.Content != null)
+                                {
+                                    for (int i = 0; i < item.Content.Count; i++)
+                                    {
+                                        <div class="year">@item.Content[i].Year</div>
+                                        <p>@item.Content[i].Name</p>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="year">2022</div>
+                                    <p>Chứng chỉ nghiệp vụ sư phạm - Đại học Sư phạm</p>
+                                }
+
+                            </div>
+                        }
+                    }
+                </div>
+
+                <!-- Activities Section -->
+                <div class="section">
+                    <hr />
+                    <h3>ACTIVITY</h3>
+                    <hr />
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeName == "Activities")
+                        {
+                            <div class="activity-item">
+                                @if (item.Content != null)
+                                {
+                                    if (item.Content.Count == null)
+                                    {
+                                        <div class="date">@item.Content.StartDate - @item.Content.EndDate</div>
+                                        <h4>@item.Content.Activity</h4>
+                                        <div class="role">@item.Content.Position</div>
+                                        <ul>
+                                            @for (int j = 0; j < item.Content.Description.Count; j++)
+                                            {
+                                                <li>@item.Content.Description[j]</li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+
+                                        for (int i = 0; i < item.Content.Count; i++)
+                                        {
+                                            <div class="date">@item.Content[i].StartDate - @item.Content[i].EndDate</div>
+                                            <h4>@item.Content[i].Activity</h4>
+                                            <div class="role">@item.Content[i].Position</div>
+                                            <ul>
+                                                @for (int j = 0; j < item.Content[i].Description.Count; j++)
+                                                {
+                                                    <li>@item.Content[i].Description[j]</li>
+                                                }
+                                            </ul>
+                                        }
+                                    }
+
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

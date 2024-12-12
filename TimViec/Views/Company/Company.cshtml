@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TimViec.Models.Company>
+﻿@model List<TimViec.ViewModel.All_Company_ViewModel>
 @{
 	ViewData["Title"] = "Job";
 	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
@@ -89,11 +89,12 @@
 				</div>
 				<div class="single-welcome-hero-form">
 					<h3>location</h3>
-					<select name="cars" id="cars" style="color: black;width: 250px;margin-left: 20px;border-style: none;font-size: 15px;">
-						<option value="hcm">Hồ Chí Minh</option>
-						<option value="hn">Hà Nội</option>
-						<option value="dn">Đà Nẵng</option>
-						<option value="other">Khác</option>
+					<select name="cars" id="cars" class="select_city" style="color: black;width: 250px;margin-left: 20px;border-style: none;font-size: 15px;">
+						<option value="0">Select location</option>
+						<option value="1">Hồ Chí Minh</option>
+						<option value="2">Hà Nội</option>
+						<option value="3">Đà Nẵng</option>
+						<option value="4">Different</option>
 					</select>
 					<div class="welcome-hero-form-icon">
 						<i class="flaticon-gps-fixed-indicator"></i>
@@ -124,14 +125,14 @@
 						<div class="card1">
 							<div class="image-wrapper1">
 								<!-- Image 1 -->
-								<img src="~/LayoutTimViec/img/@item.Image_background1" alt="Background Image" class="background-image1">
+								<img src="~/LayoutTimViec/img/@item.Background" alt="Background Image" class="background-image1">
 								<!-- Image 2 -->
 								<img src="~/LayoutTimViec/img/@item.Image" alt="Logo" class="overlay-image1">
 							</div>
 							<div class="card-content1">
-								<h3><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 208px; color: black" asp-action="Details_CPN" asp-route-id="@item.Id">@item.Name_company</a></h3>
+								<h3><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 208px; color: black" asp-action="Details_CPN" asp-route-id="@item.Id">@item.Company_name</a></h3>
 								<p style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 208px; color: black">@item.Location</p>
-								<a asp-action="Details_CPN" asp-route-id="@item.Id">@ViewBag.CountCompany Job ➔</a>
+								<a asp-action="Details_CPN" asp-route-id="@item.Id">@item.Jobs_Count Job ➔</a>
 							</div>
 						</div>
 					</div>					

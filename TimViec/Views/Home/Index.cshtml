@@ -33,9 +33,13 @@
 				</div>
 				<div class="single-welcome-hero-form">
 					<h3>location</h3>
-					<form>
-						<input type="text" id="location" placeholder="Ex: Hồ Chí Minh, Hà Nội, Đà Nẵng,..." />
-					</form>
+					<select name="cars" id="cars" class="select_city" style="color: black;width: 250px;margin-left: 20px;border-style: none;font-size: 15px;">
+						<option value="0">Select location</option>
+						<option value="1">Hồ Chí Minh</option>
+						<option value="2">Hà Nội</option>
+						<option value="3">Đà Nẵng</option>
+						<option value="4">Different</option>
+					</select>
 					<div class="welcome-hero-form-icon">
 						<i class="flaticon-gps-fixed-indicator"></i>
 					</div>
@@ -46,21 +50,7 @@
 					search  <i data-feather="search"></i>
 				</button>
 			</div>
-		</div>
-		<div class="items-center gap-4 md:flex">
-            <span class="mb-3 block text-sm md:mb-0 md:text-base">
-              Đề xuất từ khóa:
-            </span>
-            <div class="flex flex-wrap gap-2 md:flex-nowrap md:gap-4">
-				<button class="suggestion_keyboard">Java</button>
-				<button class="suggestion_keyboard">C#</button>
-				<button class="suggestion_keyboard">UX/UI</button>
-				<button class="suggestion_keyboard">JavaScript</button>
-				<button class="suggestion_keyboard">Python</button>
-				<button class="suggestion_keyboard">PHP</button>
-				<button class="suggestion_keyboard">C++</button>
-            </div>
-        </div>
+		</div>	
 	</div>
 
 </section><!--/.welcome-hero-->
@@ -133,7 +123,7 @@
 								<img src="~/LayoutTimViec/img/@item.Image" alt="" />
 							</div>
 							<h2><a href="#">@item.Name_company</a></h2>
-							<button class="welcome-hero-btn how-work-btn" style="cursor: pointer"><a href="#" class="Detail_Company" id_company="@item.Id" >Detail</a></button>
+							<button class="welcome-hero-btn how-work-btn" style="cursor: pointer"><a asp-action="Details_CPN" asp-controller="Company" asp-route-id="@item.Id">Detail</a></button>
 						</div>
 					</div>
 				}
@@ -159,11 +149,11 @@
 							<div class="single-explore-img">
 								<img style="height: 200px; width: 100%; object-fit: scale-down" src="~/LayoutTimViec/img/@item.img" alt="explore image">
 								<div class="single-explore-img-info">
-									<div class="single-explore-image-icon-box">
+									<div class="single-explore-image-icon-box favourite_job" id_jobfv="@item.Id">
 										<ul>
 											<li>
 												<div class="single-explore-image-icon">
-													<i class="fa fa-bookmark-o favourite_job" id="follow-button" id_jobfv="@item.Id"></i>
+													<i class="fa fa-bookmark-o" id="follow-button" ></i>
 												</div>
 											</li>
 										</ul>
@@ -363,23 +353,6 @@
 @section Scripts {
 	<script>
 		$(document).ready(function () {
-			//Detail Company
-			$('.Detail_Company').click(function () {
-				const getID_Company = $(this).attr("id_company");
-				debugger;
-				$.ajax({
-					url: '/Company/Details_CPN',
-					type: 'GET',
-					data: { id: getID_Company },
-					success: function (result) {
-						window.location.href = "/Company/Details_CPN/" + getID_Company;
-					},
-					error: function (xhr, status, error) {
-						alert("An error occurred: " + error);
-					}
-				})
-			})
-
 			//Detail Job
 			$('.Detail_Job').click(function () {
 				const getID_Job = $(this).attr("id_job");
@@ -412,15 +385,15 @@
 							// Show notification
 							notification.classList.remove('hidden');
 							notification.classList.add('show');
-							document.getElementById("display_name_follow").innerHTML = result;
-
+							document.getElementById("display_name_follow").innerHTML = result.result;
 
 							// Hide notification after 5 seconds
 							setTimeout(() => {
 								notification.classList.remove('show');
 								notification.classList.add('hidden');
 							}, 3000); // 5 seconds
-						}else{
+						}
+						else{
 							
 							const notification = document.getElementById('notification');
 
@@ -429,7 +402,6 @@
 							document.getElementById("follow").innerHTML = "Job is already marked as favorite.";
 							notification.classList.add('show');
 							document.getElementById("display_name_follow").innerHTML = result.result
-
 
 							// Hide notification after 5 seconds
 							setTimeout(() => {
@@ -448,19 +420,12 @@
 
 			//Search
 			$('.btn_search').click(function () {
-				let searchData = {
-					stringSearch: $('#stringsearch').val(),
-					location: $('#location').val(),
-				};
+				let city_id = $('.select_city').find(':selected').val();
 				//Use encodeURI to send character special
-				let strSearch = encodeURIComponent(searchData.stringSearch);
-
-				if (strSearch === "" && location === "") {
-					return; 
-				} 
-				else {
-					window.location.href = '/Search/Search?stringSearch=' + strSearch + '&location=' + location;
-				}	
+				let strSearch = encodeURIComponent($('#stringsearch').val());
+				if (strSearch != '' || city_id != 0) {
+					window.location.href = '/Search/Search?stringSearch=' + strSearch + '&id=' + city_id;
+				}
 			})
 		});
 

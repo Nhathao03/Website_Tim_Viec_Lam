@@ -111,5 +111,21 @@ namespace TimViec.Respository
                          };
             return result.ToList();
         }
+        public List<All_Company_ViewModel> Get_All_Company()
+        {
+            var result = from c in _context.Companies
+                         join j in _context.Jobs on c.Id equals j.CompanyID
+                         group j by new { c.Id, c.Name_company, c.Image, c.Image_background1 , c.Location} into g
+                         select new All_Company_ViewModel
+                         {
+                             Id = g.Key.Id,
+                             Company_name = g.Key.Name_company,
+                             Jobs_Count = g.Count(),
+                             Image = g.Key.Image,
+                             Background = g.Key.Image_background1,
+                             Location = g.Key.Location,
+                         };
+            return result.ToList();
+        }
     }
 }
