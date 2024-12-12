@@ -37,26 +37,22 @@ namespace TimViec.Respository
             await _context.SaveChangesAsync();
         }
 
-		public List<SearchViewModel> Search(string stringsearch, string location)
+		public List<SearchViewModel> Search(string stringsearch, int id)
 		{
             var result = from j in _context.Jobs
                          join c in _context.Companies on j.CompanyID equals c.Id
                          join ct in _context.Cities on c.CityID equals ct.Id
-                         where ((j.Title.Contains(stringsearch) || j.R1_Language.Equals(stringsearch) || j.R2_Language.Equals(stringsearch) || j.R3_Language.Equals(stringsearch) || c.Name_company.Contains(stringsearch) && (ct.Name_city.Contains(location))) 
+                         where ((j.Title.Contains(stringsearch) || j.R1_Language.Equals(stringsearch) || j.R2_Language.Equals(stringsearch) || j.R3_Language.Equals(stringsearch) || c.Name_company.Contains(stringsearch) && (ct.Id.Equals(id))) 
                                 || (j.Title.Contains(stringsearch)|| j.R1_Language.Equals(stringsearch)|| j.R2_Language.Equals(stringsearch)|| j.R3_Language.Equals(stringsearch)|| c.Name_company.Contains(stringsearch)) 
-                                || (ct.Name_city.Contains(location)))
+                                || (ct.Id.Equals(id)))
 						 select new SearchViewModel
                          {  
                              Id = j.Id,
                              JobName = j.Title,
-                             CompanyName = c.Name_company,
                              R1_Language = j.R1_Language,
                              R2_Language = j.R2_Language,
                              R3_Language = j.R3_Language,
-                             Location = c.Location,
-                             Salary = j.Salary,
                              Image = j.img,
-                             City = ct.Name_city
                          };
 		    return result.ToList();
         }
@@ -163,6 +159,23 @@ namespace TimViec.Respository
                              treatment = j.treatment,
                              city = city.Name_city,
                              advanced_skill = j.advanced_skill
+                         };
+            return result.ToList();
+        }
+
+        public List<SearchJobViewModel> SearchJob (string stringSearch, int ID)
+        {
+            var result = from j in _context.Jobs
+                         join cpn in _context.Companies on j.CompanyID equals cpn.Id
+                         join city in _context.Cities on cpn.CityID equals city.Id
+                         where (j.Title.Contains(stringSearch) && city.Id.Equals(ID))
+                         select new SearchJobViewModel
+                         {
+                             Id = j.Id,
+                             Image = j.img,
+                             R1 = j.R1_Language,
+                             R2 = j.R2_Language,
+                             R3 = j.R3_Language,
                          };
             return result.ToList();
         }

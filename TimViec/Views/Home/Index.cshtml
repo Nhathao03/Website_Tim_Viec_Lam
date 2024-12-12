@@ -33,9 +33,13 @@
 				</div>
 				<div class="single-welcome-hero-form">
 					<h3>location</h3>
-					<form>
-						<input type="text" id="location" placeholder="Ex: Hồ Chí Minh, Hà Nội, Đà Nẵng,..." />
-					</form>
+					<select name="cars" id="cars" class="select_city" style="color: black;width: 250px;margin-left: 20px;border-style: none;font-size: 15px;">
+						<option value="0">Select location</option>
+						<option value="1">Hồ Chí Minh</option>
+						<option value="2">Hà Nội</option>
+						<option value="3">Đà Nẵng</option>
+						<option value="4">Different</option>
+					</select>
 					<div class="welcome-hero-form-icon">
 						<i class="flaticon-gps-fixed-indicator"></i>
 					</div>
@@ -119,7 +123,7 @@
 								<img src="~/LayoutTimViec/img/@item.Image" alt="" />
 							</div>
 							<h2><a href="#">@item.Name_company</a></h2>
-							<button class="welcome-hero-btn how-work-btn" style="cursor: pointer"><a href="#" class="Detail_Company" id_company="@item.Id" >Detail</a></button>
+							<button class="welcome-hero-btn how-work-btn" style="cursor: pointer"><a asp-action="Details_CPN" asp-controller="Company" asp-route-id="@item.Id">Detail</a></button>
 						</div>
 					</div>
 				}
@@ -349,23 +353,6 @@
 @section Scripts {
 	<script>
 		$(document).ready(function () {
-			//Detail Company
-			$('.Detail_Company').click(function () {
-				const getID_Company = $(this).attr("id_company");
-				debugger;
-				$.ajax({
-					url: '/Company/Details_CPN',
-					type: 'GET',
-					data: { id: getID_Company },
-					success: function (result) {
-						window.location.href = "/Company/Details_CPN/" + getID_Company;
-					},
-					error: function (xhr, status, error) {
-						alert("An error occurred: " + error);
-					}
-				})
-			})
-
 			//Detail Job
 			$('.Detail_Job').click(function () {
 				const getID_Job = $(this).attr("id_job");
@@ -433,19 +420,12 @@
 
 			//Search
 			$('.btn_search').click(function () {
-				let searchData = {
-					stringSearch: $('#stringsearch').val(),
-					location: $('#location').val(),
-				};
+				let city_id = $('.select_city').find(':selected').val();
 				//Use encodeURI to send character special
-				let strSearch = encodeURIComponent(searchData.stringSearch);
-
-				if (strSearch === "" && location === "") {
-					return; 
-				} 
-				else {
-					window.location.href = '/Search/Search?stringSearch=' + strSearch + '&location=' + location;
-				}	
+				let strSearch = encodeURIComponent($('#stringsearch').val());
+				if (strSearch != '' || city_id != 0) {
+					window.location.href = '/Search/Search?stringSearch=' + strSearch + '&id=' + city_id;
+				}
 			})
 		});
 

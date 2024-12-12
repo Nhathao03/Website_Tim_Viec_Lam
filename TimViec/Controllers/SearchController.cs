@@ -58,13 +58,13 @@ namespace TimViec.Controllers
         }
         // search
         [HttpGet]
-        public async Task<IActionResult>Search(string stringSearch, string location)
+        public async Task<IActionResult>Search(string stringSearch, int id)
         {
             await DisplayDropdown();
             try
             {
-                if ((stringSearch != null && location != null) || stringSearch != null || location != null )  { 
-                    var result = _jobRepository.Search(stringSearch, location);
+                if (!string.IsNullOrEmpty(stringSearch) || id != 0)  { 
+                    var result = _jobRepository.Search(stringSearch,id);
                     ViewBag.CountResultSearch = result.Count();
                     return View(result);
 				}

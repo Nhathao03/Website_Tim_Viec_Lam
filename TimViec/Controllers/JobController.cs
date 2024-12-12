@@ -62,7 +62,6 @@ namespace TimViec.Controllers
 		public async Task<IActionResult> Job()
 		{
 			await DisplayDropdown();
-
 			var job = await _jobRepository.GetAllAsync();
 			var sortedJob = job.OrderBy(j => j.Title);
 			ViewBag.CountJob = job.Count();

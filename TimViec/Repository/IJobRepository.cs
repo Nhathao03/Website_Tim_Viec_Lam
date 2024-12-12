@@ -10,18 +10,13 @@ namespace TimViec.Respository
 		Task AddAsync(Job job);
 		Task UpdateAsync(Job job);
 		Task DeleteAsync(int id);
-
-		List<SearchViewModel> Search(string stringSearch, string location);
-
-
+		List<SearchViewModel> Search(string stringSearch, int id);
 		List<ChoeseSearchSkill> ChoeseSearchSkills(int ID);
-
 		List<ChoeseSearchType> ChoeseSearchType(int ID);
-
 		List<ChoeseSearchRank> ChoeseSearchRank(int ID);
 		List<ChoeseSearchLocation> ChoeseSearchLocation(int ID);
+		List<Details_Job> Details_Job(int ID);
+		List<SearchJobViewModel> SearchJob(string stringSearch, int ID);
 
-        List<Details_Job> Details_Job(int ID);
-
-    }
+	}
 }
