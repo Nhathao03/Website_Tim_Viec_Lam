@@ -17,4 +17,6 @@ namespace TimViec.Models
 		public virtual ICollection<Sections> section { get; set; } = new List<Sections>();
 
     }
+
+
 }

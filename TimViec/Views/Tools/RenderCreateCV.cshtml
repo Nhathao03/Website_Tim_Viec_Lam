@@ -3,251 +3,52 @@
 @{
     Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
-
 <style>
-    .contentdata {
-        justify-self: center;
-        margin-top: 20px;
-    }
-
-    .navbar {
-        display: flex;
-        align-items: center;
-        padding: 10px 20px;
-        background: white;
-        border-bottom: 1px solid #eee;
-        gap: 20px;
-    }
-
-    .cv-title {
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        width: 200px;
-    }
-
-    .controls {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        margin-left: auto;
-    }
-
-    .control-item {
-        padding: 6px 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
+    .buttonclick {
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        transition-duration: 0.4s;
         cursor: pointer;
     }
 
-    .resume {
+    .button1 {
         background-color: white;
-        padding: 40px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        height: 3000px;
-        width: 1000px;
+        color: black;
+        border: 2px solid #04AA6D;
     }
 
-    .profile {
-        display: flex;
-        gap: 40px;
-        margin-bottom: 40px;
-    }
-
-    .avatar {
-        width: 200px;
-        height: 200px;
-        background-color: #ddd;
-    }
-
-    h1 {
-        color: #00B1EA;
-        margin: 0 0 10px 0;
-    }
-
-    h2 {
-        margin: 0 0 20px 0;
-    }
-
-    .main-content {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 40px;
-    }
-
-    .section {
-        flex: 1;
-        min-width: 250px;
-    }
-
-    h3 {
-        color: #000000;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-    .contact-info div {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .contact-info img {
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-    }
-
-    .education-item {
-        margin-bottom: 20px;
-    }
-
-        .education-item h4 {
-            margin: 0;
+        .button1:hover {
+            background-color: #04AA6D;
+            color: white;
         }
 
-        .education-item p {
-            margin: 5px 0;
+    .button2 {
+        background-color: white;
+        color: black;
+        border: 2px solid #008CBA;
+    }
+
+        .button2:hover {
+            background-color: #008CBA;
+            color: white;
         }
-
-    .skills p {
-        margin: 5px 0;
-    }
-
-    hr {
-        border: 1px solid #00B1EA;
-    }
-
-    .full-width {
-        width: 100%;
-    }
-
-    .timeline {
-        height: 275px;
-    }
-
-    .timeline-item {
-        position: relative;
-        padding-left: 30px;
-        margin-bottom: 30px;
-    }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #00B1EA;
-        }
-
-        .timeline-item .date {
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .timeline-item .company {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .timeline-item ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-
-        .timeline-item li {
-            margin-bottom: 5px;
-        }
-
-    .certificate-item {
-        margin-bottom: 20px;
-    }
-
-        .certificate-item .year {
-            font-weight: bold;
-            color: #000000;
-        }
-
-    .award-item {
-        margin-bottom: 20px;
-    }
-
-        .award-item .year {
-            font-weight: bold;
-            color: #000000;
-        }
-
-
-    .activity-item {
-        margin-bottom: 20px;
-    }
-
-        .activity-item .date {
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .activity-item .role {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .activity-item ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-
-    .content-experience {
-        width: 400px;
-        float: right;
-    }
-
-    .infordate {
-        width: 40%;
-    }
-
-    .experience {
-        width: 60%;
-        float: right;
-        margin-top: -88px;
-    }
-
-    .input_data :hover {
-        outline: 1px dashed #7F878F;
-        outline-offset: 0;
-        border-radius: 4px;
-    }
-
-    .input_data :focus {
-        outline: 1px solid #53aaf1 !important;
-        outline-offset: 0;
-        border-radius: 4px;
-    }
 
 </style>
-
-<nav class="navbar" style="border: 1px solid black;margin-top: 22px;">
-    <input type="text" class="cv-title" placeholder="CV chưa đặt tên">
-    <select class="control-item">
-        <option>Roboto</option>
+<link rel="stylesheet" href="../../CV/style_template/style1.css">
+<nav class="navbar" style="border: 1px solid #e8e8e8;margin-top: 22px;">
+    <input type="text" class="cv-title" placeholder="CV unnamed">
+    <select class="control-item" id="colorPicker">
+        <option value="#000">Black</option>
+        <option value="#f00">Red</option>
+        <option value="#00f">Blue</option>
+        <option value="#0f0">Green</option>
     </select>
-    <div class="control-item">
-        Mẫu chủ đề
-        <span class="color-circle"
-              style="background: #00875A; width: 16px; height: 16px; border-radius: 50%;"></span>
-    </div>
     <div class="controls">
-        <button class="preview-button">
-            <i class="fa fa-eye"></i>
-            See
-        </button>
-        <button class="btn green-button">Save</button>
+        <button class="buttonclick button2">See</button>
+        <button class="buttonclick button2">Save and Download</button>
+        <button class="buttonclick button1 save_cv">Save</button>
     </div>
 </nav>
 
@@ -256,340 +57,372 @@
         @if (Model != null && Model.Count > 0)
         {
             <div class="profile">
-                <div class="avatar">
+                <div class="section avatar">
                     @foreach (var item in Model)
                     {
-                        @if (item.TypeName == "Avatar")
+                        @if (item.TypeID == 1)
                         {
                             if (item.Content.Url != null)
                             {
-                                <img src="../../CV/image_user/@item.Content.Url" />
+                                <img style="width: 100%" src="../../CV/image_user/@item.Content.Url" />
                             }
-                            else
-                            {
-                                <img src="../../CV/image_user/user_default.png" />
-                            }
+
                         }
                     }
                 </div>
                 <div>
                     @foreach (var item in Model)
                     {
-                        <div class="input_data" data-gramm="false" spellcheck="false">
-                            @if (item.TypeName == "UserName")
-                            {
-                                if (item.Content.Name != null)
-                                {
-                                    <p><textarea style="width: 600px;border: none;" placeholder="Your name">@item.Content.Name</textarea><br></p>
-                                }
-                                else
-                                {
-                                    <p><textarea style="width: 600px;border: none;" placeholder="Your name"></textarea><br></p>
-                                }
-                            }
-                            @if (item.TypeName == "Title")
-                            {
-                                if (item.Content.Job_position != null)
-                                {
-                                    <div class="input_data" data-gramm="false" spellcheck="false">
-                                        <p><textarea style="width: 600px;border: none;" placeholder="Job Position">@item.Content.Job_position</textarea><br></p>
-                                    </div>
-                                    <hr style="border: 1px solid black;">
-                                }
-                                else
-                                {
-                                    <div class="input_data" data-gramm="false" spellcheck="false">
-                                        <p><textarea style="width: 600px;border: none;font-size: 20px;" placeholder="Job Position"></textarea><br></p>
-                                    </div>
-                                    <hr style="border: 1px solid black;">
-                                }
-                            }
-                            @if (item.TypeName == "Career_goal")
-                            {
-                                if (item.Content.Career_goal != null)
-                                {
-                                    <div class="input_data" data-gramm="false" spellcheck="false">
-                                        <p><textarea style="width: 600px;border: none;" placeholder="Career goals: short-term, long-term">@item.Content.Career_goal</textarea><br></p>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="input_data" data-gramm="false" spellcheck="false">
-                                        <p><textarea style="width: 600px;border: none;" placeholder="Career goals: short-term, long-term"></textarea><br></p>
-                                    </div>
-                                }
-                            }
-                        </div>
+                        @if (item.TypeID == 2)
+                        {
+                            <div class="section input_data username">
+                                <textarea id="username" style="width: 640px;border: none;font-size: 43px;height: 60px;resize: none;overflow: hidden;" placeholder="Full name">@item.Content.Name</textarea>
+                            </div>
+                        }
+                        @if (item.TypeID == 3)
+                        {
+                            <div class="section input_data title">
+                                <textarea id="job_position" style="width: 640px;border: none;font-size: 22px;height: 33px;resize: none;overflow: hidden;" placeholder="Job Position">@item.Content.Job_position</textarea>
+                            </div>
+                            <hr style="border: 1px solid black;">
+                        }
+                        @if (item.TypeID == 4)
+                        {
+                            <div class="section input_data career_goal">
+                                <textarea id="career_goal" style="width: 640px;border: none;font-size: 14px;height: 60px;resize: none;overflow: hidden;" placeholder="Career goals: short-term, long-term">@item.Content.Career_goal</textarea>
+                            </div>
+                        }
                     }
                 </div>
-
             </div>
             <div class="main-content">
-                <div class="section">
+                <div class="section profile_user">
                     <hr>
                     <h3>PROFILE</h3>
                     <hr>
                     @foreach (var item in Model)
                     {
-                        <div class="contact-info">
-                            @if (item.TypeName == "Profile")
+                        <div class="contact-info input_data">
+                            @if (item.TypeID == 5)
                             {
-                                if (item.Content.Email != null)
-                                {
-                                    <div>
-                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
-                                             alt="Email">
-                                        <span>@item.Content.Email</span>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div>
-                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
-                                             alt="Email">
-                                        <textarea></textarea>
-                                    </div>
-                                }
-                                if (item.Content.Phone != null)
-                                {
-                                    <div>
-                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
-                                             alt="Phone">
-                                        <span>@item.Content.Phone</span>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div>
-                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
-                                             alt="Phone">
-                                        <textarea></textarea>
-                                    </div>
-                                }
-                                if (item.Content.Website != null)
-                                {
-                                    <div>
-                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
-                                             alt="Website">
-                                        <span>@item.Content.Website</span>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div>
-                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
-                                             alt="Website">
-                                        <textarea></textarea>
-                                    </div>
-                                }
-                                if (item.Content.Address != null)
-                                {
-                                    <div>
-                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
-                                             alt="Location">
-                                        <span>@item.Content.Address</span>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div>
-                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
-                                             alt="Location">
-                                        <textarea></textarea>
-                                    </div>
-                                }
+                                <div class="input_data">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
+                                         alt="Email">
+                                    <textarea id="email" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="nhathao212003@gmail.com">@item.Content.Email</textarea>
+                                </div>
+                                <div class="input_data">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
+                                         alt="Phone">
+                                    <textarea id="phone" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="0326754829">@item.Content.Phone</textarea>
+                                </div>
+                                <div class="input_data">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
+                                         alt="Website">
+                                    <textarea id="web" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="github.com/Nhathao03">@item.Content.Website</textarea>
+                                </div>
+                                <div class="input_data">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
+                                         alt="Location">
+                                    <textarea id="address" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Thu Duc, TP. Ho Chi Minh">@item.Content.Address</textarea>
+                                </div>
                             }
                         </div>
                     }
                 </div>
-
-                <div class="section">
+                <div class="section education">
                     <hr>
                     <h3>EDUCATION</h3>
                     <hr>
                     @foreach (var item in Model)
                     {
-                        if (item.TypeName == "Education")
+                        if (item.TypeID == 6)
                         {
-                            <div class="education-item">
+                            <div class="education-item input_data">
                                 @if (item.Content != null)
                                 {
                                     for (int i = 0; i < item.Content.Count; i++)
                                     {
-                                        <p>@item.Content[i].Institution</p>
-                                        <p>@item.Content[i].Major</p>
-                                        <p>@item.Content[i].StartYear - @item.Content[i].EndYear</p>
-                                        <p>@item.Content[i].Grade</p>
+                                        <div id="educationList" data-id="@item.Id" style="border: none">
+                                            <div class="section_item_education section">
+                                                <button class="add-button" id="add_education">Add</button>
+                                                <button class="delete-button delete-education">Delete</button>
+                                                <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                    <textarea class="institution" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="School name">@item.Content[i].Institution</textarea>
+                                                </div>
+                                                <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                    <textarea class="major" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Courses / Subjects">@item.Content[i].Major</textarea>
+                                                </div>
+                                                <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                    <textarea class="startyear" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From">@item.Content[i].StartYear</textarea>
+                                                </div>
+                                                <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                    -
+                                                </div>
+                                                <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                    <textarea class="endyear" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To">@item.Content[i].EndYear</textarea>
+                                                </div>
+                                                <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                    <textarea class="grade" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Education description">@item.Content[i].Grade</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
                                     }
-                                }
-                                else
-                                {
-                                    <textarea placeholder="School"></textarea>
-                                    <textarea placeholder="Your major"></textarea>
-                                    <textarea placeholder="Start"></textarea>
-
-                                    <p>-</p>
-
-                                    <textarea placeholder="End"></textarea>
-                                    <textarea placeholder="Grade"></textarea>
                                 }
                             </div>
                         }
                     }
                 </div>
-
-                <div class="section">
+                <div class="section skills">
                     <hr>
                     <h3>SKILLS</h3>
                     <hr>
                     @foreach (var item in Model)
                     {
-                        if (item.TypeName == "Skills")
+                        if (item.TypeID == 7)
                         {
-                            <div class="skills">
-                                @if (item.Content != null)
+                            <div class="skills input_data">
+                                @for (int i = 0; i < item.Content.Count; i++)
                                 {
-                                    for (int i = 0; i < item.Content.Count; i++)
-                                    {
-                                        <p>@item.Content[i].Name</p>
-                                        <p>@item.Content[i].Description</p>
-                                    }
-                                }
-                                else
-                                {
-                                    <p>
-                                        <textarea style="width: 600px; border: none;" placeholder="Your skill"></textarea><br>
-                                        <textarea style="width: 600px; border: none;" placeholder="Description"></textarea><br>
-                                    </p>
+                                    <div id="skillList" data-id="@item.Id">
+                                        <div class="section_item_skill section">
+                                            <button class="add-button" id="add_skill">Add</button>
+                                            <button class="delete-button delete-skill">Delete</button>
+                                            <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                <textarea class="skill_name" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="Skill name">@item.Content[i].Name</textarea>
+                                            </div>
+                                            <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                <textarea class="skill_description" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden;" placeholder="Skill description">@item.Content[i].Description</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
                             </div>
                         }
                     }
                 </div>
             </div>
-            <div class="section full-width">
+            <div class="section full-width experience_user">
                 <hr />
-                <h3>EXPERIENCE</h3>
+                <h3>WORK EXPERIENCE</h3>
                 <hr />
                 @foreach (var item in Model)
                 {
-                    if (item.TypeName == "Experience")
+                    if (item.TypeID == 8)
                     {
-                        <div class="timeline">
-                            @if (item.Content != null)
-                            {
-                                for (int i = 0; i < item.Content.Count; i++)
-                                {
-                                    <div class="timeline-item">
-                                        <div class="infordate">
-                                            <div class="date">@item.Content[i].StartDate - @item.Content[i].EndDate</div>
-                                            <div class="company">@item.Content[i].Company</div>
+                        @for (int i = 0; i < item.Content.Count; i++)
+                        {
+                            <div id="experienceList" data-id="@item.Id">
+                                <div class="section_item_experience section" id="experience_0">
+                                    <button class="add-button" id="add_experience">Add</button>
+                                    <button class="delete-button delete-experience">Delete</button>
+                                    <div class="timeline-item input_data">
+                                        <div class="time" style="width: 250px">
+                                            <textarea class="start_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From">@item.Content[i].StartDate</textarea>
+                                            -
+                                            <textarea class="end_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To">@item.Content[i].EndDate</textarea>
                                         </div>
-                                        <div class="experience">
-                                            <h4>@item.Content[i].Position</h4>
-                                            <ul>
-                                                @for (int j = 0; j < item.Content[i].Responsibilities.Count; j++)
-                                                {
-                                                    <li>@item.Content[i].Responsibilities[j]</li>
-                                                }
-                                            </ul>
+                                        <textarea class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name">@item.Content[i].Company</textarea>
+                                        <div class="experience ">
+                                            <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</textarea>
+                                            @for (int j = 0; j < item.Content[i].Responsibilities.Count; j++)
+                                            {
+                                                <textarea class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities">@item.Content[i].Responsibilities[j]</textarea>
+                                            }
                                         </div>
-                                    </div>
-                                }
-                            }
-                            else
-                            {
-                                <div class="timeline-item">
-                                    <div class="infordate">
-                                        <div class="date"><textarea placeholder="Start"></textarea> - <textarea placeholder="End"></textarea></div>
-                                        <div class="company"><textarea placeholder="Company"></textarea></div>
-                                    </div>
-                                    <div class="experience">
-                                        <h4><textarea placeholder="Position"></textarea></h4>
-                                        <ul>
-                                            <li><textarea placeholder="Description"></textarea></li>
-                                        </ul>
                                     </div>
                                 </div>
-                            }
+                            </div>
+                        }
+                    }
+                }
+            </div>
+            <div class="section full-width projects">
+                <hr />
+                <h3>PROJECTS</h3>
+                <hr />
+                @foreach (var item in Model)
+                {
+                    if (item.TypeID == 9)
+                    {
+                        @for (int i = 0; i < item.Content.Count; i++)
+                        {
+                            <div id="projectList">
+                                <div class="section_item_project section" id="project_0">
+                                    <button class="add-button" id="add_project">Add</button>
+                                    <button class="delete-button delete-project">Delete</button>
+                                    <div class="timeline-item input_data">
+                                        <div class="time" style="width: 332px">
+                                            <textarea class="from_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From">@item.Content[i].From</textarea>
+                                            -
+                                            <textarea class="to_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To">@item.Content[i].To</textarea>
+                                            <textarea class="project_name" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Project name">@item.Content[i].Project</textarea>
+                                            <textarea class="team_size" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Team size">@item.Content[i].Team_size</textarea>
+                                        </div>
 
-                        </div>
+                                        <div class="project" style="margin-top: -104px">
+                                            <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</textarea>
+                                            @for (int j = 0; j < item.Content[i].Description.Count; j++)
+                                            {
+                                                <textarea class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description">@item.Content[i].Description[j]</textarea>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     }
                 }
             </div>
             <div class="main-content">
                 <!-- Certificates Section -->
-                <div class="section">
+                <div class="section certification">
                     <hr />
-                    <h3>CERTIFICATION</h3>
+                    <h3>CERTIFICATIONS</h3>
                     <hr />
                     @foreach (var item in Model)
                     {
-                        if (item.TypeName == "Certification")
+                        if (item.TypeID == 10)
                         {
-                            <div class="certificate-item">
-                                @if (item.Content != null)
-                                {
-                                    for (int i = 0; i < item.Content.Count; i++)
-                                    {
-                                        <div class="year">@item.Content[i].Year</div>
-                                        <p>@item.Content[i].Name</p>
-                                    }
-                                }
-                                else
-                                {
-                                    <div class="year">2022</div>
-                                    <p>Chứng chỉ nghiệp vụ sư phạm - Đại học Sư phạm</p>
-                                }
-
-                            </div>
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="certificationList">
+                                    <div class="section_item_certification section" id="certification_0">
+                                        <button class="add-button" id="add_certification">Add</button>
+                                        <button class="delete-button delete-certification">Delete</button>
+                                        <div class="certificate-item input_data" id="certification_0">
+                                            <textarea class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time">@item.Content[i].Year</textarea>
+                                            <textarea class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name">@item.Content[i].Name</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                     }
                 </div>
 
                 <!-- Activities Section -->
-                <div class="section">
+                <div class="section activity">
                     <hr />
-                    <h3>ACTIVITY</h3>
+                    <h3>ACTIVITES</h3>
                     <hr />
                     @foreach (var item in Model)
                     {
-                        if (item.TypeName == "Activities")
+                        if (item.TypeID == 11)
                         {
-                            <div class="activity-item">
-                                @if (item.Content != null)
-                                {
-                                    if (item.Content.Count == null)
-                                    {
-                                        <div class="date">@item.Content.StartDate - @item.Content.EndDate</div>
-                                        <h4>@item.Content.Activity</h4>
-                                        <div class="role">@item.Content.Position</div>
-                                        <ul>
-                                            @for (int j = 0; j < item.Content.Description.Count; j++)
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="activityList">
+                                    <div class="section_item_activity section" id="activity_0">
+                                        <button class="add-button" id="add_activity">Add</button>
+                                        <button class="delete-button delete-activity">Delete</button>
+                                        <div class="activity-item input_data">
+                                            <div class="time" style="width: 250px">
+                                                <textarea class="start_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From">@item.Content[i].StartDate</textarea>
+                                                -
+                                                <textarea class="end_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To">@item.Content[i].EndDate</textarea>
+                                            </div>
+                                            <textarea class="activity_name" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Orgazination Name">@item.Content[i].Activity</textarea>
+                                            <textarea class="position_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Position">@item.Content[i].Position</textarea>
+                                            @for (int j = 0; j < item.Content[i].Description.Count; j++)
                                             {
-                                                <li>@item.Content.Description[j]</li>
+                                                <textarea class="description_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Activity description">@item.Content[i].Description[j]</textarea>
                                             }
-                                        </ul>
-                                    }
-                                    else
-                                    {
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="section honor_award">
+                    <hr>
+                    <h3>HONOR & AWARDS</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 12)
+                        {
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="honorawardList">
+                                    <div class="section_item_honoraward section" id="honoraward_0">
+                                        <button class="add-button" id="add_honoraward">Add</button>
+                                        <button class="delete-button delete-honoraward">Delete</button>
+                                        <div class="award-item input_data">
+                                            <textarea class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time">@item.Content[i].Year</textarea>
+                                            <textarea class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name">@item.Content[i].Name</textarea>
 
-                                        for (int i = 0; i < item.Content.Count; i++)
-                                        {
-                                            <div class="date">@item.Content[i].StartDate - @item.Content[i].EndDate</div>
-                                            <h4>@item.Content[i].Activity</h4>
-                                            <div class="role">@item.Content[i].Position</div>
-                                            <ul>
-                                                @for (int j = 0; j < item.Content[i].Description.Count; j++)
-                                                {
-                                                    <li>@item.Content[i].Description[j]</li>
-                                                }
-                                            </ul>
-                                        }
-                                    }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
 
-                                }
+                        }
+                    }
+                </div>
+
+                <div class="section interest">
+                    <hr>
+                    <h3>INTERESTS</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 13)
+                        {
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="interestList">
+                                    <div class="section_item_interest section" id="interest_0">
+                                        <button class="add-button" id="add_interest">Add</button>
+                                        <button class="delete-button delete-interest">Delete</button>
+                                        <div class="favorite input_data">
+                                            <textarea class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest">@item.Content[i].Description</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="section additional_information">
+                    <hr>
+                    <h3>ADDITIONAL INFORMATION</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 17)
+                        {
+                            <div class="additional-item input_data" id="additional_infor_0">
+                                <textarea id="description_refer" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in additional information">@item.Content.Description</textarea>
                             </div>
+                        }
+                    }
+                </div>
+
+                <div class="section references">
+                    <hr>
+                    <h3>REFERENCES</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 14)
+                        {
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="referList">
+                                    <div class="section_item_refer section" id="refer_0">
+                                        <button class="add-button" id="add_refer">Add</button>
+                                        <button class="delete-button delete-refer">Delete</button>
+                                        <div class="refer input_data">
+                                            <textarea id="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information">@item.Content[i].Description</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                     }
                 </div>
@@ -597,4 +430,525 @@
         }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            //Function change color CV
+            const colorPicker = document.getElementById('colorPicker');
+            const hrElements = document.querySelectorAll('hr');
+
+            colorPicker.addEventListener('change', () => {
+                const selectedColor = colorPicker.value;
+                hrElements.forEach(hr => {
+                    hr.style.borderColor = selectedColor;
+                });
+            });
+            // *******************************************************************************************
+
+            let educationCounter = 1;
+            //Add new item education
+            $('#add_education').click(function () {
+                const educationHtml = `
+                                                                                                                    <div class="section_item_education sectioneducation section" id="education_${educationCounter}">
+                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                             <textarea class="institution" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="School name"></textarea>
+                                                                                                                 </div>
+                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                             <textarea class="major" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Courses / Subjects"></textarea>
+                                                                                                                 </div>
+                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                             <textarea class="startyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                 </div>
+                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                     -
+                                                                                                                 </div>
+                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                             <textarea class="endyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                 </div>
+                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                             <textarea class="grade" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Education description"></textarea>
+                                                                                                                 </div>
+                                                                                                             </div>
+                                                                                                        `;
+                $("#educationList").append(educationHtml);
+                educationCounter++;
+            });
+            //Delete item education by ID
+            $('#educationList').on('click', '.delete-education', function () {
+                let allSections = $(".sectioneducation");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#education_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************
+            let skillCounter = 1;
+            //Add new item skill
+            $('#add_skill').click(function () {
+                const skillHtml = `
+                                                                                                            <div class="section_item_skill section sectionskill" id="skill_${skillCounter}">
+                                                                                                        <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                             <textarea class="skill_name" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="Skill name"></textarea>
+                                                                                                        </div>
+                                                                                                        <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                             <textarea class="skill_description" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden;" placeholder="Skill description"></textarea>
+                                                                                                        </div>
+                                                                                                     </div>
+                                                                                                `;
+                $("#skillList").append(skillHtml);
+                skillCounter++;
+            });
+            //Delete item skill by ID
+            $('#skillList').on('click', '.delete-skill', function () {
+                let allSections = $(".sectionskill");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#skill_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************
+            let experienceCounter = 1;
+            //Add new item experience
+            $('#add_experience').click(function () {
+                const experienceHtml = `
+                                                                                                        <div class="section_item_experience section sectionexperience" id="experience_${experienceCounter}">
+                                                                                                    <div class="timeline-item input_data">
+                                                                                                       <div class="time" style="width: 250px">
+                                                                                                           <textarea class="start_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                           -
+                                                                                                           <textarea class="end_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                       </div>
+                                                                                                               <textarea class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name"></textarea>
+                                                                                                       <div class="experience ">
+                                                                                                                   <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
+                                                                                                                   <textarea class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities"></textarea>
+                                                                                                       </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                `;
+                $("#experienceList").append(experienceHtml);
+                experienceCounter++;
+            });
+            //Delete item experience by ID
+            $('#experienceList').on('click', '.delete-experience', function () {
+                let allSections = $(".sectionexperience");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#experience_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************
+            let projectCounter = 1;
+            //Add new item project
+            $('#add_project').click(function () {
+                const projectHtml = `
+                                                                                                        <div class="section_item_project section sectionproject" id="project_${projectCounter}">
+                                                                                                        <div class="timeline-item input_data">
+                                                                                                           <div class="time" style="width: 332px">
+                                                                                                                       <textarea class="from_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                               -
+                                                                                                               <textarea class="to_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                       <textarea class="project_name" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Project name"></textarea>
+                                                                                                                       <textarea class="team_size" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Team size"></textarea>
+                                                                                                           </div>
+
+                                                                                                           <div class="experience" style="margin-top: -104px">
+                                                                                                                       <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
+                                                                                                                       <textarea class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
+                                                                                                           </div>
+                                                                                                       </div>
+                                                                                                    </div>
+                                                                                                `;
+                $("#projectList").append(projectHtml);
+                projectCounter++;
+            });
+            //Delete item project by ID
+            $('#projectList').on('click', '.delete-project', function () {
+                let allSections = $(".sectionproject");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#project_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************
+            let certificationCounter = 1;
+            //Add new item certification
+            $('#add_certification').click(function () {
+                const certificationHtml = `
+                                                                                                <div class="section_item_certification section sectioncertification" id="certification_${certificationCounter}">
+                                                                                            <div class="certificate-item input_data">
+                                                                                                        <textarea class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
+                                                                                                <textarea class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        `;
+                $("#certificationList").append(certificationHtml);
+                certificationCounter++;
+            });
+            //Delete item certification by ID
+            $('#certificationList').on('click', '.delete-certification', function () {
+                let allSections = $(".sectioncertification");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#certification_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************
+            let activityCounter = 1;
+            //Add new item activity
+            $('#add_activity').click(function () {
+                const activityHtml = `
+                                                                                        <div class="section_item_activity section sectionactivity" id="activity_${activityCounter}">
+                                                                                            <div class="activity-item input_data">
+                                                                                                                <div class="time" style="width: 250px">
+                                                                                                                            <textarea class="start_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                    -
+                                                                                                                            <textarea class="end_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                </div>
+                                                                                                                        <textarea class="activity_name" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Orgazination Name"></textarea>
+                                                                                                                <textarea class="position_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Position"></textarea>
+
+                                                                                                  <textarea class="description_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Activity description"></textarea>
+
+                                                                                        </div>
+                                                                                </div>
+                                                                                        `;
+                $("#activityList").append(activityHtml);
+                activityCounter++;
+            });
+            //Delete item activity by ID
+            $('#activityList').on('click', '.delete-activity', function () {
+                let allSections = $(".sectionactivity");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#activity_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************
+            let honorawardCounter = 1;
+            //Add new item honor award
+            $('#add_honoraward').click(function () {
+                const honorawadHtml = `
+                                                                                <div class="section_item_honoraward section sectionhonoraward" id="honoraward_${honorawardCounter}">
+                                                                             <div class="award-item input_data">
+                                                                                        <textarea class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
+                                                                                        <textarea class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        `;
+                $("#honorawardList").append(honorawadHtml);
+                honorawardCounter++;
+            });
+            //Delete item honor award by ID
+            $('#honorawardList').on('click', '.delete-honoraward', function () {
+                let allSections = $(".sectionhonoraward");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#honoraward_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************
+            let interestCounter = 1;
+            //Add new item interest
+            $('#add_interest').click(function () {
+                const interestHtml = `
+                                                                         <div class="section_item_interest section sectioninterest" id="interest_${interestCounter}">
+                                                                                                            <div class="favorite input_data">
+                                                                                                        <textarea class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest"></textarea>
+                                                                                            </div>
+                                                                                                </div>
+                                                                                                `;
+                $("#interestList").append(interestHtml);
+                interestCounter++;
+            });
+            //Delete item interest by ID
+            $('#interestList').on('click', '.delete-interest', function () {
+                let allSections = $(".sectioninterest");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#interest_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************
+            let referenceCounter = 1;
+            //Add new item reference
+            $('#add_refer').click(function () {
+                const referHtml = `
+                                                                                 <div class="section_item_refer sectionrefer section" id="refer_${referenceCounter}">
+                                                                                                                           <div class="refer input_data">
+                                                                                                    <textarea class="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information"></textarea>
+                                                                                        </div>
+                                                                                                        </div>
+                                                                                                        `;
+                $("#referList").append(referHtml);
+                referenceCounter++;
+            });
+            //Delete item reference by ID
+            $('#referList').on('click', '.delete-refer', function () {
+                let allSections = $(".sectionrefer");
+                if (allSections.length > 0) {
+                    let ids = allSections.map(function () {
+                        return parseInt($(this).attr("id").split('_')[1]);
+                    }).get();
+                    let maxId = Math.max(...ids);
+                    if (maxId != 0) {
+                        $(`#refer_${maxId}`).remove();
+                    }
+                }
+            });
+            // *******************************************************************************************\
+            //Save CV
+            $('.save_cv').click(function () {
+                //Get data in section education
+                let educations = [];
+                $('#educationList').children('.section').each(function () {
+                    let institution = $(this).find('.institution').val();
+                    let major = $(this).find('.major').val();
+                    let startyear = $(this).find('.startyear').val();
+                    let endyear = $(this).find('.endyear').val();
+                    let grade = $(this).find('.grade').val();
+                    educations.push({
+                        Institution: institution,
+                        Major: major,
+                        StartYear: startyear,
+                        EndYear: endyear,
+                        Grade: grade,
+                    });
+                });
+
+                //Get data in section skill
+                let skills = [];
+                $('#skillList').children('.section').each(function () {
+                    let skill_name = $(this).find('.skill_name').val();
+                    let skill_description = $(this).find('.skill_description').val();
+                    skills.push({
+                        Name: skill_name,
+                        Description: skill_description,
+                    });
+                });
+
+                //Get data in section experience
+                let experiences = [];
+                $('#experienceList').children('.section').each(function () {
+                    let company = $(this).find('.company_name').val();
+                    let startdate = $(this).find('.start_experience').val();
+                    let enddate = $(this).find('.end_experience').val();
+                    let position = $(this).find('.position_experience').val();
+                    let responsibilities = $(this).find('.responsibilities').val();
+                    experiences.push({
+                        Company: company,
+                        Position: position,
+                        StartDate: startdate,
+                        EndDate: enddate,
+                        Responsibilities: responsibilities,
+                    });
+                });
+
+                //Get data in section projects
+                let projects = [];
+                $('#projectList').children('.section').each(function () {
+                    let fromproject = $(this).find('.from_project').val();
+                    let toproject = $(this).find('.to_project').val();
+                    let projectname = $(this).find('.project_name').val();
+                    let teamsize = $(this).find('.team_size').val();
+                    let position = $(this).find('.position_project').val();
+                    let description = $(this).find('.description_project').val();
+                    projects.push({
+                        From: fromproject,
+                        To: toproject,
+                        Project: projectname,
+                        Team_size: teamsize,
+                        Position: position,
+                        Description: description,
+                    });
+                });
+
+                //Get data in section certification
+                let certifications = [];
+                $('#certificationList').children('.section').each(function () {
+                    let year = $(this).find('.year_certification').val();
+                    let name = $(this).find('.name_certification').val();
+                    certifications.push({
+                        Year: year,
+                        Name: name,
+                    });
+                });
+
+                //Get data in section activites
+                let activity = [];
+                $('#activityList').children('.section').each(function () {
+                    let start = $(this).find('.start_activity').val();
+                    let end = $(this).find('.end_activity').val();
+                    let name = $(this).find('.activity_name').val();
+                    let position = $(this).find('.position_activity').val();
+                    let description = $(this).find('.description_activity').val();
+                    activity.push({
+                        StartDate: start,
+                        EndDate: end,
+                        Activity: name,
+                        Position: position,
+                        Description: description,
+                    });
+                }); 
+                
+                //Get data in section honor_award
+                let honor = [];
+                $('#honorawardList').children('.section').each(function () {
+                    let year = $(this).find('.year_honor').val();
+                    let name = $(this).find('.name_honor').val();
+                    honor.push({
+                        Year: year,
+                        Name: name,
+                    });
+                });
+
+                //Get data in section interest
+                let interests = [];
+                $('#interestList').children('.section').each(function () {
+                    let description = $(this).find('.description_interest').val();
+                    interests.push({
+                        Description: description,
+                    });
+                });
+                
+                //Get data in section refer
+                let refer = [];
+                $('#referList').children('.section').each(function () {
+                    let description = $(this).find('.description_infor').val();
+                    refer.push({
+                        Description: description,
+                    });
+                });
+                
+                let saveCVRequest = {
+                    Avatar: {
+                        Url: image,
+                    },
+                    username: {
+                        Name: $('#username').val(),
+                    },
+                    title: {
+                        Job_position: $('#job_position').val(),
+                    },
+                    career: {
+                        Career_goal: $('#career_goal').val(),
+                    },
+                    profile: {
+                        Email: $('#email').val(),
+                        Phone: $('#phone').val(),
+                        Website: $('#web').val(),
+                        Address: $('#address').val(),
+                    },
+                    Education: educations,
+                    skill: skills,
+                    experience: experiences,
+                    project: projects,
+                    certification: certifications,
+                    activities: activity,
+                    honor_Award: honor,
+                    interest: interests,
+                    references: refer,
+                    information: {
+                        Description: $('#description_infor').val(),
+                    }
+                };
+
+                debugger;
+                $.ajax({
+                    url: '/Tools/SaveCV',
+                    type: 'POST',
+                    data: JSON.stringify(saveCVRequest),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log("Response:", response);
+                        alert(response.message);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error:", error);
+                        alert("An error occurred while saving CV data!");
+                    }
+                })
+            })
+
+            var image = null;
+
+            //Get image cv
+            $('#post_file').change(function () {
+
+                var formData = new FormData();
+                var fileInput = $(this)[0];
+                formData.append('file', fileInput.files[0]);
+
+                $.ajax({
+                    url: '/Tools/UploadImage',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log("Add image success");
+
+                        if (response.success === true) {
+                            image = response.imageUrl;
+                            console.log("Image upload success.");
+                        }
+                        else {
+                            image = null;
+                            console.log("Image upload failed.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Add image failed.");
+                        imageUrl = null;
+                    }
+                });
+            })
+
+        });
+
+    </script>
+
+}
 

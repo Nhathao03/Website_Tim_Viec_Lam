@@ -52,7 +52,8 @@ namespace TimViec.Respository
                              TypeName = typeSec.Name,
                              ContentJson = section.ContentJson,
                              StyleJson = section.StyleJson,
-                             ImagePath = tem.ImagePath
+                             ImagePath = tem.ImagePath,
+                             TypeID = typeSec.Id,
                          };
             return result.ToList();
         }
