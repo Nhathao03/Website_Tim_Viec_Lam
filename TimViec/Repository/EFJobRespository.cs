@@ -42,9 +42,9 @@ namespace TimViec.Respository
             var result = from j in _context.Jobs
                          join c in _context.Companies on j.CompanyID equals c.Id
                          join ct in _context.Cities on c.CityID equals ct.Id
-                         where ((j.Title.Contains(stringsearch) || j.R1_Language.Equals(stringsearch) || j.R2_Language.Equals(stringsearch) || j.R3_Language.Equals(stringsearch) || c.Name_company.Contains(stringsearch) && (ct.Id.Equals(id))) 
-                                || (j.Title.Contains(stringsearch)|| j.R1_Language.Equals(stringsearch)|| j.R2_Language.Equals(stringsearch)|| j.R3_Language.Equals(stringsearch)|| c.Name_company.Contains(stringsearch)) 
-                                || (ct.Id.Equals(id)))
+                         where (id != 0 && ct.Id == id) 
+                         && ((!string.IsNullOrEmpty(stringsearch) && j.Title.Contains(stringsearch))
+                         || (!string.IsNullOrEmpty(stringsearch) && c.Name_company.Contains(stringsearch)))
 						 select new SearchViewModel
                          {  
                              Id = j.Id,
@@ -54,6 +54,7 @@ namespace TimViec.Respository
                              R3_Language = j.R3_Language,
                              Image = j.img,
                          };
+
 		    return result.ToList();
         }
 

@@ -15,7 +15,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
  .AddDefaultTokenProviders()
  .AddDefaultUI()
  .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {

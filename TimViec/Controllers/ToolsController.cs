@@ -49,80 +49,87 @@ namespace TimViec.Controllers
 			
 		}
 
-
+		
         [HttpGet]
         public async Task<IActionResult> RenderCreateCV(int id)
         {
-				var renderCV = _cvRepository.GetTemplates_by_ID_CV(id);
-				var sectionList = new List<Get_CV_ByCvid_ViewModelResult>();
-				foreach (var item in renderCV)
+			var renderCV = _cvRepository.GetTemplates_by_ID_CV(id);
+			var sectionList = new List<Get_CV_ByCvid_ViewModelResult>();
+
+			foreach (var item in renderCV)
+			{
+				sectionList.Add(new Get_CV_ByCvid_ViewModelResult()
 				{
-					sectionList.Add(new Get_CV_ByCvid_ViewModelResult()
-					{
-						Id = item.Id,
-						TypeName = item.TypeName,
-						Content = !string.IsNullOrEmpty(item.ContentJson) ? JsonConvert.DeserializeObject<dynamic>(item.ContentJson) : null,
-						Style = !string.IsNullOrEmpty(item.StyleJson) ? JsonConvert.DeserializeObject<dynamic>(item.StyleJson) : null,
-					});
-				}
-				return View(sectionList);
+					Id = item.Id,
+					TypeID = item.TypeID,
+					TypeName = item.TypeName,
+					Content = !string.IsNullOrEmpty(item.ContentJson) ? JsonConvert.DeserializeObject<dynamic>(item.ContentJson) : null,
+					Style = !string.IsNullOrEmpty(item.StyleJson) ? JsonConvert.DeserializeObject<dynamic>(item.StyleJson) : null,
+				});
+			}
+			return View(sectionList);
+        }
+
+        [HttpPost]
+        public JsonResult SaveCV1([FromBody] SectionAvatar data)
+        {
+            return Json(new { Success = true });
         }
 
         // POST: CreateCVController/Create
         [HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public JsonResult SaveCV([FromBody] SaveCVRequest request)
 		{
 			try
 			{
-				return RedirectToAction(nameof(Index));
+
+				var sectionProfile = new SectionProfile();
+				//if(!string.IsNullOrEmpty(profile.Email)) {
+				//	sectionProfile.Email = profile.Email;
+				//}
+				//if(!string.IsNullOrEmpty(profile.Phone)) {
+				//	sectionProfile.Email = profile.Phone;
+				//}
+				//if(!string.IsNullOrEmpty(profile.Website)) {
+				//	sectionProfile.Email = profile.Website;
+				//}
+				//if(!string.IsNullOrEmpty(profile.Address)) {
+				//	sectionProfile.Email = profile.Address;
+				//}
+
+
+				var dataSection = new Sections();
+				
+
+				return Json(new { Success = true  });
 			}
 			catch
 			{
-				return View();
+				return Json(new { Success = false  });
 			}
 		}
 
-		// GET: CreateCVController/Edit/5
-		public ActionResult Edit(int id)
-		{
-			return View();
-		}
+        //Luu anh
+        private async Task<string> SaveImage(IFormFile image)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", image.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            return "LayoutTimViec/img/" + image.FileName;
+        }
 
-		// POST: CreateCVController/Edit/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
+        [HttpPost]
+        public async Task<JsonResult> UploadImage(IFormFile file)
+        {
+            var path = await SaveImage(file);
 
-		// GET: CreateCVController/Delete/5
-		public ActionResult Delete(int id)
-		{
-			return View();
-		}
-
-		// POST: CreateCVController/Delete/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
-	}
+            if (!string.IsNullOrEmpty(path))
+            {
+                return Json(new { success = true, imageUrl = path });
+            }
+            return Json(new { success = false });
+        }
+    }
 }

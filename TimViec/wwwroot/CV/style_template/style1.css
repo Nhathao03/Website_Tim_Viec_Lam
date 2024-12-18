@@ -1,10 +1,52 @@
-﻿
+﻿.contentdata {
+    justify-self: center;
+    margin-top: 20px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    gap: 20px;
+}
+
+.cv-title {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-left: auto;
+}
+
+.control-item {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
 .resume {
+    margin-left: 250px;
     background-color: white;
     padding: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 3000px;
+    height: 2000px;
     width: 1000px;
+    color: black;
+    float: right;
+    margin-right: 334px;
+    margin-bottom: 75px;
 }
 
 .profile {
@@ -171,16 +213,183 @@ hr {
 .experience {
     width: 60%;
     float: right;
-    margin-top: -60px;
+    margin-top: -33px;
+    .experience
 }
 
+.project {
+    width: 60%;
+    float: right;
+}
 
-@media (max-width: 768px) {
-    .profile {
-        flex-direction: column;
+#educationList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#skillList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#experienceList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#projectList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#certificationList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#activityList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#honorawardList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#interestList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#referList {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.add-button {
+    position: absolute;
+    top: -17px;
+    right: 5px;
+    display: none;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+    .add-button:hover {
+        background-color: #218838;
     }
 
-    .avatar {
-        margin: 0 auto;
+.delete-button {
+    position: absolute;
+    top: -17px;
+    right: 65px;
+    display: none;
+    background-color: lightcoral;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+    .delete-button:hover {
+        background-color: lightcoral;
     }
+
+#educationList:hover .add-button {
+    display: block;
+}
+
+#educationList:hover .delete-button {
+    display: block;
+}
+
+#skillList:hover .add-button {
+    display: block;
+}
+
+#skillList:hover .delete-button {
+    display: block;
+}
+
+#experienceList:hover .add-button {
+    display: block;
+}
+
+#experienceList:hover .delete-button {
+    display: block;
+}
+
+#projectList:hover .add-button {
+    display: block;
+}
+
+#projectList:hover .delete-button {
+    display: block;
+}
+
+#certificationList:hover .add-button {
+    display: block;
+}
+
+#certificationList:hover .delete-button {
+    display: block;
+}
+
+#activityList:hover .add-button {
+    display: block;
+}
+
+#activityList:hover .delete-button {
+    display: block;
+}
+
+#honorawardList:hover .add-button {
+    display: block;
+}
+
+#honorawardList:hover .delete-button {
+    display: block;
+}
+
+#interestList:hover .add-button {
+    display: block;
+}
+
+#interestList:hover .delete-button {
+    display: block;
+}
+
+#referList:hover .add-button {
+    display: block;
+}
+
+#referList:hover .delete-button {
+    display: block;
+}
+
+.input_data :focus {
+    outline: 1px solid #53aaf1 !important;
+    outline-offset: 0;
+    border-radius: 4px;
+}
+
+input {
+    color: black;
 }
