@@ -280,8 +280,8 @@
 			<div class="col-sm-12">
 				<div class="subscription-input-group">
 					<form action="#">
-						<input type="email" class="subscription-input-form" placeholder="Enter your comment here">
-						<button class="appsLand-btn subscribe-btn" onclick="window.location.href='#'">
+						<input type="text" id="text_feedback" class="subscription-input-form" placeholder="Enter your comment here">
+						<button class="appsLand-btn subscribe-btn send_feedback" >
 							SEND
 						</button>
 					</form>
@@ -369,6 +369,27 @@
 					window.location.href = '/Search/Search?stringSearch=' + strSearch + '&id=' + city_id;
 				}
 			})
+
+			//Send feedback
+			$('.send_feedback').click(function () {
+				let text = $('#text_feedback').val();
+				
+				$.ajax({
+					url: '/Home/feedback',
+					type: 'POST',
+					data: {Note: text},
+					dataType: 'json',
+					success: function (respond) {
+						if(respond.successed){
+							console.log("success");
+						}
+					},
+					error: function (xhr, status, error) {
+						alert("An error occurred: " + error);
+					}
+				});
+			});
+
 		});
 
 	</script>

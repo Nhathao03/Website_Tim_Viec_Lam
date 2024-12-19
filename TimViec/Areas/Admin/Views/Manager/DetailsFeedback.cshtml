@@ -46,8 +46,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" asp-action="SendEmail" asp-route-id="@Model.Id
-">
+                    <form method="post" asp-action="SendEmail" asp-route-id="@Model.Id">
                         <div class="form-group">
                             <label for="to">Đến:</label>
                             <input type="email" readonly class="form-control" id="to" name="To" placeholder="Nhập email người nhận" value="@Html.DisplayFor(Model => Model.Email)">

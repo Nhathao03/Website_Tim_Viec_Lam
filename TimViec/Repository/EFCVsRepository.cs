@@ -48,6 +48,7 @@ namespace TimViec.Respository
                          {
                              Id = section.Id,
                              UserID = CV.UserID,
+                             CViD = CV.Id,
                              Title = CV.Title,
                              TypeName = typeSec.Name,
                              ContentJson = section.ContentJson,

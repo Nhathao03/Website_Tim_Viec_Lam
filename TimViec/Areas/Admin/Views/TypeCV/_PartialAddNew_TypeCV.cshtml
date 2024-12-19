@@ -93,6 +93,7 @@
 			//Add new category cv
             $('.addnewtype').click(function () {
                 let category_name = $('#category-name').val();
+               
 				debugger;
 				$.ajax({
                     url: '/Admin/TypeCV/AddNew_TypeCV',
@@ -100,9 +101,9 @@
                     data: { Name: category_name },
                     dataType: 'json',
 					success: function (status) {
-                        if (status.success) {
+                        if (status.success == true) {
                             console.log("Add new category success !")
-                            $('#datatablesSimple').load('/Admin/TypeCV/ListNew_TypeCV');
+                            location.reload();
                         }
                         else{
                             console.log("Add new category fail !")
@@ -118,6 +119,7 @@
             //Delete category cv
             $('.delete_category').click(function () {
                 const getID_Category = $(this).attr("id_category");
+               
 				debugger;
 				$.ajax({
                     url: '/Admin/TypeCV/Delete',
@@ -127,7 +129,7 @@
 					success: function (status) {
                         if (status.success == true) {
                             console.log("Delete category success !")
-                            $('#datatablesSimple').load('/Admin/TypeCV/ListNew_TypeCV'); 
+                            location.reload(); 
                         }else
                         {
                             console.log("Delete category fail !")

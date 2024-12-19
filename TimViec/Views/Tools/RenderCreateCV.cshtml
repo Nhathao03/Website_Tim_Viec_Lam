@@ -35,6 +35,43 @@
             color: white;
         }
 
+    .profile-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+    }
+
+        .profile-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ccc;
+        }
+
+    .change-button {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s ease, background-color 0.3s ease;
+    }
+
+    .profile-container:hover .change-button {
+        opacity: 1;
+    }
+
+    .change-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
 </style>
 <link rel="stylesheet" href="../../CV/style_template/style1.css">
 <nav class="navbar" style="border: 1px solid #e8e8e8;margin-top: 22px;">
@@ -53,9 +90,10 @@
 </nav>
 
 <div class="cv-container">
-    <div class="resume">
+    <div class="resume" >
         @if (Model != null && Model.Count > 0)
         {
+            <input type="hidden" value="@Model.First().CVID" id="cvid" />
             <div class="profile">
                 <div class="section avatar">
                     @foreach (var item in Model)
@@ -64,7 +102,10 @@
                         {
                             if (item.Content.Url != null)
                             {
-                                <img style="width: 100%" src="../../CV/image_user/@item.Content.Url" />
+                                <div class="profile-container" data-id="@item.Id">
+                                    <img src="../../CV/image_user/@item.Content.Url" alt="Profile Picture" id="profileImage">
+                                    <input type="file" id="post_file" class="change-button" value="Change Photo" />
+                                </div>
                             }
 
                         }
@@ -75,20 +116,20 @@
                     {
                         @if (item.TypeID == 2)
                         {
-                            <div class="section input_data username">
-                                <textarea id="username" style="width: 640px;border: none;font-size: 43px;height: 60px;resize: none;overflow: hidden;" placeholder="Full name">@item.Content.Name</textarea>
+                            <div class="section input_data username" data-id="@item.Id">
+                                <textarea id="username" style="width: 640px;border: none;font-size: 43px;height: 60px;resize: none;overflow: hidden;" placeholder="Full name">@item.UserName</textarea>
                             </div>
                         }
                         @if (item.TypeID == 3)
                         {
-                            <div class="section input_data title">
+                            <div class="section input_data title" data-id="@item.Id">
                                 <textarea id="job_position" style="width: 640px;border: none;font-size: 22px;height: 33px;resize: none;overflow: hidden;" placeholder="Job Position">@item.Content.Job_position</textarea>
                             </div>
                             <hr style="border: 1px solid black;">
                         }
                         @if (item.TypeID == 4)
                         {
-                            <div class="section input_data career_goal">
+                            <div class="section input_data career_goal" data-id="@item.Id">
                                 <textarea id="career_goal" style="width: 640px;border: none;font-size: 14px;height: 60px;resize: none;overflow: hidden;" placeholder="Career goals: short-term, long-term">@item.Content.Career_goal</textarea>
                             </div>
                         }
@@ -102,7 +143,7 @@
                     <hr>
                     @foreach (var item in Model)
                     {
-                        <div class="contact-info input_data">
+                        <div class="contact-info input_data" data-id="@item.Id">
                             @if (item.TypeID == 5)
                             {
                                 <div class="input_data">
@@ -246,7 +287,7 @@
                     {
                         @for (int i = 0; i < item.Content.Count; i++)
                         {
-                            <div id="projectList">
+                            <div id="projectList" data-id="@item.Id">
                                 <div class="section_item_project section" id="project_0">
                                     <button class="add-button" id="add_project">Add</button>
                                     <button class="delete-button delete-project">Delete</button>
@@ -285,7 +326,7 @@
                         {
                             @for (int i = 0; i < item.Content.Count; i++)
                             {
-                                <div id="certificationList">
+                                <div id="certificationList" data-id="@item.Id">
                                     <div class="section_item_certification section" id="certification_0">
                                         <button class="add-button" id="add_certification">Add</button>
                                         <button class="delete-button delete-certification">Delete</button>
@@ -311,7 +352,7 @@
                         {
                             @for (int i = 0; i < item.Content.Count; i++)
                             {
-                                <div id="activityList">
+                                <div id="activityList" data-id="@item.Id">
                                     <div class="section_item_activity section" id="activity_0">
                                         <button class="add-button" id="add_activity">Add</button>
                                         <button class="delete-button delete-activity">Delete</button>
@@ -346,7 +387,7 @@
                         {
                             @for (int i = 0; i < item.Content.Count; i++)
                             {
-                                <div id="honorawardList">
+                                <div id="honorawardList" data-id="@item.Id">
                                     <div class="section_item_honoraward section" id="honoraward_0">
                                         <button class="add-button" id="add_honoraward">Add</button>
                                         <button class="delete-button delete-honoraward">Delete</button>
@@ -373,7 +414,7 @@
                         {
                             @for (int i = 0; i < item.Content.Count; i++)
                             {
-                                <div id="interestList">
+                                <div id="interestList" data-id="@item.Id">
                                     <div class="section_item_interest section" id="interest_0">
                                         <button class="add-button" id="add_interest">Add</button>
                                         <button class="delete-button delete-interest">Delete</button>
@@ -396,7 +437,7 @@
                     {
                         if (item.TypeID == 17)
                         {
-                            <div class="additional-item input_data" id="additional_infor_0">
+                            <div class="additional-item input_data" id="additional_infor_0" data-id="@item.Id">
                                 <textarea id="description_refer" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in additional information">@item.Content.Description</textarea>
                             </div>
                         }
@@ -413,7 +454,7 @@
                         {
                             @for (int i = 0; i < item.Content.Count; i++)
                             {
-                                <div id="referList">
+                                <div id="referList" data-id="@item.Id">
                                     <div class="section_item_refer section" id="refer_0">
                                         <button class="add-button" id="add_refer">Add</button>
                                         <button class="delete-button delete-refer">Delete</button>
@@ -450,27 +491,27 @@
             //Add new item education
             $('#add_education').click(function () {
                 const educationHtml = `
-                                                                                                                    <div class="section_item_education sectioneducation section" id="education_${educationCounter}">
-                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                                             <textarea class="institution" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="School name"></textarea>
-                                                                                                                 </div>
-                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                                             <textarea class="major" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Courses / Subjects"></textarea>
-                                                                                                                 </div>
-                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
-                                                                                                                             <textarea class="startyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
-                                                                                                                 </div>
-                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
-                                                                                                                     -
-                                                                                                                 </div>
-                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
-                                                                                                                             <textarea class="endyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
-                                                                                                                 </div>
-                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                                             <textarea class="grade" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Education description"></textarea>
-                                                                                                                 </div>
-                                                                                                             </div>
-                                                                                                        `;
+                                                                                                                                    <div class="section_item_education sectioneducation section" id="education_${educationCounter}">
+                                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                                             <textarea class="institution" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="School name"></textarea>
+                                                                                                                                 </div>
+                                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                                             <textarea class="major" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Courses / Subjects"></textarea>
+                                                                                                                                 </div>
+                                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                                             <textarea class="startyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                                 </div>
+                                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                                     -
+                                                                                                                                 </div>
+                                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                                             <textarea class="endyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                                 </div>
+                                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                                             <textarea class="grade" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Education description"></textarea>
+                                                                                                                                 </div>
+                                                                                                                             </div>
+                                                                                                                        `;
                 $("#educationList").append(educationHtml);
                 educationCounter++;
             });
@@ -492,15 +533,15 @@
             //Add new item skill
             $('#add_skill').click(function () {
                 const skillHtml = `
-                                                                                                            <div class="section_item_skill section sectionskill" id="skill_${skillCounter}">
-                                                                                                        <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                             <textarea class="skill_name" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="Skill name"></textarea>
-                                                                                                        </div>
-                                                                                                        <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                             <textarea class="skill_description" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden;" placeholder="Skill description"></textarea>
-                                                                                                        </div>
-                                                                                                     </div>
-                                                                                                `;
+                                                                                                                            <div class="section_item_skill section sectionskill" id="skill_${skillCounter}">
+                                                                                                                        <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                             <textarea class="skill_name" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="Skill name"></textarea>
+                                                                                                                        </div>
+                                                                                                                        <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                             <textarea class="skill_description" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden;" placeholder="Skill description"></textarea>
+                                                                                                                        </div>
+                                                                                                                     </div>
+                                                                                                                `;
                 $("#skillList").append(skillHtml);
                 skillCounter++;
             });
@@ -522,21 +563,21 @@
             //Add new item experience
             $('#add_experience').click(function () {
                 const experienceHtml = `
-                                                                                                        <div class="section_item_experience section sectionexperience" id="experience_${experienceCounter}">
-                                                                                                    <div class="timeline-item input_data">
-                                                                                                       <div class="time" style="width: 250px">
-                                                                                                           <textarea class="start_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
-                                                                                                           -
-                                                                                                           <textarea class="end_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
-                                                                                                       </div>
-                                                                                                               <textarea class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name"></textarea>
-                                                                                                       <div class="experience ">
-                                                                                                                   <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
-                                                                                                                   <textarea class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities"></textarea>
-                                                                                                       </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                `;
+                                                                                                                        <div class="section_item_experience section sectionexperience" id="experience_${experienceCounter}">
+                                                                                                                    <div class="timeline-item input_data">
+                                                                                                                       <div class="time" style="width: 250px">
+                                                                                                                           <textarea class="start_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                           -
+                                                                                                                           <textarea class="end_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                       </div>
+                                                                                                                               <textarea class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name"></textarea>
+                                                                                                                       <div class="experience ">
+                                                                                                                                   <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
+                                                                                                                                   <textarea class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities"></textarea>
+                                                                                                                       </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                `;
                 $("#experienceList").append(experienceHtml);
                 experienceCounter++;
             });
@@ -558,23 +599,23 @@
             //Add new item project
             $('#add_project').click(function () {
                 const projectHtml = `
-                                                                                                        <div class="section_item_project section sectionproject" id="project_${projectCounter}">
-                                                                                                        <div class="timeline-item input_data">
-                                                                                                           <div class="time" style="width: 332px">
-                                                                                                                       <textarea class="from_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
-                                                                                                               -
-                                                                                                               <textarea class="to_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
-                                                                                                                       <textarea class="project_name" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Project name"></textarea>
-                                                                                                                       <textarea class="team_size" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Team size"></textarea>
-                                                                                                           </div>
+                                                                                                                        <div class="section_item_project section sectionproject" id="project_${projectCounter}">
+                                                                                                                        <div class="timeline-item input_data">
+                                                                                                                           <div class="time" style="width: 332px">
+                                                                                                                                       <textarea class="from_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                               -
+                                                                                                                               <textarea class="to_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                                       <textarea class="project_name" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Project name"></textarea>
+                                                                                                                                       <textarea class="team_size" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Team size"></textarea>
+                                                                                                                           </div>
 
-                                                                                                           <div class="experience" style="margin-top: -104px">
-                                                                                                                       <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
-                                                                                                                       <textarea class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
-                                                                                                           </div>
-                                                                                                       </div>
-                                                                                                    </div>
-                                                                                                `;
+                                                                                                                           <div class="experience" style="margin-top: -104px">
+                                                                                                                                       <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
+                                                                                                                                       <textarea class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
+                                                                                                                           </div>
+                                                                                                                       </div>
+                                                                                                                    </div>
+                                                                                                                `;
                 $("#projectList").append(projectHtml);
                 projectCounter++;
             });
@@ -596,13 +637,13 @@
             //Add new item certification
             $('#add_certification').click(function () {
                 const certificationHtml = `
-                                                                                                <div class="section_item_certification section sectioncertification" id="certification_${certificationCounter}">
-                                                                                            <div class="certificate-item input_data">
-                                                                                                        <textarea class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
-                                                                                                <textarea class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name"></textarea>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        `;
+                                                                                                                <div class="section_item_certification section sectioncertification" id="certification_${certificationCounter}">
+                                                                                                            <div class="certificate-item input_data">
+                                                                                                                        <textarea class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
+                                                                                                                <textarea class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name"></textarea>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        `;
                 $("#certificationList").append(certificationHtml);
                 certificationCounter++;
             });
@@ -624,21 +665,21 @@
             //Add new item activity
             $('#add_activity').click(function () {
                 const activityHtml = `
-                                                                                        <div class="section_item_activity section sectionactivity" id="activity_${activityCounter}">
-                                                                                            <div class="activity-item input_data">
-                                                                                                                <div class="time" style="width: 250px">
-                                                                                                                            <textarea class="start_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
-                                                                                                                    -
-                                                                                                                            <textarea class="end_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
-                                                                                                                </div>
-                                                                                                                        <textarea class="activity_name" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Orgazination Name"></textarea>
-                                                                                                                <textarea class="position_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Position"></textarea>
+                                                                                                        <div class="section_item_activity section sectionactivity" id="activity_${activityCounter}">
+                                                                                                            <div class="activity-item input_data">
+                                                                                                                                <div class="time" style="width: 250px">
+                                                                                                                                            <textarea class="start_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                                    -
+                                                                                                                                            <textarea class="end_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                                </div>
+                                                                                                                                        <textarea class="activity_name" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Orgazination Name"></textarea>
+                                                                                                                                <textarea class="position_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Position"></textarea>
 
-                                                                                                  <textarea class="description_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Activity description"></textarea>
+                                                                                                                  <textarea class="description_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Activity description"></textarea>
 
-                                                                                        </div>
-                                                                                </div>
-                                                                                        `;
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                                        `;
                 $("#activityList").append(activityHtml);
                 activityCounter++;
             });
@@ -660,13 +701,13 @@
             //Add new item honor award
             $('#add_honoraward').click(function () {
                 const honorawadHtml = `
-                                                                                <div class="section_item_honoraward section sectionhonoraward" id="honoraward_${honorawardCounter}">
-                                                                             <div class="award-item input_data">
-                                                                                        <textarea class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
-                                                                                        <textarea class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                        `;
+                                                                                                <div class="section_item_honoraward section sectionhonoraward" id="honoraward_${honorawardCounter}">
+                                                                                             <div class="award-item input_data">
+                                                                                                        <textarea class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
+                                                                                                        <textarea class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        `;
                 $("#honorawardList").append(honorawadHtml);
                 honorawardCounter++;
             });
@@ -688,12 +729,12 @@
             //Add new item interest
             $('#add_interest').click(function () {
                 const interestHtml = `
-                                                                         <div class="section_item_interest section sectioninterest" id="interest_${interestCounter}">
-                                                                                                            <div class="favorite input_data">
-                                                                                                        <textarea class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest"></textarea>
-                                                                                            </div>
-                                                                                                </div>
-                                                                                                `;
+                                                                                         <div class="section_item_interest section sectioninterest" id="interest_${interestCounter}">
+                                                                                                                            <div class="favorite input_data">
+                                                                                                                        <textarea class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest"></textarea>
+                                                                                                            </div>
+                                                                                                                </div>
+                                                                                                                `;
                 $("#interestList").append(interestHtml);
                 interestCounter++;
             });
@@ -715,12 +756,12 @@
             //Add new item reference
             $('#add_refer').click(function () {
                 const referHtml = `
-                                                                                 <div class="section_item_refer sectionrefer section" id="refer_${referenceCounter}">
-                                                                                                                           <div class="refer input_data">
-                                                                                                    <textarea class="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information"></textarea>
-                                                                                        </div>
+                                                                                                 <div class="section_item_refer sectionrefer section" id="refer_${referenceCounter}">
+                                                                                                                                           <div class="refer input_data">
+                                                                                                                    <textarea class="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information"></textarea>
                                                                                                         </div>
-                                                                                                        `;
+                                                                                                                        </div>
+                                                                                                                        `;
                 $("#referList").append(referHtml);
                 referenceCounter++;
             });
@@ -740,53 +781,102 @@
             // *******************************************************************************************\
             //Save CV
             $('.save_cv').click(function () {
+                // Select all elements with the id 'educationList'
+                let educationContainers = document.querySelectorAll('#educationList');
+                let idSectioneducation = null;
+                // Loop through the selected elements and get their 'data-id'
+                educationContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectioneducation = dataId;
+                });
+
                 //Get data in section education
-                let educations = [];
+                let educationArray = [];
                 $('#educationList').children('.section').each(function () {
                     let institution = $(this).find('.institution').val();
                     let major = $(this).find('.major').val();
                     let startyear = $(this).find('.startyear').val();
                     let endyear = $(this).find('.endyear').val();
                     let grade = $(this).find('.grade').val();
-                    educations.push({
+                    
+                    educationArray.push({
                         Institution: institution,
                         Major: major,
                         StartYear: startyear,
                         EndYear: endyear,
                         Grade: grade,
+                        SectionID: idSectioneducation,
                     });
+                });
+                // *******************************************************************************************
+                // Select all elements with the id 'skillList'
+                let skillContainers = document.querySelectorAll('#skillList');
+                let idSectionskill = null;
+                // Loop through the selected elements and get their 'data-id'
+                skillContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionskill = dataId;
                 });
 
                 //Get data in section skill
-                let skills = [];
+                let skillArray = [];
                 $('#skillList').children('.section').each(function () {
                     let skill_name = $(this).find('.skill_name').val();
                     let skill_description = $(this).find('.skill_description').val();
-                    skills.push({
+                    skillArray.push({
                         Name: skill_name,
                         Description: skill_description,
+                        SectionID: idSectionskill,
                     });
                 });
+                // *******************************************************************************************
+                // Select all elements with the id 'experienceList'
+                let experienceContainers = document.querySelectorAll('#experienceList');
+                let idSectionexperience = null;
+                // Loop through the selected elements and get their 'data-id'
+                experienceContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionexperience = dataId;
+                });
 
-                //Get data in section experience
-                let experiences = [];
+                // Get data in section experience
+                let experienceArray = [];
                 $('#experienceList').children('.section').each(function () {
                     let company = $(this).find('.company_name').val();
                     let startdate = $(this).find('.start_experience').val();
                     let enddate = $(this).find('.end_experience').val();
                     let position = $(this).find('.position_experience').val();
-                    let responsibilities = $(this).find('.responsibilities').val();
-                    experiences.push({
+
+                    // Collect responsibilities as an array
+                    let responsibilities = [];
+                    $(this).find('.responsibilities').each(function () {
+                        let responsibility = $(this).val();
+                        if (responsibility) {
+                            responsibilities.push(responsibility);
+                        }
+                    });
+
+                    experienceArray.push({
                         Company: company,
                         Position: position,
                         StartDate: startdate,
                         EndDate: enddate,
                         Responsibilities: responsibilities,
+                        SectionID: idSectionexperience,
                     });
+                });
+                // *******************************************************************************************
+                // Select all elements with the id 'projectList'
+                let projectContainers = document.querySelectorAll('#projectList');
+                let idSectionproject = null;
+                // Loop through the selected elements and get their 'data-id'
+                projectContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionproject = dataId;
                 });
 
                 //Get data in section projects
-                let projects = [];
+                let projectArray = [];
                 $('#projectList').children('.section').each(function () {
                     let fromproject = $(this).find('.from_project').val();
                     let toproject = $(this).find('.to_project').val();
@@ -794,85 +884,200 @@
                     let teamsize = $(this).find('.team_size').val();
                     let position = $(this).find('.position_project').val();
                     let description = $(this).find('.description_project').val();
-                    projects.push({
+                    projectArray.push({
                         From: fromproject,
                         To: toproject,
                         Project: projectname,
                         Team_size: teamsize,
                         Position: position,
                         Description: description,
+                        SectionID: idSectionproject,
                     });
                 });
-
+                // *******************************************************************************************
+                // Select all elements with the id 'certificationList'
+                let certificationContainers = document.querySelectorAll('#certificationList');
+                let idSectioncertification = null;
+                // Loop through the selected elements and get their 'data-id'
+                certificationContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectioncertification = dataId;
+                });
                 //Get data in section certification
-                let certifications = [];
+                let certificationArray = [];
                 $('#certificationList').children('.section').each(function () {
                     let year = $(this).find('.year_certification').val();
                     let name = $(this).find('.name_certification').val();
-                    certifications.push({
+                    certificationArray.push({
                         Year: year,
                         Name: name,
+                        SectionID: idSectioncertification,
                     });
+                });
+                // *******************************************************************************************
+                // Select all elements with the id 'activityList'
+                let activityContainers = document.querySelectorAll('#activityList');
+                let idSectionactivity = null;
+                // Loop through the selected elements and get their 'data-id'
+                activityContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionactivity = dataId;
                 });
 
                 //Get data in section activites
-                let activity = [];
+                let activityArray = [];
                 $('#activityList').children('.section').each(function () {
                     let start = $(this).find('.start_activity').val();
                     let end = $(this).find('.end_activity').val();
                     let name = $(this).find('.activity_name').val();
                     let position = $(this).find('.position_activity').val();
-                    let description = $(this).find('.description_activity').val();
-                    activity.push({
+                    // Collect description as an array
+                    let description = [];
+                    $(this).find('.description_activity').each(function () {
+                        let description_activity = $(this).val();
+                        if (description_activity) {
+                            description.push(description_activity);
+                        }
+                    });
+
+                    activityArray.push({
                         StartDate: start,
                         EndDate: end,
                         Activity: name,
                         Position: position,
                         Description: description,
+                        SectionID: idSectionactivity,
                     });
-                }); 
-                
+                });
+                // *******************************************************************************************
+                // Select all elements with the id 'honorawardList'
+                let honorContainers = document.querySelectorAll('#honorawardList');
+                let idSectionhonor = null;
+                // Loop through the selected elements and get their 'data-id'
+                honorContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionhonor = dataId;
+                });
+
                 //Get data in section honor_award
-                let honor = [];
+                let honorArray = [];
                 $('#honorawardList').children('.section').each(function () {
                     let year = $(this).find('.year_honor').val();
                     let name = $(this).find('.name_honor').val();
-                    honor.push({
+                    honorArray.push({
                         Year: year,
                         Name: name,
+                        SectionID: idSectionhonor,
                     });
+                });
+                // *******************************************************************************************
+                // Select all elements with the id 'interestList'
+                let interestContainers = document.querySelectorAll('#interestList');
+                let idSectioninterest = null;
+                // Loop through the selected elements and get their 'data-id'
+                interestContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectioninterest = dataId;
                 });
 
                 //Get data in section interest
-                let interests = [];
+                let interestArray = [];
                 $('#interestList').children('.section').each(function () {
                     let description = $(this).find('.description_interest').val();
-                    interests.push({
+                    interestArray.push({
                         Description: description,
+                        SectionID: idSectioninterest,
                     });
                 });
-                
+                // *******************************************************************************************
+                // Select all elements with the id 'referList'
+                let referContainers = document.querySelectorAll('#referList');
+                let idSectionrefer = null;
+                // Loop through the selected elements and get their 'data-id'
+                referContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionrefer = dataId;
+                });
+
                 //Get data in section refer
-                let refer = [];
+                let referArray = [];
                 $('#referList').children('.section').each(function () {
-                    let description = $(this).find('.description_infor').val();
-                    refer.push({
+                    let description = $(this).find('#description_infor').val();
+                    referArray.push({
                         Description: description,
+                        SectionID: idSectionrefer,
                     });
                 });
-                
+                // *******************************************************************************************
+                // Select all elements with the class 'profile-container'
+                let profileContainers = document.querySelectorAll('.profile-container');
+                let idSectionavatar = null;
+                // Loop through the selected elements and get their 'data-id'
+                profileContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionavatar = dataId;
+                });
+                // *******************************************************************************************
+                // Select all elements with the class 'username'
+                let usernameContainers = document.querySelectorAll('.username');
+                let idSectionusername = null;
+                // Loop through the selected elements and get their 'data-id'
+                usernameContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionusername = dataId;
+                });
+                // *******************************************************************************************
+                // Select all elements with the class 'title'
+                let titleContainers = document.querySelectorAll('.title');
+                let idSectiontitle = null;
+                // Loop through the selected elements and get their 'data-id'
+                titleContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectiontitle = dataId;
+                });
+                // *******************************************************************************************
+                // Select all elements with the class 'career_goal'
+                let careerContainers = document.querySelectorAll('.career_goal');
+                let idSectioncareer = null;
+                // Loop through the selected elements and get their 'data-id'
+                careerContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectioncareer = dataId;
+                });
+                // *******************************************************************************************
+                // Select all elements with the class 'contact-info'
+                let contactContainers = document.querySelectorAll('.contact-info');
+                let idSectioncontact = null;
+                // Loop through the selected elements and get their 'data-id'
+                contactContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectioncontact = dataId;
+                });
+                // Select all elements with the class 'additional-item'
+                let additionalContainers = document.querySelectorAll('.additional-item');
+                let idSectionadditional = null;
+                // Loop through the selected elements and get their 'data-id'
+                additionalContainers.forEach(container => {
+                    let dataId = container.getAttribute('data-id');
+                    idSectionadditional = dataId;
+                });
+                // *******************************************************************************************
                 let saveCVRequest = {
                     Avatar: {
                         Url: image,
+                        SectionID: idSectionavatar,
                     },
                     username: {
                         Name: $('#username').val(),
+                        SectionID: idSectionusername,
                     },
                     title: {
                         Job_position: $('#job_position').val(),
+                        SectionID: idSectiontitle,
                     },
                     career: {
                         Career_goal: $('#career_goal').val(),
+                        SectionID: idSectioncareer,
                     },
                     profile: {
                         Email: $('#email').val(),
@@ -880,20 +1085,22 @@
                         Website: $('#web').val(),
                         Address: $('#address').val(),
                     },
-                    Education: educations,
-                    skill: skills,
-                    experience: experiences,
-                    project: projects,
-                    certification: certifications,
-                    activities: activity,
-                    honor_Award: honor,
-                    interest: interests,
-                    references: refer,
+                    Educations: educationArray,
+                    Skills: skillArray,
+                    Experiences: experienceArray,
+                    Projects: projectArray,
+                    Certifications: certificationArray,
+                    Activities: activityArray,
+                    Honor_Awards: honorArray,
+                    Interests: interestArray,
+                    References: referArray,
                     information: {
                         Description: $('#description_infor').val(),
+                        SectionID: idSectionadditional,
                     }
                 };
-
+                let CvID = $('#cvid').val();
+                saveCVRequest.cvid = CvID;
                 debugger;
                 $.ajax({
                     url: '/Tools/SaveCV',
@@ -906,7 +1113,7 @@
                         alert(response.message);
                     },
                     error: function (xhr, status, error) {
-                        console.error("Error:", error);
+                        console.log("Error:", error);
                         alert("An error occurred while saving CV data!");
                     }
                 })

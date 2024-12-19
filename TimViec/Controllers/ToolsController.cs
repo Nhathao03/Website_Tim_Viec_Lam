@@ -55,13 +55,15 @@ namespace TimViec.Controllers
         {
 			var renderCV = _cvRepository.GetTemplates_by_ID_CV(id);
 			var sectionList = new List<Get_CV_ByCvid_ViewModelResult>();
-
+            var getUsername = await _userManager.GetUserAsync(User);
 			foreach (var item in renderCV)
 			{
 				sectionList.Add(new Get_CV_ByCvid_ViewModelResult()
 				{
 					Id = item.Id,
+                    CVID = item.CViD,
 					TypeID = item.TypeID,
+                    UserName = getUsername.Fullname,
 					TypeName = item.TypeName,
 					Content = !string.IsNullOrEmpty(item.ContentJson) ? JsonConvert.DeserializeObject<dynamic>(item.ContentJson) : null,
 					Style = !string.IsNullOrEmpty(item.StyleJson) ? JsonConvert.DeserializeObject<dynamic>(item.StyleJson) : null,
@@ -71,38 +73,24 @@ namespace TimViec.Controllers
         }
 
         [HttpPost]
-        public JsonResult SaveCV1([FromBody] SectionAvatar data)
-        {
-            return Json(new { Success = true });
-        }
-
-        // POST: CreateCVController/Create
-        [HttpPost]
-		public JsonResult SaveCV([FromBody] SaveCVRequest request)
+        public async Task<IActionResult> SaveCV([FromBody] SaveCVRequest request)
 		{
 			try
 			{
+				if(request != null)
+				{
+                    var sectionProfile = new Sections();
+                    if (!string.IsNullOrEmpty(request.Avatar.Url))
+                    {
+                        var getAvatarbyID = await _sectionRespository.GetByIdAsync(request.Avatar.SectionID);
+                        var ConvertAvatar = !string.IsNullOrEmpty(getAvatarbyID.ContentJson) ? JsonConvert.DeserializeObject<dynamic>(getAvatarbyID.ContentJson) : null;
+                        //if(request.Avatar.SectionID != )
 
-				var sectionProfile = new SectionProfile();
-				//if(!string.IsNullOrEmpty(profile.Email)) {
-				//	sectionProfile.Email = profile.Email;
-				//}
-				//if(!string.IsNullOrEmpty(profile.Phone)) {
-				//	sectionProfile.Email = profile.Phone;
-				//}
-				//if(!string.IsNullOrEmpty(profile.Website)) {
-				//	sectionProfile.Email = profile.Website;
-				//}
-				//if(!string.IsNullOrEmpty(profile.Address)) {
-				//	sectionProfile.Email = profile.Address;
-				//}
-
-
-				var dataSection = new Sections();
-				
-
-				return Json(new { Success = true  });
-			}
+                    }
+                   
+                }
+                return Json(new { Success = true });
+            }
 			catch
 			{
 				return Json(new { Success = false  });
