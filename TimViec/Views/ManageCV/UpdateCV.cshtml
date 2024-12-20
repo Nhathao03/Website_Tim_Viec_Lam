@@ -75,7 +75,7 @@
 </style>
 
 <nav class="navbar" style="border: 1px solid #e8e8e8;margin-top: 22px;">
-    <input type="text" class="cv-title" placeholder="CV unnamed">
+    <textarea style="height:36px; resize: none;overflow: hidden;" type="text" class="cv-title" placeholder="CV unnamed">@Model.Select(x => x.NameCV).First()</textarea>
     <select class="control-item" id="colorPicker">
         <option value="#000">Black</option>
         <option value="#f00">Red</option>
@@ -111,7 +111,7 @@
                             if (item.Content.Url != null)
                             {
                                 <div class="profile-container" data-id="@item.Id">
-                                    <img src="../../CV/image_user/@item.Content.Url" alt="Profile Picture" id="profileImage">
+                                    <img src="../../@item.Content.Url" alt="Profile Picture" id="profileImage">
                                     <input type="file" id="post_file" class="change-button" value="Change Photo" />
                                 </div>
                             }
@@ -501,27 +501,27 @@
             //Add new item education
             $('#add_education').click(function () {
                 const educationHtml = `
-                                                                                                                                                    <div class="section_item_education sectioneducation section" id="education_${educationCounter}">
-                                                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                                                                             <textarea class="institution" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="School name"></textarea>
-                                                                                                                                                 </div>
-                                                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                                                                             <textarea class="major" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Courses / Subjects"></textarea>
-                                                                                                                                                 </div>
-                                                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
-                                                                                                                                                             <textarea class="startyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
-                                                                                                                                                 </div>
-                                                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
-                                                                                                                                                     -
-                                                                                                                                                 </div>
-                                                                                                                                                 <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
-                                                                                                                                                             <textarea class="endyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
-                                                                                                                                                 </div>
-                                                                                                                                                 <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                                                                             <textarea class="grade" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Education description"></textarea>
-                                                                                                                                                 </div>
-                                                                                                                                             </div>
-                                                                                                                                        `;
+                                                                                                                                                            <div class="section_item_education sectioneducation section" id="education_${educationCounter}">
+                                                                                                                                                         <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                                                                     <textarea class="institution" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="School name"></textarea>
+                                                                                                                                                         </div>
+                                                                                                                                                         <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                                                                     <textarea class="major" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Courses / Subjects"></textarea>
+                                                                                                                                                         </div>
+                                                                                                                                                         <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                                                                     <textarea class="startyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                                                         </div>
+                                                                                                                                                         <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                                                             -
+                                                                                                                                                         </div>
+                                                                                                                                                         <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                                                                                                                                     <textarea class="endyear_education" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                                                         </div>
+                                                                                                                                                         <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                                                                     <textarea class="grade" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Education description"></textarea>
+                                                                                                                                                         </div>
+                                                                                                                                                     </div>
+                                                                                                                                                `;
                 $("#educationList").append(educationHtml);
                 educationCounter++;
             });
@@ -543,15 +543,15 @@
             //Add new item skill
             $('#add_skill').click(function () {
                 const skillHtml = `
-                                                                                                                                            <div class="section_item_skill section sectionskill" id="skill_${skillCounter}">
-                                                                                                                                        <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                                                             <textarea class="skill_name" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="Skill name"></textarea>
-                                                                                                                                        </div>
-                                                                                                                                        <div class="input_data" style="height: 26px; margin-bottom: 5px">
-                                                                                                                                             <textarea class="skill_description" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden;" placeholder="Skill description"></textarea>
-                                                                                                                                        </div>
-                                                                                                                                     </div>
-                                                                                                                                `;
+                                                                                                                                                    <div class="section_item_skill section sectionskill" id="skill_${skillCounter}">
+                                                                                                                                                <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                                                     <textarea class="skill_name" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="Skill name"></textarea>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                                                                                                                     <textarea class="skill_description" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden;" placeholder="Skill description"></textarea>
+                                                                                                                                                </div>
+                                                                                                                                             </div>
+                                                                                                                                        `;
                 $("#skillList").append(skillHtml);
                 skillCounter++;
             });
@@ -573,21 +573,21 @@
             //Add new item experience
             $('#add_experience').click(function () {
                 const experienceHtml = `
-                                                                                                                                        <div class="section_item_experience section sectionexperience" id="experience_${experienceCounter}">
-                                                                                                                                    <div class="timeline-item input_data">
-                                                                                                                                       <div class="time" style="width: 250px">
-                                                                                                                                           <textarea class="start_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
-                                                                                                                                           -
-                                                                                                                                           <textarea class="end_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
-                                                                                                                                       </div>
-                                                                                                                                               <textarea class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name"></textarea>
-                                                                                                                                       <div class="experience ">
-                                                                                                                                                   <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
-                                                                                                                                                   <textarea class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities"></textarea>
-                                                                                                                                       </div>
-                                                                                                                                    </div>
-                                                                                                                                </div>
-                                                                                                                                `;
+                                                                                                                                                <div class="section_item_experience section sectionexperience" id="experience_${experienceCounter}">
+                                                                                                                                            <div class="timeline-item input_data">
+                                                                                                                                               <div class="time" style="width: 250px">
+                                                                                                                                                   <textarea class="start_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                                                   -
+                                                                                                                                                   <textarea class="end_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                                               </div>
+                                                                                                                                                       <textarea class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name"></textarea>
+                                                                                                                                               <div class="experience ">
+                                                                                                                                                           <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
+                                                                                                                                                           <textarea class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities"></textarea>
+                                                                                                                                               </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        `;
                 $("#experienceList").append(experienceHtml);
                 experienceCounter++;
             });
@@ -609,23 +609,23 @@
             //Add new item project
             $('#add_project').click(function () {
                 const projectHtml = `
-                                                                                                                                        <div class="section_item_project section sectionproject" id="project_${projectCounter}">
-                                                                                                                                        <div class="timeline-item input_data">
-                                                                                                                                           <div class="time" style="width: 332px">
-                                                                                                                                                       <textarea class="from_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
-                                                                                                                                               -
-                                                                                                                                               <textarea class="to_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
-                                                                                                                                                       <textarea class="project_name" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Project name"></textarea>
-                                                                                                                                                       <textarea class="team_size" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Team size"></textarea>
-                                                                                                                                           </div>
+                                                                                                                                                <div class="section_item_project section sectionproject" id="project_${projectCounter}">
+                                                                                                                                                <div class="timeline-item input_data">
+                                                                                                                                                   <div class="time" style="width: 332px">
+                                                                                                                                                               <textarea class="from_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                                                       -
+                                                                                                                                                       <textarea class="to_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                                                               <textarea class="project_name" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Project name"></textarea>
+                                                                                                                                                               <textarea class="team_size" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Team size"></textarea>
+                                                                                                                                                   </div>
 
-                                                                                                                                           <div class="experience" style="margin-top: -104px">
-                                                                                                                                                       <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
-                                                                                                                                                       <textarea class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
-                                                                                                                                           </div>
-                                                                                                                                       </div>
-                                                                                                                                    </div>
-                                                                                                                                `;
+                                                                                                                                                   <div class="experience" style="margin-top: -104px">
+                                                                                                                                                               <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
+                                                                                                                                                               <textarea class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
+                                                                                                                                                   </div>
+                                                                                                                                               </div>
+                                                                                                                                            </div>
+                                                                                                                                        `;
                 $("#projectList").append(projectHtml);
                 projectCounter++;
             });
@@ -647,13 +647,13 @@
             //Add new item certification
             $('#add_certification').click(function () {
                 const certificationHtml = `
-                                                                                                                                <div class="section_item_certification section sectioncertification" id="certification_${certificationCounter}">
-                                                                                                                            <div class="certificate-item input_data">
-                                                                                                                                        <textarea class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
-                                                                                                                                <textarea class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name"></textarea>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                        `;
+                                                                                                                                        <div class="section_item_certification section sectioncertification" id="certification_${certificationCounter}">
+                                                                                                                                    <div class="certificate-item input_data">
+                                                                                                                                                <textarea class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
+                                                                                                                                        <textarea class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name"></textarea>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                                `;
                 $("#certificationList").append(certificationHtml);
                 certificationCounter++;
             });
@@ -675,21 +675,21 @@
             //Add new item activity
             $('#add_activity').click(function () {
                 const activityHtml = `
-                                                                                                                        <div class="section_item_activity section sectionactivity" id="activity_${activityCounter}">
-                                                                                                                            <div class="activity-item input_data">
-                                                                                                                                                <div class="time" style="width: 250px">
-                                                                                                                                                            <textarea class="start_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
-                                                                                                                                                    -
-                                                                                                                                                            <textarea class="end_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
-                                                                                                                                                </div>
-                                                                                                                                                        <textarea class="activity_name" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Orgazination Name"></textarea>
-                                                                                                                                                <textarea class="position_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Position"></textarea>
+                                                                                                                                <div class="section_item_activity section sectionactivity" id="activity_${activityCounter}">
+                                                                                                                                    <div class="activity-item input_data">
+                                                                                                                                                        <div class="time" style="width: 250px">
+                                                                                                                                                                    <textarea class="start_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="From"></textarea>
+                                                                                                                                                            -
+                                                                                                                                                                    <textarea class="end_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="To"></textarea>
+                                                                                                                                                        </div>
+                                                                                                                                                                <textarea class="activity_name" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Orgazination Name"></textarea>
+                                                                                                                                                        <textarea class="position_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Position"></textarea>
 
-                                                                                                                                  <textarea class="description_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Activity description"></textarea>
+                                                                                                                                          <textarea class="description_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Activity description"></textarea>
 
+                                                                                                                                </div>
                                                                                                                         </div>
-                                                                                                                </div>
-                                                                                                                        `;
+                                                                                                                                `;
                 $("#activityList").append(activityHtml);
                 activityCounter++;
             });
@@ -711,13 +711,13 @@
             //Add new item honor award
             $('#add_honoraward').click(function () {
                 const honorawadHtml = `
-                                                                                                                <div class="section_item_honoraward section sectionhonoraward" id="honoraward_${honorawardCounter}">
-                                                                                                             <div class="award-item input_data">
-                                                                                                                        <textarea class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
-                                                                                                                        <textarea class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name"></textarea>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        `;
+                                                                                                                        <div class="section_item_honoraward section sectionhonoraward" id="honoraward_${honorawardCounter}">
+                                                                                                                     <div class="award-item input_data">
+                                                                                                                                <textarea class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
+                                                                                                                                <textarea class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name"></textarea>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                `;
                 $("#honorawardList").append(honorawadHtml);
                 honorawardCounter++;
             });
@@ -739,12 +739,12 @@
             //Add new item interest
             $('#add_interest').click(function () {
                 const interestHtml = `
-                                                                                                         <div class="section_item_interest section sectioninterest" id="interest_${interestCounter}">
-                                                                                                                                            <div class="favorite input_data">
-                                                                                                                                        <textarea class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest"></textarea>
-                                                                                                                            </div>
-                                                                                                                                </div>
-                                                                                                                                `;
+                                                                                                                 <div class="section_item_interest section sectioninterest" id="interest_${interestCounter}">
+                                                                                                                                                    <div class="favorite input_data">
+                                                                                                                                                <textarea class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest"></textarea>
+                                                                                                                                    </div>
+                                                                                                                                        </div>
+                                                                                                                                        `;
                 $("#interestList").append(interestHtml);
                 interestCounter++;
             });
@@ -766,12 +766,12 @@
             //Add new item reference
             $('#add_refer').click(function () {
                 const referHtml = `
-                                                                                                                 <div class="section_item_refer sectionrefer section" id="refer_${referenceCounter}">
-                                                                                                                                                           <div class="refer input_data">
-                                                                                                                                    <textarea class="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information"></textarea>
-                                                                                                                        </div>
-                                                                                                                                        </div>
-                                                                                                                                        `;
+                                                                                                                         <div class="section_item_refer sectionrefer section" id="refer_${referenceCounter}">
+                                                                                                                                                                   <div class="refer input_data">
+                                                                                                                                            <textarea class="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information"></textarea>
+                                                                                                                                </div>
+                                                                                                                                                </div>
+                                                                                                                                                `;
                 $("#referList").append(referHtml);
                 referenceCounter++;
             });
@@ -1122,7 +1122,7 @@
                 };
                 let CvID = $('#cvid').val();
                 saveCVRequest.cvid = CvID;
-   
+
                 const popup = document.getElementById('popup');
                 const closeButton = document.querySelector('.close-btn');
 
@@ -1159,8 +1159,7 @@
                         contentType: 'application/json; charset=utf-8',
                         dataType: 'json',
                         success: function (response) {
-                            if(response.success)
-                            {
+                            if (response.success) {
                                 window.location.href = "/ManageCV/ManageCV";
                             }
                         },
@@ -1169,7 +1168,7 @@
                             alert("An error occurred while saving CV data!");
                         }
                     })
-                }          
+                }
             })
 
             var image = null;

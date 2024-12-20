@@ -10,7 +10,9 @@
         public string? StyleJson { get; set; }
         public string? ImagePath { get; set; }
         public string? TypeName { get; set; }
+        public string? Background { get; set; }
         public int? TypeID { get; set; }
+        public string? NameCV { get; set; }
     }
 
     public class Get_CV_ByCvid_ViewModelResult
@@ -22,5 +24,7 @@
         public dynamic? Style { get; set; }
         public string? TypeName { get; set; }
         public string? UserName { get; set; }
+        public string? Background {  get; set; }
+        public string? NameCV { get; set; }
     }
 }

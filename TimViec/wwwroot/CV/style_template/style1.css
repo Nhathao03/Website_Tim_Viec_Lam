@@ -1,4 +1,5 @@
-﻿.contentdata {
+﻿
+.contentdata {
     justify-self: center;
     margin-top: 20px;
 }
@@ -36,17 +37,16 @@
     cursor: pointer;
 }
 
+.cv-container{
+    display: grid;
+    place-items: center;
+}
 .resume {
-    margin-left: 250px;
     background-color: white;
     padding: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 2000px;
     width: 1000px;
     color: black;
-    float: right;
-    margin-right: 334px;
-    margin-bottom: 75px;
 }
 
 .profile {
@@ -392,3 +392,93 @@ hr {
 input {
     color: black;
 }
+
+
+
+/* Popup styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0; /* Bắt đầu với opacity 0 */
+    pointer-events: none; /* Vô hiệu hóa sự kiện khi ẩn */
+    transition: opacity 0.3s ease; /* Hiệu ứng mờ dần */
+}
+
+    .popup.show {
+        opacity: 1; /* Hiển thị popup */
+        pointer-events: auto; /* Kích hoạt sự kiện khi hiển thị */
+    }
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    width: 300px;
+    transform: translateY(-30px); /* Dịch lên trên khi ẩn */
+    opacity: 0;
+    animation: slideIn 0.5s ease forwards;
+    margin-left: 800px;
+    margin-top: 133px;
+}
+
+    .popup-content p {
+        margin: 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #888;
+}
+
+    .close-btn:hover {
+        color: #000;
+    }
+
+
+/* Animation */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
+
+.popup.hide .popup-content {
+    animation: slideOut 0.5s ease forwards;
+}
+

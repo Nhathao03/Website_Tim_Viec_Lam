@@ -3,6 +3,7 @@
     public class SaveCVRequest
     {
         public int cvid {  get; set; }
+        public string NameCV { get; set; }
         public SectionAvatar Avatar { get; set; }
         public SectionUser Username { get; set; }
         public SectionTitle Title { get; set; }
@@ -19,7 +20,6 @@
         public List<SectionReferences> References { get; set; }
         public SectionInformation information { get; set; }
     }
-
 
     public class SectionAvatar
     {
@@ -80,7 +80,7 @@
         public string? Project { get; set; }
         public string? Team_size { get; set; }
         public string? Position { get; set; }
-        public string? Description { get; set; }
+        public List<string>? Description { get; set; }
         public int SectionID { get; set; }
     }
     public class SectionCertification

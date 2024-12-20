@@ -1,0 +1,392 @@
+﻿@model List<TimViec.ViewModel.Get_CV_ByCvid_ViewModelResult>
+
+@{
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<div class="cv-container" id="pdfRender">
+    <link rel="stylesheet" href="../../CV/style_template/style1.css">
+    <div class="resume" style="background-image: url('/CV/background_image/@ViewBag.Background');">
+        @if (Model != null && Model.Count > 0)
+        {
+            <input type="hidden" value="@Model.First().CVID" id="cvid" />
+            <div class="profile">
+                <div class="section avatar">
+                    @foreach (var item in Model)
+                    {
+                        @if (item.TypeID == 1)
+                        {
+                            if (item.Content.Url != null)
+                            {
+                                <div class="profile-container" data-id="@item.Id">
+                                    <img src="../../@item.Content.Url" alt="Profile Picture" id="profileImage">     
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="profile-container" data-id="@item.Id">
+                                    <img src="../../CV/image_user/user_default.png" alt="Profile Picture" id="profileImage">
+                                </div>
+                            }
+
+                        }
+                    }
+                </div>
+                <div>
+                    @foreach (var item in Model)
+                    {
+                        @if (item.TypeID == 2)
+                        {
+                            <div class="section input_data username" data-id="@item.Id">
+                                <p id="username" style="width: 640px;border: none;font-size: 43px;height: 70px;resize: none;overflow: hidden;" placeholder="Full name">@item.Content.Name</p>
+                            </div>
+                        }
+                        @if (item.TypeID == 3)
+                        {
+                            <div class="section input_data title" data-id="@item.Id">
+                                <p id="job_position" style="width: 640px;border: none;font-size: 22px;height: 33px;resize: none;overflow: hidden;" placeholder="Job Position">@item.Content.Job_position</p>
+                            </div>
+                            <hr style="border: 1px solid black;">
+                        }
+                        @if (item.TypeID == 4)
+                        {
+                            <div class="section input_data career_goal" data-id="@item.Id">
+                                <p id="career_goal" style="width: 640px;border: none;font-size: 14px;height: 70px;resize: none;overflow: hidden;" placeholder="Career goals: short-term, long-term">@item.Content.Career_goal</p>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="section profile_user">
+                    <hr>
+                    <h3>PROFILE</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+
+                        @if (item.TypeID == 5)
+                        {
+                            <div class="contact-info input_data" data-id="@item.Id">
+                                <div class="input_data">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E"
+                                         alt="Email">
+                                    <p id="email" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="nhathao212003@gmail.com">@item.Content.Email</p>
+                                </div>
+                                <div class="input_data">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E"
+                                         alt="Phone">
+                                    <p id="phone" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="0326754829">@item.Content.Phone</p>
+                                </div>
+                                <div class="input_data">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E"
+                                         alt="Website">
+                                    <p id="web" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="github.com/Nhathao03">@item.Content.Website</p>
+                                </div>
+                                <div class="input_data">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B1EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"
+                                         alt="Location">
+                                    <p id="address" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Thu Duc, TP. Ho Chi Minh">@item.Content.Address</p>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                </div>
+                <div class="section education">
+                    <hr>
+                    <h3>EDUCATION</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 6)
+                        {
+                            <div class="education-item input_data">
+                                @if (item.Content != null)
+                                {
+                                    for (int i = 0; i < item.Content.Count; i++)
+                                    {
+                                        <div id="" data-id="@item.Id" style="border: none">
+                                            <div class="section_item_education section">
+                                                <button class="add-button" id="add_education">Add</button>
+                                                <button class="delete-button delete-education">Delete</button>
+                                                <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                    <p class="institution" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="School name">@item.Content[i].Institution</p>
+                                                </div>
+                                                <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                    <p class="major" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Courses / Subjects">@item.Content[i].Major</p>
+                                                </div>
+                                                <div class="input_data" style="height: 26px; display: inline; margin-bottom: 5px">
+                                                    <p class="startyear" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;display: inline" placeholder="From">@item.Content[i].StartYear</p>
+                                                    -
+                                                    <p class="endyear" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;display: inline" placeholder="To">@item.Content[i].EndYear</p>
+                                                </div>
+                                                <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                    <p class="grade" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden;" placeholder="Education description">@item.Content[i].Grade</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="section skills">
+                    <hr>
+                    <h3>SKILLS</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 7)
+                        {
+                            <div class="skills input_data">
+                                @for (int i = 0; i < item.Content.Count; i++)
+                                {
+                                    <div id="" data-id="@item.Id">
+                                        <div class="section_item_skill section">
+                                            <button class="add-button" id="add_skill">Add</button>
+                                            <button class="delete-button delete-skill">Delete</button>
+                                            <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                <p class="skill_name" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden; font-weight: bold" placeholder="Skill name">@item.Content[i].Name</p>
+                                            </div>
+                                            <div class="input_data" style="height: 26px; margin-bottom: 5px">
+                                                <p class="skill_description" style="width: 278px;height: 25px;border: none;resize: none;overflow: hidden;" placeholder="Skill description">@item.Content[i].Description</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="section full-width experience_user">
+                <hr />
+                <h3>WORK EXPERIENCE</h3>
+                <hr />
+                @foreach (var item in Model)
+                {
+                    if (item.TypeID == 8)
+                    {
+                        @for (int i = 0; i < item.Content.Count; i++)
+                        {
+                            <div id="" data-id="@item.Id">
+                                <div class="section_item_experience section" id="experience_0">
+                                    <button class="add-button" id="add_experience">Add</button>
+                                    <button class="delete-button delete-experience">Delete</button>
+                                    <div class="timeline-item input_data">
+                                        <div class="time" style="width: 250px">
+                                            <p class="start_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;display: inline" placeholder="From">@item.Content[i].StartDate</p>
+                                            -
+                                            <p class="end_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;display: inline" placeholder="To">@item.Content[i].EndDate</p>
+                                        </div>
+                                        <p class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name">@item.Content[i].Company</p>
+                                        <div class="experience ">
+                                            <p class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</p>
+                                            @for (int j = 0; j < item.Content[i].Responsibilities.Count; j++)
+                                            {
+                                                <p class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities">@item.Content[i].Responsibilities[j]</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+            <div class="section full-width projects">
+                <hr />
+                <h3>PROJECTS</h3>
+                <hr />
+                @foreach (var item in Model)
+                {
+                    if (item.TypeID == 9)
+                    {
+                        @for (int i = 0; i < item.Content.Count; i++)
+                        {
+                            <div id="" data-id="@item.Id">
+                                <div class="section_item_project section" id="project_0">
+                                    <button class="add-button" id="add_project">Add</button>
+                                    <button class="delete-button delete-project">Delete</button>
+                                    <div class="timeline-item input_data">
+                                        <div class="time" style="width: 332px">
+                                            <p class="from_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;display: inline" placeholder="From">@item.Content[i].From</p>
+                                            -
+                                            <p class="to_project" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;display: inline" placeholder="To">@item.Content[i].To</p>
+                                            <p class="project_name" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Project name">@item.Content[i].Project</p>
+                                            <p class="team_size" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Team size">@item.Content[i].Team_size</p>
+                                        </div>
+
+                                        <div class="project" style="margin-top: -104px">
+                                            <p class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</p>
+                                            @for (int j = 0; j < item.Content[i].Description.Count; j++)
+                                            {
+                                                <p class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description">@item.Content[i].Description[j]</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+            <div class="main-content">
+                <!-- Certificates Section -->
+                <div class="section certification">
+                    <hr />
+                    <h3>CERTIFICATIONS</h3>
+                    <hr />
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 10)
+                        {
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="" data-id="@item.Id">
+                                    <div class="section_item_certification section" id="certification_0">
+                                        <button class="add-button" id="add_certification">Add</button>
+                                        <button class="delete-button delete-certification">Delete</button>
+                                        <div class="certificate-item input_data" id="certification_0">
+                                            <p class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time">@item.Content[i].Year</p>
+                                            <p class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name">@item.Content[i].Name</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+
+                <!-- Activities Section -->
+                <div class="section activity">
+                    <hr />
+                    <h3>ACTIVITES</h3>
+                    <hr />
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 11)
+                        {
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="" data-id="@item.Id">
+                                    <div class="section_item_activity section" id="activity_0">
+                                        <button class="add-button" id="add_activity">Add</button>
+                                        <button class="delete-button delete-activity">Delete</button>
+                                        <div class="activity-item input_data">
+                                            <div class="time" style="width: 250px">
+                                                <p class="start_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden; display: inline" placeholder="From">@item.Content[i].StartDate</p>
+                                                -
+                                                <p class="end_activity" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;display: inline" placeholder="To">@item.Content[i].EndDate</p>
+                                            </div>
+                                            <p class="activity_name" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Orgazination Name">@item.Content[i].Activity</p>
+                                            <p class="position_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Position">@item.Content[i].Position</p>
+                                            @for (int j = 0; j < item.Content[i].Description.Count; j++)
+                                            {
+                                                <p class="description_activity" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Activity description">@item.Content[i].Description[j]</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="section honor_award">
+                    <hr>
+                    <h3>HONOR & AWARDS</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 12)
+                        {
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="" data-id="@item.Id">
+                                    <div class="section_item_honoraward section" id="honoraward_0">
+                                        <button class="add-button" id="add_honoraward">Add</button>
+                                        <button class="delete-button delete-honoraward">Delete</button>
+                                        <div class="award-item input_data">
+                                            <p class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time">@item.Content[i].Year</p>
+                                            <p class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name">@item.Content[i].Name</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    }
+                </div>
+
+                <div class="section interest">
+                    <hr>
+                    <h3>INTERESTS</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 13)
+                        {
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="" data-id="@item.Id">
+                                    <div class="section_item_interest section" id="interest_0">
+                                        <button class="add-button" id="add_interest">Add</button>
+                                        <button class="delete-button delete-interest">Delete</button>
+                                        <div class="favorite input_data">
+                                            <p class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest">@item.Content[i].Description</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="section additional_information">
+                    <hr>
+                    <h3>ADDITIONAL INFORMATION</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 17)
+                        {
+                            <div class="additional-item input_data" id="additional_infor_0" data-id="@item.Id">
+                                <p id="description_refer" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in additional information">@item.Content.Description</p>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="section references">
+                    <hr>
+                    <h3>REFERENCES</h3>
+                    <hr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TypeID == 14)
+                        {
+                            @for (int i = 0; i < item.Content.Count; i++)
+                            {
+                                <div id="" data-id="@item.Id">
+                                    <div class="section_item_refer section" id="refer_0">
+                                        <button class="add-button" id="add_refer">Add</button>
+                                        <button class="delete-button delete-refer">Delete</button>
+                                        <div class="refer input_data">
+                                            <p id="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information">@item.Content[i].Description</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

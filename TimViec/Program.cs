@@ -25,7 +25,7 @@ builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
- 
+
 builder.Services.AddScoped<ICompanyRespository, EFCompanyRespository>();
 builder.Services.AddScoped<IJobRespository, EFJobRespository>();
 builder.Services.AddScoped<IStatusRepository, EFStatusJobRepository>();
