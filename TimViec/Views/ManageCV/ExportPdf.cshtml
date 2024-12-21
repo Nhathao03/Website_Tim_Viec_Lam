@@ -1,9 +1,5 @@
 ﻿@model List<TimViec.ViewModel.Get_CV_ByCvid_ViewModelResult>
 
-@{
-    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
-}
-
 <div class="cv-container" id="pdfRender">
     <link rel="stylesheet" href="https://localhost:7015/CV/style_template/style1.css">
     <div class="resume" style="background-image: url('/CV/background_image/@ViewBag.Background');">
@@ -19,7 +15,7 @@
                             if (item.Content.Url != null)
                             {
                                 <div class="profile-container" data-id="@item.Id">
-                                    <img style="height: 217px; border-radius: 50%;" src="../../CV/image_user/@item.Content.Url" alt="Profile Picture" id="profileImage">
+                                    <img style="height: 217px; border-radius: 50%; width:247px" src="https://localhost:7015/CV/image_user/@item.Content.Url" alt="Profile Picture" id="profileImage">
                                 </div>
                             }
                             else
@@ -59,9 +55,9 @@
             </div>
             <div class="main-content">
                 <div class="section profile_user">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>PROFILE</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
 
@@ -70,19 +66,19 @@
                             <div class="contact-info input_data" data-id="@item.Id">
                                 <div class="input_data">
                                     <i class="fa fa-envelope-o"></i>
-                                    <p id="email" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="nhathao212003@gmail.com">&nbsp;@item.Content.Email</p>
+                                    <p id="email" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden; margin:0" placeholder="nhathao212003@gmail.com">&nbsp;@item.Content.Email</p>
                                 </div>
                                 <div class="input_data">
                                     <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <p id="phone" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="0326754829">&nbsp;@item.Content.Phone</p>
+                                    <p id="phone" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;margin:0" placeholder="0326754829">&nbsp;@item.Content.Phone</p>
                                 </div>
                                 <div class="input_data">
                                     <i class="fa fa-github" aria-hidden="true"></i>
-                                    <p id="web" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="github.com/Nhathao03">&nbsp;@item.Content.Website</p>
+                                    <p id="web" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;margin:0" placeholder="github.com/Nhathao03">&nbsp;@item.Content.Website</p>
                                 </div>
                                 <div class="input_data">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    <p id="address" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Thu Duc, TP. Ho Chi Minh">&nbsp;@item.Content.Address</p>
+                                    <p id="address" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;margin:0" placeholder="Thu Duc, TP. Ho Chi Minh">&nbsp;@item.Content.Address</p>
                                 </div>
                             </div>
                         }
@@ -90,9 +86,9 @@
                     }
                 </div>
                 <div class="section education">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>EDUCATION</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
                         if (item.TypeID == 6)
@@ -129,9 +125,9 @@
                     }
                 </div>
                 <div class="section skills">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>SKILLS</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
                         if (item.TypeID == 7)
@@ -158,9 +154,9 @@
                 </div>
             </div>
             <div class="section full-width experience_user">
-                <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                <hr style="margin-top: 12px; margin-bottom: 12px" />
                 <h3>WORK EXPERIENCE</h3>
-                <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                <hr style="margin-top: 12px; margin-bottom: 12px" />
                 @foreach (var item in Model)
                 {
                     if (item.TypeID == 8)
@@ -178,7 +174,7 @@
                                             <p class="end_experience" style="width: 80px; height: 25px; border: none;resize: none;overflow: hidden;display: inline" placeholder="To">@item.Content[i].EndDate</p>
                                         </div>
                                         <p class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name">@item.Content[i].Company</p>
-                                        <div class="experience" style="margin-top: -55px !important">
+                                        <div class="experience" style="margin-top: -73px !important">
                                             <p class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</p>
                                             @for (int j = 0; j < item.Content[i].Responsibilities.Count; j++)
                                             {
@@ -193,9 +189,9 @@
                 }
             </div>
             <div class="section full-width projects">
-                <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                <hr style="margin-top: 12px; margin-bottom: 12px" />
                 <h3>PROJECTS</h3>
-                <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                <hr style="margin-top: 12px; margin-bottom: 12px" />
                 @foreach (var item in Model)
                 {
                     if (item.TypeID == 9)
@@ -215,7 +211,7 @@
                                             <p class="team_size" style="width: 332px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Team size">@item.Content[i].Team_size</p>
                                         </div>
 
-                                        <div class="project" style="margin-top: -86px">
+                                        <div class="project" style="margin-top: -104px">
                                             <p class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</p>
                                             @for (int j = 0; j < item.Content[i].Description.Count; j++)
                                             {
@@ -232,9 +228,9 @@
             <div class="main-content">
                 <!-- Certificates Section -->
                 <div class="section certification">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>CERTIFICATIONS</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
                         if (item.TypeID == 10)
@@ -246,8 +242,8 @@
                                         <button class="add-button" id="add_certification">Add</button>
                                         <button class="delete-button delete-certification">Delete</button>
                                         <div class="certificate-item input_data" id="certification_0">
-                                            <p class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time">@item.Content[i].Year</p>
-                                            <p class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name">@item.Content[i].Name</p>
+                                            <p class="year_certification" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Time">@item.Content[i].Year</p>
+                                            <p class="name_certification" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name">@item.Content[i].Name</p>
                                         </div>
                                     </div>
                                 </div>
@@ -258,9 +254,9 @@
 
                 <!-- Activities Section -->
                 <div class="section activity">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>ACTIVITES</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
                         if (item.TypeID == 11)
@@ -293,9 +289,9 @@
             </div>
             <div class="main-content">
                 <div class="section honor_award">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>HONOR & AWARDS</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
                         if (item.TypeID == 12)
@@ -307,8 +303,8 @@
                                         <button class="add-button" id="add_honoraward">Add</button>
                                         <button class="delete-button delete-honoraward">Delete</button>
                                         <div class="award-item input_data">
-                                            <p class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time">@item.Content[i].Year</p>
-                                            <p class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name">@item.Content[i].Name</p>
+                                            <p class="year_honor" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Time">@item.Content[i].Year</p>
+                                            <p class="name_honor" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name">@item.Content[i].Name</p>
                                         </div>
                                     </div>
                                 </div>
@@ -319,9 +315,9 @@
                 </div>
 
                 <div class="section interest">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>INTERESTS</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
                         if (item.TypeID == 13)
@@ -333,7 +329,7 @@
                                         <button class="add-button" id="add_interest">Add</button>
                                         <button class="delete-button delete-interest">Delete</button>
                                         <div class="favorite input_data">
-                                            <p class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest">@item.Content[i].Description</p>
+                                            <p class="description_interest" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest">@item.Content[i].Description</p>
                                         </div>
                                     </div>
                                 </div>
@@ -344,24 +340,24 @@
             </div>
             <div class="main-content">
                 <div class="section additional_information">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>ADDITIONAL INFORMATION</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
                         if (item.TypeID == 17)
                         {
                             <div class="additional-item input_data" id="additional_infor_0" data-id="@item.Id">
-                                <p id="description_refer" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in additional information">@item.Content.Description</p>
+                                <p id="description_refer" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in additional information">@item.Content.Description</p>
                             </div>
                         }
                     }
                 </div>
 
                 <div class="section references">
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     <h3>REFERENCES</h3>
-                    <hr style="margin-top: 12px; margin-bottom: 12px"/>
+                    <hr style="margin-top: 12px; margin-bottom: 12px" />
                     @foreach (var item in Model)
                     {
                         if (item.TypeID == 14)
@@ -373,7 +369,7 @@
                                         <button class="add-button" id="add_refer">Add</button>
                                         <button class="delete-button delete-refer">Delete</button>
                                         <div class="refer input_data">
-                                            <p id="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information">@item.Content[i].Description</p>
+                                            <p id="description_infor" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information">@item.Content[i].Description</p>
                                         </div>
                                     </div>
                                 </div>
@@ -387,26 +383,3 @@
 </div>
 
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('.renderPdf').click(function () {
-                // Select all div elements with id="pdfRender"
-                const pdfRenderDivs = document.querySelectorAll('div#pdfRender');
-
-                // Convert their HTML content into a string
-                const contentStrings = Array.from(pdfRenderDivs).map(div => div.outerHTML);
-
-                // Combine all strings if needed (optional)
-                const allContentString = contentStrings.join('\n');
-
-                window.location.href = '/ManageCV/GeneratePdf?html=' + allContentString;
-
-            });
-
-           
-        });
-
-    </script>
-
-}

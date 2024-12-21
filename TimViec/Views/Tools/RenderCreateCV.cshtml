@@ -83,7 +83,7 @@
         <option value="#0f0">Green</option>
     </select>
     <div class="controls">
-        <button class="buttonclick button2" id="" asp-action="GeneratePdf" asp-controller="Tools" asp-area="">Save and Download</button>
+        <button class="buttonclick button2" id="" asp-action="GeneratePdf" asp-controller="ManageCV" asp-area="">Save and Download</button>
         <button class="buttonclick button1 save_cv">Save</button>
     </div>
 </nav>
@@ -277,7 +277,7 @@
                                             <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</textarea>
                                             @for (int j = 0; j < item.Content[i].Responsibilities.Count; j++)
                                             {
-                                                <textarea class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities">@item.Content[i].Responsibilities[j]</textarea>
+                                                <textarea class="responsibilities" style="border:none;width: 534px; height:87px;resize: none;overflow: hidden; " placeholder="Responsibilities">@item.Content[i].Responsibilities[j]</textarea>
                                             }
                                         </div>
                                     </div>
@@ -314,7 +314,7 @@
                                             <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</textarea>
                                             @for (int j = 0; j < item.Content[i].Description.Count; j++)
                                             {
-                                                <textarea class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description">@item.Content[i].Description[j]</textarea>
+                                                <textarea class="description_project" style="border:none;width: 534px; height:87px;resize: none;overflow: hidden; " placeholder="Description">@item.Content[i].Description[j]</textarea>
                                             }
                                         </div>
                                     </div>
@@ -485,18 +485,6 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            //Function change color CV
-            const colorPicker = document.getElementById('colorPicker');
-            const hrElements = document.querySelectorAll('hr');
-
-            colorPicker.addEventListener('change', () => {
-                const selectedColor = colorPicker.value;
-                hrElements.forEach(hr => {
-                    hr.style.borderColor = selectedColor;
-                });
-            });
-            // *******************************************************************************************
-
             let educationCounter = 1;
             //Add new item education
             $('#add_education').click(function () {
@@ -583,7 +571,7 @@
                                                                                                                                                <textarea class="company_name" style="width: 280px; height: 25px; border: none;resize: none;overflow: hidden; margin-top:5px" placeholder="Company name"></textarea>
                                                                                                                                        <div class="experience ">
                                                                                                                                                    <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
-                                                                                                                                                   <textarea class="responsibilities" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Responsibilities"></textarea>
+                                                                                                                                                   <textarea class="responsibilities" style="border:none;width: 534px; height:87px;resize: none;overflow: hidden; " placeholder="Responsibilities"></textarea>
                                                                                                                                        </div>
                                                                                                                                     </div>
                                                                                                                                 </div>
@@ -621,7 +609,7 @@
 
                                                                                                                                            <div class="experience" style="margin-top: -104px">
                                                                                                                                                        <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
-                                                                                                                                                       <textarea class="description_project" style="border:none;width: 534px; height:25px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
+                                                                                                                                                       <textarea class="description_project" style="border:none;width: 534px; height:87px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
                                                                                                                                            </div>
                                                                                                                                        </div>
                                                                                                                                     </div>
@@ -649,8 +637,8 @@
                 const certificationHtml = `
                                                                                                                                 <div class="section_item_certification section sectioncertification" id="certification_${certificationCounter}">
                                                                                                                             <div class="certificate-item input_data">
-                                                                                                                                        <textarea class="year_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
-                                                                                                                                <textarea class="name_certification" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name"></textarea>
+                                                                                                                                                <textarea class="year_certification" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
+                                                                                                                                        <textarea class="name_certification" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Certification Name"></textarea>
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                         `;
@@ -713,8 +701,8 @@
                 const honorawadHtml = `
                                                                                                                 <div class="section_item_honoraward section sectionhonoraward" id="honoraward_${honorawardCounter}">
                                                                                                              <div class="award-item input_data">
-                                                                                                                        <textarea class="year_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
-                                                                                                                        <textarea class="name_honor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name"></textarea>
+                                                                                                                        <textarea class="year_honor" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Time"></textarea>
+                                                                                                                                <textarea class="name_honor" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Award Name"></textarea>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         `;
@@ -741,7 +729,7 @@
                 const interestHtml = `
                                                                                                          <div class="section_item_interest section sectioninterest" id="interest_${interestCounter}">
                                                                                                                                             <div class="favorite input_data">
-                                                                                                                                        <textarea class="description_interest" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest"></textarea>
+                                                                                                                                                <textarea class="description_interest" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Fill in your interest"></textarea>
                                                                                                                             </div>
                                                                                                                                 </div>
                                                                                                                                 `;
@@ -768,7 +756,7 @@
                 const referHtml = `
                                                                                                                  <div class="section_item_refer sectionrefer section" id="refer_${referenceCounter}">
                                                                                                                                                            <div class="refer input_data">
-                                                                                                                                    <textarea class="description_infor" style="border: none; width: 250px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information"></textarea>
+                                                                                                                                            <textarea class="description_infor" style="border: none; width: 440px; height: 25px;resize: none;overflow: hidden;" placeholder="Reference information includeing name, title and contact information"></textarea>
                                                                                                                         </div>
                                                                                                                                         </div>
                                                                                                                                         `;

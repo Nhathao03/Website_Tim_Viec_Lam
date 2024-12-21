@@ -107,22 +107,39 @@ namespace TimViec.Controllers
                         // serilize object
                         // insert to database
                         var templateSectionAvatar = await _sectionRespository.GetByIdAsync(request.Avatar.SectionID);
-                        var insertAvatar = new SectionAvatarInsert()
+                        if(request.Avatar.Url  != null)
                         {
-                            Url = request.Avatar.Url
-                        };
-                        var insertAvatarSer = JsonConvert.SerializeObject(insertAvatar);
-                        var sectionAvatar = new Sections()
-                        {
-                            ContentJson = insertAvatarSer,
-                            cvId = newCV.Id,
-                            Name = templateSectionAvatar.Name,
-                            Order = templateSectionAvatar.Order,
-                            StyleJson = templateSectionAvatar.StyleJson,
-                            TypeSectionId = templateSectionAvatar.TypeSectionId
-                        };
+                            var insertAvatar = new SectionAvatarInsert()
+                            {
+                                Url = request.Avatar.Url
+                            };
+                            var insertAvatarSer = JsonConvert.SerializeObject(insertAvatar);
+                            var sectionAvatar = new Sections()
+                            {
+                                ContentJson = insertAvatarSer,
+                                cvId = newCV.Id,
+                                Name = templateSectionAvatar.Name,
+                                Order = templateSectionAvatar.Order,
+                                StyleJson = templateSectionAvatar.StyleJson,
+                                TypeSectionId = templateSectionAvatar.TypeSectionId
+                            };
 
-                        await _sectionRespository.AddAsync(sectionAvatar);
+                            await _sectionRespository.AddAsync(sectionAvatar);
+                        }
+                        else
+                        {
+                            var sectionAvatar = new Sections()
+                            {
+                                ContentJson = templateSectionAvatar.ContentJson,
+                                cvId = newCV.Id,
+                                Name = templateSectionAvatar.Name,
+                                Order = templateSectionAvatar.Order,
+                                StyleJson = templateSectionAvatar.StyleJson,
+                                TypeSectionId = templateSectionAvatar.TypeSectionId
+                            };
+
+                            await _sectionRespository.AddAsync(sectionAvatar);
+                        }
                         // End Insert Section Avatar
 
                         //************************************************************************************************************************************
@@ -504,7 +521,7 @@ namespace TimViec.Controllers
             {
                 await image.CopyToAsync(fileStream);
             }
-            return "CV/image_user/" + image.FileName;
+            return image.FileName;
         }
 
         [HttpPost]

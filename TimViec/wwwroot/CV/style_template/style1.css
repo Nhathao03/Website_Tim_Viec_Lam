@@ -1,5 +1,4 @@
-﻿
-.contentdata {
+﻿.contentdata {
     justify-self: center;
     margin-top: 20px;
 }
@@ -115,7 +114,7 @@ h3 {
 }
 
 hr {
-    border: 1px solid #00B1EA;
+    border: 1px solid black;
 }
 
 .full-width {
@@ -224,55 +223,64 @@ hr {
 #educationList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #skillList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #experienceList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom:0;
+    margin-bottom: 0;
 }
 
 #projectList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #certificationList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #activityList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #honorawardList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #interestList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #referList {
     position: relative;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .add-button {

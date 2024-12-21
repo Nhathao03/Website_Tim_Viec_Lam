@@ -47,7 +47,6 @@
         public string? Position { get; set; }
         public string? StartDate { get; set; }
         public string? EndDate { get; set; }
-
         public List<string>? Responsibilities { get; set; }
     }
     public class SectionProjectInsert
