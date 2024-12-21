@@ -24,17 +24,6 @@
             color: white;
         }
 
-    .button2 {
-        background-color: white;
-        color: black;
-        border: 2px solid #008CBA;
-    }
-
-        .button2:hover {
-            background-color: #008CBA;
-            color: white;
-        }
-
     .profile-container {
         position: relative;
         width: 200px;
@@ -76,14 +65,7 @@
 
 <nav class="navbar" style="border: 1px solid #e8e8e8;margin-top: 22px;">
     <input type="text" class="cv-title" placeholder="CV unnamed">
-    <select class="control-item" id="colorPicker">
-        <option value="#000">Black</option>
-        <option value="#f00">Red</option>
-        <option value="#00f">Blue</option>
-        <option value="#0f0">Green</option>
-    </select>
     <div class="controls">
-        <button class="buttonclick button2" id="" asp-action="GeneratePdf" asp-controller="ManageCV" asp-area="">Save and Download</button>
         <button class="buttonclick button1 save_cv">Save</button>
     </div>
 </nav>
@@ -277,7 +259,7 @@
                                             <textarea class="position_experience" style="border:none; width: 327px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position">@item.Content[i].Position</textarea>
                                             @for (int j = 0; j < item.Content[i].Responsibilities.Count; j++)
                                             {
-                                                <textarea class="responsibilities" style="border:none;width: 534px; height:87px;resize: none;overflow: hidden; " placeholder="Responsibilities">@item.Content[i].Responsibilities[j]</textarea>
+                                                <textarea class="responsibilities" style="border:none;width: 534px; height:60px;resize: none;overflow: hidden; " placeholder="Responsibilities">@item.Content[i].Responsibilities[j]</textarea>
                                             }
                                         </div>
                                     </div>
@@ -609,7 +591,7 @@
 
                                                                                                                                            <div class="experience" style="margin-top: -104px">
                                                                                                                                                        <textarea class="position_project" style="border:none; width: 534px; height: 25px ;resize: none;overflow: hidden; font-weight:bold" placeholder="Position"></textarea>
-                                                                                                                                                       <textarea class="description_project" style="border:none;width: 534px; height:87px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
+                                                                                                                                                       <textarea class="description_project" style="border:none;width: 534px; height:60px;resize: none;overflow: hidden; " placeholder="Description"></textarea>
                                                                                                                                            </div>
                                                                                                                                        </div>
                                                                                                                                     </div>

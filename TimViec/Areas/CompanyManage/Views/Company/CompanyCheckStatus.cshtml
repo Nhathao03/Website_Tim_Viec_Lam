@@ -39,15 +39,15 @@
                                 <td><img style="width: 200px" src="~/@item.imgCV" /></td>
                                 <td>@item.Note</td>
                                 <td>
-                                    @if (@item.Statusname == "Từ chối")
+                                    @if (@item.Statusname == "Decline")
                                     {
                                         <div style="height: auto; width: 100%; background-color: indianred; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
                                     }
-                                    else if (item.Statusname == "Đang chờ duyệt")
+                                    else if (item.Statusname == "Waiting")
                                     {
                                         <div style="height: auto; width: 100%; background-color: cornflowerblue; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
                                     }
-                                    else if (item.Statusname == "Đã duyệt")
+                                    else if (item.Statusname == "Accepted")
                                     {
                                         <div style="height: auto; width: 100%; background-color: lightgreen; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
                                     }

@@ -42,9 +42,9 @@ namespace TimViec.Respository
             var result = from j in _context.Jobs
                          join c in _context.Companies on j.CompanyID equals c.Id
                          join ct in _context.Cities on c.CityID equals ct.Id
-                         where (id != 0 && ct.Id == id) 
-                         && ((!string.IsNullOrEmpty(stringsearch) && j.Title.Contains(stringsearch))
-                         || (!string.IsNullOrEmpty(stringsearch) && c.Name_company.Contains(stringsearch)))
+                         where (id != 0 && ct.Id == id) && (!string.IsNullOrEmpty(stringsearch) && j.Title.Contains(stringsearch)) //CITY AND STRING SEARCH
+                         ||(id == 0) && (!string.IsNullOrEmpty(stringsearch) && j.Title.Contains(stringsearch))  //CITY NULL AND STRING NOT NULL
+                         ||(id != 0 && ct.Id == id) && (string.IsNullOrEmpty(stringsearch))
 						 select new SearchViewModel
                          {  
                              Id = j.Id,

@@ -71,13 +71,14 @@ namespace TimViec.Repository
         }
         public List<Get_template_by_category_ViewModel> Get_Template_By_Categories(int category_Id)
         {
-            var result = from t in _context.template
-                         where(t.TypeID.Equals(category_Id))
+            var result = from type in _context.types
+                         join tem in _context.template on type.Id equals tem.TypeID
+                         where(type.Id.Equals(category_Id))
                          select new Get_template_by_category_ViewModel
                          {
-                             Id = t.Id,
-                             Image = t.ImagePath,
-                             Category = t.Name,
+                             Id = tem.Id,
+                             Image = tem.ImagePath,
+                             Category = type.Name,
                          };
             return result.ToList();
         }

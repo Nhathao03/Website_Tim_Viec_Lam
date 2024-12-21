@@ -98,8 +98,7 @@ namespace TimViec.Areas.CompanyManage.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit_company(Company company, IFormFile Image, IFormFile Image_background1, IFormFile Image_background2, IFormFile Image_background3)
         {
-            //var user = await _userManagers.GetUserAsync(User);
-            //var result = await _companyRepository.GetByEmailAsync(user.Email);
+            var getCompanybyID = await _companyRepository.GetByIdAsync(company.Id);
             if (Image != null)
             {
                 company.Image = await SaveImageEdit(Image);
@@ -107,10 +106,13 @@ namespace TimViec.Areas.CompanyManage.Controllers
                 company.Image_background2 = await SaveImageEdit(Image_background2);
                 company.Image_background3 = await SaveImageEdit(Image_background3);
             }
-            //else
-            //{
-            //    company.Image = result.Image;
-            //}
+            else
+            {
+                company.Image = getCompanybyID.Image;
+				company.Image_background1 = getCompanybyID.Image_background1;
+				company.Image_background2 = getCompanybyID.Image_background2;
+				company.Image_background3 = getCompanybyID.Image_background3;
+			}
 
             await _companyRepository.UpdateAsync(company);
             await Task.Delay(2000);
@@ -455,7 +457,7 @@ namespace TimViec.Areas.CompanyManage.Controllers
                                  .Replace("{{CompanyName}}", company.Name_company)
 								 .Replace("{{Email}}", user.Email);
 
-			var result = await SendMail.SendGmail(data.From, data.To, data.Subject, data.Body, "nhathaoha11@gmail.com", "gheh wppp gokl rmrn");
+			var result = await SendMail.SendGmail(data.From, data.To, data.Subject, data.Body, "nhathaoha11@gmail.com", "yjjn nujh ypus jaqo");
 
 			return RedirectToAction(nameof(CompanyCheckStatus)); ;
 		}

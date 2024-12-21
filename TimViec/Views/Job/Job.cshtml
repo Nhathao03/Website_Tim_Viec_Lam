@@ -8,6 +8,8 @@
 		background-color: #c3c3c3;
 	}
 </style>
+
+<link rel="stylesheet" href="../../css/informfollow.css">
 <!--welcome-hero start -->
 <section id="home" class="welcome-hero" style="height: 220px;">
 	<div class="container">
@@ -98,6 +100,17 @@
 						</div>
 					</div>
 				}
+				<div id="notification" class="notification hidden">
+					<div class="notification-content">
+						<span class="check-icon">✔</span>
+						<p id="follow">
+							You are following
+							<br />
+						<p id="display_name_follow"></p>
+						</p>
+					</div>
+					<div class="progress-bar1"></div>
+				</div>
 			</div>
 		</div>
 	</div><!--/.container-->
@@ -116,6 +129,52 @@
 				{
 					window.location.href = '/Search/Search?stringSearch=' + strSearch + '&id=' + city_id;
 				}
+			})
+			//Add favourite job
+			$('.favourite_job').click(function () {
+				const getID_Job = $(this).attr("id_jobfv");
+				$.ajax({
+					url: '/Job/Favourite_Job',
+					type: 'POST',
+					dataType: 'json',
+					data: { id: getID_Job },
+					success: function (result) {
+						if (result.success) {
+							const notification = document.getElementById('notification');
+
+							// Show notification
+							notification.classList.remove('hidden');
+							notification.classList.add('show');
+							document.getElementById("display_name_follow").innerHTML = result.result;
+
+							// Hide notification after 5 seconds
+							setTimeout(() => {
+								notification.classList.remove('show');
+								notification.classList.add('hidden');
+							}, 3000); // 5 seconds
+						}
+						else {
+
+							const notification = document.getElementById('notification');
+
+							// Show notification
+							notification.classList.remove('hidden');
+							document.getElementById("follow").innerHTML = "Job is already marked as favorite.";
+							notification.classList.add('show');
+
+							// Hide notification after 5 seconds
+							setTimeout(() => {
+								notification.classList.remove('show');
+								notification.classList.add('hidden');
+							}, 3000); // 5 seconds
+						}
+
+
+					},
+					error: function (xhr, status, error) {
+						alert("An error eccorred: " + error);
+					}
+				})
 			})
 		});
 	</script>

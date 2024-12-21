@@ -324,7 +324,7 @@ namespace TimViec.Areas.Admin.Controllers
             data.Body = data.Body.Replace("{{UserName}}", getNameUser.Name)
                                  .Replace("{{Note}}", getNameUser.Note);
 
-            var result = await SendMail.SendGmail(data.From, data.To, data.Subject, data.Body, "nhathaoha11@gmail.com", "gheh wppp gokl rmrn");
+            var result = await SendMail.SendGmail(data.From, data.To, data.Subject, data.Body, "nhathaoha11@gmail.com", "yjjn nujh ypus jaqo");
             return RedirectToAction(nameof(Getfeedback)); ;
         }
 

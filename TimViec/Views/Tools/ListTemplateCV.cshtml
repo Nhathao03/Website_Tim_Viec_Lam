@@ -50,30 +50,7 @@
                 </div>
             </div>
         </div><!--/.container-->
-    </section><!--/.explore-->
-    <!-- Popup Preview -->
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <div class="cv-preview">
-                <div class="cv-left">
-                    <img src="../../CV/background_image/delicate_2_v2.png"  />
-                </div>
-                <div class="cv-right">
-                    <h4>Thông tin</h4>
-                    <ul>
-                        <li><strong>Điện thoại:</strong> 024-6860-5588</li>
-                        <li><strong>Email:</strong> hotro@topcv.vn</li>
-                        <li><strong>Địa chỉ:</strong> Quận A, Hà Nội</li>
-                    </ul>
-                    <h4>Học vấn</h4>
-                    <p>Đại học TOPCV, 2016 - 2020</p>
-                    <button class="btn-use">Use this template</button>
-                </div>
-            </div>
-           
-        </div>
-    </div>
+    </section><!--/.explore--> 
 </div>
 
 <script>
@@ -91,18 +68,7 @@
         $(document).ready(function () {
             $('#select_category').change(function () {
                 const get_Category_ID = $(this).find(':selected').attr('category_id');
-                debugger;
-                $.ajax({
-                    url: '/Tools/Get_template_by_category',
-                    type: 'GET',
-                    data: { category_id : get_Category_ID},
-                    success: function () {
-                        console.log('success');
-                    },
-                    error: function (xhr, status, error) {
-                        alert("An error occurred: " + error);
-                    }
-                })
+                window.location.href = '/Tools/Gettemplatebycategory?category_id=' + get_Category_ID;
             })
 
         })

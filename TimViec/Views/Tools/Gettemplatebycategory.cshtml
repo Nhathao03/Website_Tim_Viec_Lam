@@ -20,11 +20,16 @@
 <div class="container">
     <div class="header" style="margin-top: 15px">
         <div class="filters">
-            <select id="style" style="width: 170px;height: 35px;border-radius: 5px; color: black">
-                @foreach (var item in Model)
-                {
-                    <option class="@("Category_Id" + item.Id)" class="select_category" category_id="@item.Id">@item.Category</option>
-                }
+            <select id="style" class="select_category" style="width: 170px;height: 35px;border-radius: 5px; color: black">
+                <option value="3">Simple</option>
+                <option value="4">Elegant</option>
+                <option value="5">Experience</option>
+                <option value="6">Creative</option>
+                <option value="7">Professional</option>
+                <option value="8">Impression</option>
+                <option value="9">Modern</option>
+                <option value="10">Technology</option>
+                <option value="11">ATS</option>
             </select>
         </div>
     </div>
@@ -67,29 +72,6 @@
             </div>
         </div><!--/.container-->
     </section><!--/.explore-->
-    <!-- Popup Preview -->
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <div class="cv-preview">
-                <div class="cv-left">
-                    <img src="../../CV/background_image/delicate_2_v2.png" />
-                </div>
-                <div class="cv-right">
-                    <h4>Thông tin</h4>
-                    <ul>
-                        <li><strong>Điện thoại:</strong> 024-6860-5588</li>
-                        <li><strong>Email:</strong> hotro@topcv.vn</li>
-                        <li><strong>Địa chỉ:</strong> Quận A, Hà Nội</li>
-                    </ul>
-                    <h4>Học vấn</h4>
-                    <p>Đại học TOPCV, 2016 - 2020</p>
-                    <button class="btn-use">Use this template</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
 </div>
 
 <script>
@@ -106,17 +88,8 @@
     <script>
         $(document).ready(function () {
             $('.select_category').change(function () {
-                const get_Category_ID = $(this).attr("category_id");
-                debugger;
-                $ajax({
-                    url: '/Tools/Get_template_by_category',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: { category_id: get_Category_ID },
-                    success: function (result) {
-
-                    }
-                })
+                let id = $('.select_category').find(':selected').val();
+                window.location.href = '/Tools/Gettemplatebycategory?category_id=' + id;
             })
         })
     </script>

@@ -24,17 +24,6 @@
             color: white;
         }
 
-    .button2 {
-        background-color: white;
-        color: black;
-        border: 2px solid #008CBA;
-    }
-
-        .button2:hover {
-            background-color: #008CBA;
-            color: white;
-        }
-
     .profile-container {
         position: relative;
         width: 200px;
@@ -77,7 +66,6 @@
 <nav class="navbar" style="border: 1px solid #e8e8e8;margin-top: 22px;">
     <textarea style="height:36px; resize: none;overflow: hidden;" type="text" class="cv-title" placeholder="CV unnamed">@Model.Select(x => x.NameCV).First()</textarea>
     <div class="controls">
-        <button class="buttonclick button2" id="" asp-action="GeneratePdf" asp-controller="Tools" asp-area="">Save and Download</button>
         <button class="buttonclick button1 save_cv">Save</button>
     </div>
 </nav>
