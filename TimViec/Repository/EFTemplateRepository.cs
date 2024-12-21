@@ -45,6 +45,7 @@ namespace TimViec.Repository
             var result = from cv in _context.cv
                          join tem in _context.template on cv.templateId equals tem.Id
                          join typeCV in _context.types on tem.TypeID equals typeCV.Id
+                         where cv.IsDefault == false
                          select new GetAllTemplate_ViewModel
                          {
                              CV_Id = cv.Id,

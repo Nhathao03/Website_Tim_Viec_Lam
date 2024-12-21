@@ -48,15 +48,35 @@ namespace TimViec.Respository
                          {
                              Id = section.Id,
                              UserID = CV.UserID,
+                             CViD = CV.Id,
                              Title = CV.Title,
                              TypeName = typeSec.Name,
                              ContentJson = section.ContentJson,
                              StyleJson = section.StyleJson,
                              ImagePath = tem.ImagePath,
                              TypeID = typeSec.Id,
+                             Background = tem.HtmlTemplate,
+                             NameCV = CV.Title,
                          };
             return result.ToList();
         }
 
-	}
+        //USER USE
+        public List<ManageCVofUser> ManageCV(string id)
+        {
+            var result = from cv in _context.cv
+                         join tem in _context.template on cv.templateId equals tem.Id
+                         join typeCV in _context.types on tem.TypeID equals typeCV.Id
+                         where cv.IsDefault == true && cv.UserID == id
+                         select new ManageCVofUser
+                         {
+                             Id = cv.Id,
+                             NameCV = cv.Title,
+                             CreatedAt = cv.CreateAt,
+                             UpdatedAt = cv.UpdateAt,
+                         };
+            return result.ToList();
+        }
+
+    }
 }

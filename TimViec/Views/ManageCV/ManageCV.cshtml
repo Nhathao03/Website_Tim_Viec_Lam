@@ -1,0 +1,88 @@
+﻿ @model List<TimViec.ViewModel.ManageCVofUser>
+@{
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+<link rel="stylesheet" href="../../CV/Manage/css/manage.css">
+<div class="container">
+    <div class="header">
+        <h1>CV created in Dev IT</h1>
+        <button class="create-btn create-cv">
+            <i class="fa fa-plus"></i>
+            Create CV
+        </button>
+    </div>
+    <div class="cv-grid">
+        @if (Model != null && Model.Count > 0)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="cv-grid">
+                    <!-- CV Card -->
+                    <div class="cv-card">
+                        <div class="card-header">
+                            <div class="avatar">
+                                <img src="../../CV/Manage/image/robot.jpg" alt="Avatar">
+                            </div>
+                            <button class="main-cv-btn">
+                                <i class="fa fa-star"></i>
+                                Set Key CV
+                            </button>
+                            <div class="cv-info">
+                                <a asp-action="GetCVbyID" asp-controller="ManageCV" asp-area="" asp-route-id="@Model[i].Id">@Model[i].NameCV <i class="fas fa-pen"></i></a>
+                                <!-- Format UpdatedAt as Day-Month-Year Hour:Minute -->
+                                <p>
+                                    Last updated:
+                                    @Model[i].UpdatedAt.AddHours(7).ToString("dd-MM-yyyy HH:mm")
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <div class="left-actions">
+                                <button class="update-cv" id_cv="@Model[i].Id"><i class="fa fa-arrow-up"></i> Update</button>
+                                <button><i class="fa fa-share"></i> Share</button>
+                                <button class="download-cv" id_cv="@Model[i].Id"><i class="fa fa-download"></i> Download</button>
+                            </div>
+                            <button class="delete-btn" cvID ="@Model[i].Id"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No CVs available.</p>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+            $('.create-cv').click(function () {
+                window.location.href = '/Tools/ListTemplateCV';
+			});
+
+            $('.delete-btn').click(function () {
+                const id = $(this).attr("cvID");
+                window.location.href = '/ManageCV/DeleteCV?id=' + id;
+            });
+
+            $('.update-cv').click(function () {
+                const id = $(this).attr("id_cv");
+                window.location.href = '/ManageCV/GetUpdateCV?id=' + id;
+            });
+
+            $('.download-cv').click(function () {
+                const id = $(this).attr("id_cv");
+                window.location.href = '/ManageCV/GetCVAsPdf?id=' + id;
+            });
+
+            
+
+
+		});
+
+	</script>
+
+}

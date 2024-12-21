@@ -98,7 +98,8 @@ namespace TimViec.Controllers
         //***************************************************************************************
         //create applications
         [HttpGet]
-		public async Task<IActionResult> CreateApplication(int id)
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> CreateApplication(int id)
 		{
 			await DisplayDropdown();
 			var user = await _userManager.GetUserAsync(User);
@@ -116,9 +117,9 @@ namespace TimViec.Controllers
 				return View();
 			}		
 		}
-
-		// add status job
-		[HttpPost]
+        [Authorize(Roles = "User")]
+        // add status job
+        [HttpPost]
 		public async Task<IActionResult> CreateApplication(StatusJob statusJob)
 		{
             try

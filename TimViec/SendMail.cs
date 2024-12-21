@@ -22,10 +22,10 @@ namespace TimViec
             message.Sender = new MailAddress(_from);
 
             using var smtpClient = new SmtpClient("smtp.gmail.com");
-            smtpClient.Port = 587;
-            smtpClient.EnableSsl = true;
-            smtpClient.Credentials = new NetworkCredential(_gmail, _password);
+            smtpClient.Port = 587;          
             smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential(_gmail, _password);
+            smtpClient.EnableSsl = true;
             try
             {
                 await smtpClient.SendMailAsync(message);

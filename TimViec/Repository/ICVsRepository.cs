@@ -11,5 +11,6 @@ namespace TimViec.Respository
         Task UpdateAsync(CV cv);
         Task DeleteAsync(int id);
         List<Get_CV_ByCvid_ViewModel> GetTemplates_by_ID_CV(int CV_ID);
+        List<ManageCVofUser> ManageCV(string id);
     }
 }

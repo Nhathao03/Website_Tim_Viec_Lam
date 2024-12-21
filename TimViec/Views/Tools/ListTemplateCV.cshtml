@@ -1,4 +1,4 @@
-﻿ @model List<TimViec.ViewModel.GetAllTemplate_ViewModel>
+﻿@model List<TimViec.ViewModel.GetAllTemplate_ViewModel>
 @{
     Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
@@ -38,22 +38,6 @@
                             <div class="single-explore-item" style="border-radius: 9px">
                                 <div class="single-explore-img" style="border-radius: 9px">
                                     <img style="height: 200px; width: 100%; object-fit: scale-down" src="../../CV/background_image/@item.Image" alt="explore image">
-                                    <div class="single-explore-img-info">
-                                        <div class="single-explore-image-icon-box" style="font-family: Arial">
-                                            <ul>
-                                                <li onclick="openPopup()" style="border-radius: 10px; width: 85px !important; background-color: transparent; ; color: black; cursor: pointer;border: 2px solid #ffffff;">
-                                                    <div class="single-explore-image-icon">
-                                                        <i class="fa fa-eye see_item" id_jobfv="Id"> See</i>
-                                                    </div>
-                                                </li>
-                                                <li style="border-radius: 10px; width: 85px !important; background-color: lightcoral ;color: black; cursor: pointer;">
-                                                    <div class="single-explore-image-icon">
-                                                        <a class="renderCV" id_cv="@item.CV_Id"><i class="use_item">Use</i></a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="single-explore-txt bg-theme-1" style="padding: 5px">
                                     <h2>

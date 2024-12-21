@@ -100,8 +100,20 @@ namespace TimViec.Controllers
         [HttpPost]
         public async Task<IActionResult> feedback(feedback feedback)
         {
-            await _feedbackRepository.AddAsync(feedback);
-            return RedirectToAction(nameof(Index));
+			var getUser = await _userManager.GetUserAsync(User);
+			feedback.Email = getUser.Email;
+			feedback.Name = getUser.Fullname;
+			try
+			{
+				
+				await _feedbackRepository.AddAsync(feedback);
+				return Json(new {success = true});
+			}catch(Exception ex)
+			{
+				return Json(new { success = false, error = ex.Message });
+			}
+            
+            
 
         }
         //*******************************************************************************************
