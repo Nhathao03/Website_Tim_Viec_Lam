@@ -17,7 +17,7 @@
 		<div class="welcome-hero-txt">
 			<h2>best place to find and explore <br> that all you need </h2>
 			<p>
-				Find Best Job Name, Skill, Level, Location and many more think in just One click
+				Find Best Job Name, Location and many more think in just One click
 			</p>
 		</div>
 		<div class="welcome-hero-serch-box">
@@ -38,7 +38,7 @@
 						<option value="1">Hồ Chí Minh</option>
 						<option value="2">Hà Nội</option>
 						<option value="3">Đà Nẵng</option>
-						<option value="4">Different</option>
+						<option value="4">Other</option>
 					</select>
 					<div class="welcome-hero-form-icon">
 						<i class="flaticon-gps-fixed-indicator"></i>
@@ -197,33 +197,6 @@
 	</div><!--/.container-->
 </section><!--/.explore-->
 <!--explore end -->
-<!--reviews start -->
-<section id="reviews" class="reviews">
-	<div class="section-header">
-		<h2>Company in Dev IT</h2>		
-	</div><!--/.section-header-->
-	<div class="reviews-content">
-		<div class="testimonial-carousel">
-			@foreach(var item in Model.Companies)
-			{
-				<div class="single-testimonial-box">
-					<div class="testimonial-description">
-						<div class="testimonial-info">
-							<div class="testimonial-img">
-								<img src="~/LayoutTimViec/img/@item.Image" alt="clients">
-							</div><!--/.testimonial-img-->
-							<div class="testimonial-person">
-								<h2>Tom Leakar</h2>
-							</div><!--/.testimonial-person-->
-						</div><!--/.testimonial-info-->
-					</div><!--/.testimonial-description-->
-				</div>
-				<!--/.single-testimonial-box-->
-			}		
-		</div>
-	</div>
-</section><!--/.reviews-->
-<!--reviews end -->
 <!-- statistics strat -->
 <section id="statistics" class="statistics">
 	<div class="container">
@@ -231,33 +204,33 @@
 			<div class="col-md-3 col-sm-6">
 				<div class="single-ststistics-box">
 					<div class="statistics-content">
-						<div class="counter">90 </div> <span>K+</span>
+						<div class="counter"> </div> <span></span>>
 					</div><!--/.statistics-content-->
-					<h3>listings</h3>
+					<h3></h3>
 				</div><!--/.single-ststistics-box-->
 			</div><!--/.col-->
 			<div class="col-md-3 col-sm-6">
 				<div class="single-ststistics-box">
 					<div class="statistics-content">
-						<div class="counter">40</div> <span>k+</span>
+						<div class="counter">40</div> <span></span>
 					</div><!--/.statistics-content-->
-					<h3>listing categories</h3>
+					<h3></h3>
 				</div><!--/.single-ststistics-box-->
 			</div><!--/.col-->
 			<div class="col-md-3 col-sm-6">
 				<div class="single-ststistics-box">
 					<div class="statistics-content">
-						<div class="counter">65</div> <span>k+</span>
+						<div class="counter"></div> <span></span>
 					</div><!--/.statistics-content-->
-					<h3>visitors</h3>
+					<h3></h3>
 				</div><!--/.single-ststistics-box-->
 			</div><!--/.col-->
 			<div class="col-md-3 col-sm-6">
 				<div class="single-ststistics-box">
 					<div class="statistics-content">
-						<div class="counter">50</div> <span>k+</span>
+						<div class="counter"></div> <span></span>
 					</div><!--/.statistics-content-->
-					<h3>happy clients</h3>
+					<h3> </h3>
 				</div><!--/.single-ststistics-box-->
 			</div><!--/.col-->
 		</div><!--/.statistics-counter-->
@@ -323,7 +296,6 @@
 					success: function (result) {
 						if(result.success){
 							const notification = document.getElementById('notification');
-
 							// Show notification
 							notification.classList.remove('hidden');
 							notification.classList.add('show');
@@ -335,8 +307,7 @@
 								notification.classList.add('hidden');
 							}, 3000); // 5 seconds
 						}
-						else{
-							
+						else{						
 							const notification = document.getElementById('notification');
 
 							// Show notification
@@ -349,9 +320,7 @@
 								notification.classList.remove('show');
 								notification.classList.add('hidden');
 							}, 3000); // 5 seconds
-						}
-						
-
+						}					
 					},
 					error: function (xhr, status, error) {
 						alert("An error eccorred: " + error);

@@ -42,10 +42,10 @@ namespace TimViec.Controllers
 
         [HttpGet]
         // Get template by category
-        public async Task<IActionResult> Get_template_by_category(int category_id)
+        public async Task<IActionResult> Gettemplatebycategory(int category_id)
         {
             var getTemplate_by_category = _templateRepository.Get_Template_By_Categories(category_id);
-            return PartialView("_Partial_GetTemplate_by_category", getTemplate_by_category);
+            return View(getTemplate_by_category);
 
         }
 
