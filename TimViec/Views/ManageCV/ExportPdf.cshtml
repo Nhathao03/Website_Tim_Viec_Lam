@@ -2,7 +2,7 @@
 
 <div class="cv-container" id="pdfRender">
     <link rel="stylesheet" href="https://localhost:7015/CV/style_template/style1.css">
-    <div class="resume" style="background-image: url('/CV/background_image/@ViewBag.Background');">
+    <div class="resume">
         @if (Model != null && Model.Count > 0)
         {
             <input type="hidden" value="@Model.First().CVID" id="cvid" />
