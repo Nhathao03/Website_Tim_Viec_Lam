@@ -73,7 +73,8 @@ namespace TimViec.Repository
         {
             var result = from type in _context.types
                          join tem in _context.template on type.Id equals tem.TypeID
-                         where(type.Id.Equals(category_Id))
+                         join cvs in _context.cv on tem.Id equals cvs.templateId
+                         where (type.Id.Equals(category_Id) && cvs.IsDefault == false)
                          select new Get_template_by_category_ViewModel
                          {
                              Id = tem.Id,

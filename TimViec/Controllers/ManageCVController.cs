@@ -74,7 +74,6 @@ namespace TimViec.Controllers
                     Style = !string.IsNullOrEmpty(item.StyleJson) ? JsonConvert.DeserializeObject<dynamic>(item.StyleJson) : null,
                 });
             }
-            ViewBag.Background = sectionList.First().Background;
             return View(sectionList);
         }
 
@@ -99,7 +98,6 @@ namespace TimViec.Controllers
                     Style = !string.IsNullOrEmpty(item.StyleJson) ? JsonConvert.DeserializeObject<dynamic>(item.StyleJson) : null,
                 });
             }
-            ViewBag.Background = sectionList.First().Background;
             return View(sectionList);
         }
       

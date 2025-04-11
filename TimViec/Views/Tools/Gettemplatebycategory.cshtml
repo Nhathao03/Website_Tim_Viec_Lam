@@ -42,27 +42,11 @@
                         <div class=" col-md-4 col-sm-6" style="width: 20.333333% !important; margin-right: 35px">
                             <div class="single-explore-item" style="border-radius: 9px">
                                 <div class="single-explore-img" style="border-radius: 9px">
-                                    <img style="height: 200px; width: 100%; object-fit: scale-down" src="../../CV/background_image/@item.Image" alt="explore image">
-                                    <div class="single-explore-img-info">
-                                        <div class="single-explore-image-icon-box" style="font-family: Arial">
-                                            <ul>
-                                                <li onclick="openPopup()" style="border-radius: 10px; width: 85px !important; background-color: transparent; ; color: black; cursor: pointer;border: 2px solid #ffffff;">
-                                                    <div class="single-explore-image-icon">
-                                                        <i class="fa fa-eye see_item" id_jobfv="Id"> See</i>
-                                                    </div>
-                                                </li>
-                                                <li style="border-radius: 10px; width: 85px !important; background-color: lightcoral ;color: black; cursor: pointer;">
-                                                    <div class="single-explore-image-icon">
-                                                        <a asp-controller="Tools" asp-action="CreateCV"><i class="use_item">Use</i></a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <img style="height: 200px; width: 100%; object-fit: scale-down" src="../../CV/background_image/@item.Image" alt="explore image">                    
                                 </div>
                                 <div class="single-explore-txt bg-theme-1" style="padding: 5px">
                                     <h2>
-                                        <a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px; margin: 5px" href="#" class="Detail_Job" id_job="@item.Id">@item.Category</a>
+                                        <a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px; margin: 5px; cursor: pointer;" asp-controller="Tools" asp-action="RenderCreateCV" asp-route-id="@item.CV_ID" class="@("ID" + item.CV_ID) " id_cv="@item.CV_ID">@item.Category</a>
                                     </h2>
                                 </div>
                             </div>
